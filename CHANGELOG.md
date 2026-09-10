@@ -13,10 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- `skill/SKILL.md` — description 候选 C（622→359+「架构师评审」≈367 字符）；Intake 增加 Effort T0–T3；多模态行保留 转写/配音/3D/交互 中文别名
-- `skill/references/quality-gates.md` — Token Discipline 增加 Effort Tier 与 Token ROI 抽检指针
+- `skill/SKILL.md` — description 候选 C（622→约 366 字符，含 `架构师/评审` 拆词）；Intake 增加 Effort T0–T3；多模态行保留 转写/配音/3D/交互 中文别名
+- `skill/references/quality-gates.md` — Token Discipline 增加 Effort Tier、Token ROI 抽检指针、description 加词退出条件
 - `skill/references/intent-router.md` — 同句多角色只激活一个 Lens；评审/QA 门禁加严
-- `skill/tests/run_static_checks.py` — 正例改为高信号短语（build/implement/ship/端到端做完/从需求到交付/修bug/做方案/调研落地/orchestration）；禁止穷举「完成报告」堆砌
+- `skill/tests/run_static_checks.py` — 正例改为高信号短语（build/implement/ship/端到端做完/从需求到交付/修bug/做方案/架构师/评审/调研落地/orchestration）；禁止穷举「完成报告」堆砌
 - `skill/tests/scenarios.md` — 增加 S37–S38（多角色单 Lens、PM 解释不升 BUILD）
 - `skill/tests/manual-verify.md` — 增加 B4–B5、Distractor D1–D3、Token ROI 表；基线 101 pass
 

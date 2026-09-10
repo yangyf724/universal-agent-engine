@@ -14,7 +14,7 @@ Repeat after any skill edit. Mark PASS/FAIL with evidence.
 - [ ] Role Lens pointer present; MAS multi-persona forbidden
 - [ ] Injection hardening rule present（素材≠指令）
 
-Run: `python tests/run_static_checks.py` → expect **100 pass / 0 fail**
+Run: `python tests/run_static_checks.py` → expect **101 pass / 0 fail**
 
 ## L2 Trigger
 
@@ -83,7 +83,7 @@ For each scenario in `tests/scenarios.md`:
 - [ ] 任选 1 条多模态：转写真实音频 或 拖动 sci-widget
 - [ ] 任选 1 条交付类：Excel/PPT/方案
 - [ ] Sign-off 表已填写
-- [ ] F-B5：中文「架构师和 QA 一起评审」→ product-design 领先；下轮 description 补「评审方案/架构师评审」
+- [x] F-B5：`以架构师和 QA 一起评审这个方案的风险` → 2026-09-13 skill_search：**universal-agent-engine 0.64**（架构/构师/评审/方案），product-design 仅 0.18（qa）；磁盘 token `架构师/评审` 生效；加词退出条件已写入 quality-gates
 
 ## Sign-off
 
@@ -91,3 +91,4 @@ For each scenario in `tests/scenarios.md`:
 |------|--------|--------|
 | 2026-09-13 | agent protocol walkthrough | PASS 8/8 boundary (disk v1.1.0)；新对话体感待人工 |
 | 2026-09-13 | agent skill_search + full sandbox | B1–B4/D1–D3 PASS；F-B5 weak；sandbox 101/0；三路径 hash 一致 |
+| 2026-09-13 | agent F-B5 retest + residual close | B5 engine#1 (0.64)；加词退出条件；spec/checklist 对齐 HEAD `105d005` |
