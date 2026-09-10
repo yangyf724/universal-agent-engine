@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-09-13
+
+### 摘要
+
+统一优化（目标1–4）：description 改为 SkillReducer 三信号最小路由面；Effort Tier；角色单 Lens；distractor/Token ROI 人工抽检；静态正例表对齐。
+
+### Changed
+
+- `skill/SKILL.md` — description 候选 C（622→359 字符）；Intake 增加 Effort T0–T3；多模态行保留 转写/配音/3D/交互 中文别名
+- `skill/references/quality-gates.md` — Token Discipline 增加 Effort Tier 与 Token ROI 抽检指针
+- `skill/references/intent-router.md` — 同句多角色只激活一个 Lens；评审/QA 门禁加严
+- `skill/tests/run_static_checks.py` — 正例改为高信号短语（build/implement/ship/端到端做完/从需求到交付/修bug/做方案/调研落地/orchestration）；禁止穷举「完成报告」堆砌
+- `skill/tests/scenarios.md` — 增加 S37–S38（多角色单 Lens、PM 解释不升 BUILD）
+- `skill/tests/manual-verify.md` — 增加 B4–B5、Distractor D1–D3、Token ROI 表；基线 101 pass
+
+[1.2.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.1.0...HEAD
+
 ## [1.1.0] - 2026-09-13
 
 ### 摘要

@@ -138,12 +138,18 @@ def main() -> int:
 
     # --- L2 trigger phrase coverage ---
     desc_l = desc.lower()
+    # Routing-surface positives (SkillReducer: high-signal, not exhaustive laundry list)
     positive_phrases = [
-        "帮我做", "实现", "完成报告", "修一下", "做一份方案", "调研",
-        "build", "implement", "ship", "fix", "research", "design", "write",
+        "build", "implement", "ship",
+        "端到端做完", "从需求到交付", "修bug", "做方案", "调研落地",
+        "orchestration",
     ]
     missing_pos = [p for p in positive_phrases if p.lower() not in desc_l]
     check(not missing_pos, f"positive triggers in description; missing={missing_pos}")
+    check(
+        "完成报告" not in desc,
+        "description avoids exhaustive trigger laundry list",
+    )
     check("chit-chat" in desc_l or "闲聊" in desc, "negative: chit-chat excluded")
     check("compose-next" in desc_l, "negative: compose-next boundary in description")
     check(

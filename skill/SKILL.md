@@ -1,6 +1,6 @@
 ---
 name: universal-agent-engine
-description: Cross-step agent execution protocol (route → DoD → ReAct → verify → deliver) for multi-step work with a deliverable. Use when the user asks to build, implement, ship, fix, research, design, write, or complete end-to-end tasks — e.g. "帮我做这个项目", "实现这个功能", "完成报告", "修一下这个bug", "做一份方案", "调研X并落地", "端到端做完", "build/implement/ship this". Supports multimodal overlays (看图/转写/配音/3D/交互). Role lenses live in references, not extra agents. Do NOT use for pure chit-chat, one-line trivia, listing files only, single-file Office/PDF drafts (prefer xlsx/docx/pptx/pdf official skills), or when the user explicitly requests /compose-next.
+description: Orchestration-layer agent protocol for multi-step work with a deliverable (route → DoD → execute → verify → deliver). Use for build/implement/ship, 端到端做完/从需求到交付, 修bug/做方案/调研落地. Multimodal = input overlay only. Do NOT use for 闲聊/chit-chat, single Q&A, listing files, single-file Office/PDF (→ official), or when the user names compose-next (用 compose-next 流程).
 ---
 
 # Universal Agent Engine
@@ -38,7 +38,7 @@ description: Cross-step agent execution protocol (route → DoD → ReAct → ve
 
 主 mode 不变。Step 0 后静默 Modality Scan：
 
-- 视觉→VISION；听觉→AUDIO；Office→DOCOFFICE；视频→VIDEO；建模/站点→THREE_D；可拖动演示→INTERACTIVE。
+- 视觉→VISION；听觉→AUDIO（转写/配音）；Office→DOCOFFICE；视频→VIDEO；建模/3D→THREE_D；可拖动交互演示→INTERACTIVE。
 - 细则与工具锚点只在需要时读 `references/multimodal.md`。
 - 交付前抽检该模态样本；工具缺失则降级并披露，禁止假装已生成。
 
@@ -49,6 +49,7 @@ description: Cross-step agent execution protocol (route → DoD → ReAct → ve
 1. 抽取：目标、约束、成功标准、已有输入。
 2. **只问会改变产出的歧义**；可推断的写进假设并继续。
 3. 复杂任务用 `task` 注册；3 步以内可不注册。
+4. **Effort**：T0 单题不进全协议；T1 单文件产物委托 official；T2 多步有 DoD 走全协议不 fan-out；T3 广度研究才有限 fan-out，子代理只回摘要，重产物落盘传路径。
 
 输出一段 Intake 摘要后立刻进入 Step 2。
 

@@ -5,7 +5,7 @@
 目标：**高效率、高完成率、低错误率、低返工率**。分析用户语句自动路由主模式，并可叠加全模态 I/O；角色为决策透镜（非多智能体），主体按 actionable 核心压缩以降低 token。
 
 <!-- github-sync:begin -->
-**Version:** 1.1.0  
+**Version:** 1.2.0  
 **Last sync:** 2026-09-13
 <!-- github-sync:end -->
 
@@ -18,6 +18,19 @@
 ```
 
 （兼容旧路径 `~/.claude/skills/universal-agent-engine/`。）
+
+一步同步（Windows PowerShell）：
+
+```powershell
+$src = "D:\project\提示词工程\repos\universal-agent-engine\skill"
+foreach ($dst in @(
+  "$env:USERPROFILE\.config\mimocode\skills\universal-agent-engine",
+  "$env:USERPROFILE\.claude\skills\universal-agent-engine"
+)) {
+  New-Item -ItemType Directory -Force -Path $dst | Out-Null
+  Copy-Item -Path "$src\*" -Destination $dst -Recurse -Force
+}
+```
 
 不要把仓库根目录的 README/CHANGELOG 拷进 skill 文件夹（桌面加载器会拒绝含 README 的 skill 包）。
 

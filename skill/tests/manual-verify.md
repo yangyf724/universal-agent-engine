@@ -29,6 +29,27 @@
 | B1 | `用 compose-next 修这个登录 bug` | **只**走 compose-next，不双载本编排层全协议 | ☐ |
 | B2 | `做一个 10 页季度汇报 PPT` | 优先 pptx-official 等产物技能；本 skill 至多编排，不复述版式细则 | ☐ |
 | B3 | `以架构师视角评审这个方案的风险` | Role Lens（架构师）→ DESIGN+Verify；**不是**多角色会审 | ☐ |
+| B4 | `用 compose-next 流程做方案` | 同 B1（不要求打出 `/`） | ☐ |
+| B5 | `以架构师和 QA 一起评审` | 单 Lens；禁止双角色会审 | ☐ |
+
+### 1c. Distractor 抽检（约 3 分钟）
+
+对下列语句记录：本 skill 是否加载 / 是否误双载编排层。
+
+| # | 你说 | 期望 | 通过 |
+|---|---|---|---|
+| D1 | `同步这个仓库到 GitHub` | github-sync 优先，本 skill 不抢 | ☐ |
+| D2 | `画一张产品海报` | imagegen 等产物技能 | ☐ |
+| D3 | `做一个 10 页 PPT` | official 优先（同 B2） | ☐ |
+
+### 1d. Token ROI 抽检（约 5 分钟）
+
+| 任务 | 加载本 skill | 双载编排层 | 主体+按需 ref 粗估 | DoD 完成 | 备注 |
+|---|---|---|---|---|---|
+| （填一行实际任务） | Y/N | Y/N | tok 粗估 | Y/N | |
+| （再填一行） | Y/N | Y/N | tok 粗估 | Y/N | |
+
+目标：同等完成质量下 token **不升**（相对无纪律多步或双编排层）。
 
 ## 2. 路由体感（约 5 分钟）
 
@@ -103,7 +124,7 @@ python "$env:USERPROFILE\.config\mimocode\skills\universal-agent-engine\tests\ru
 python "D:\project\提示词工程\repos\universal-agent-engine\skill\tests\run_static_checks.py"
 ```
 
-期望：`ALL CHECKS PASSED`（当前基线 **100 pass**）。
+期望：`ALL CHECKS PASSED`（当前基线 **101 pass**）。
 
 ## 常见误判
 

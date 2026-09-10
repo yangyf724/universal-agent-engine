@@ -40,6 +40,8 @@ Each row is a regression case. `Expected` is the primary mode after Step 0 routi
 | S34 | 以架构师视角评审这个方案的风险 | DESIGN | — | Role Lens: 架构师 |
 | S35 | 以产品经理口径写一页需求澄清 | WRITE | ADVISE | Role Lens: 产品经理；不默认 BUILD |
 | S36 | 以 QA 视角列出验收清单再修失败用例 | FIX | — | Role Lens: QA + 门禁 |
+| S37 | 以架构师和 QA 一起评审这个方案 | DESIGN | — | 单 Lens；禁止双角色会审 |
+| S38 | 你是产品经理，解释一下这个报错 | ADVISE | — | Role Lens: 产品经理；不升 BUILD |
 
 ## Multimodal overlay rules
 
