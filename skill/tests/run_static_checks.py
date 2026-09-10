@@ -158,8 +158,8 @@ def main() -> int:
         "P-domain yield present in SKILL or intent-router",
     )
     check(
-        "建议" in body and "compose-next" in body,
-        "SKILL Important/example has P-domain suggest compose-next path",
+        "建议" in body and "compose-next" in body and "P-domain" in body,
+        "SKILL Important has P-domain suggest compose-next path",
     )
     check("### D3" in router or "D3 技能边界" in router, "intent-router D3 boundary section")
     check(

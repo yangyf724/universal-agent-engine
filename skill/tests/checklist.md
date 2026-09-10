@@ -79,6 +79,7 @@ For each scenario in `tests/scenarios.md`:
 - [x] 协议走查：B3 架构师 Role Lens、禁 MAS（S34 + intent-router）
 - [x] 协议走查：天气/列目录/闲聊负例
 - [x] skill_search 抽检（2026-09-13，disk v1.2）：B1/B4→compose-next；D1→github-sync；D2→imagegen；触发词正例 engine#1；完整包沙盒 static 101 PASS
+- [x] skill_search 抽检（2026-09-13，disk v1.3）：点名 compose-next=1.0；调研落地→engine；static 106 PASS
 - [ ] **新对话** `用 universal-agent-engine 做一个员工报销审批流程方案` → 有 DoD/约束（待用户开新会话）
 - [ ] **新对话** 真实体感确认 compose-next 边界
 - [ ] 任选 1 条多模态：转写真实音频 或 拖动 sci-widget
@@ -93,3 +94,4 @@ For each scenario in `tests/scenarios.md`:
 | 2026-09-13 | agent protocol walkthrough | PASS 8/8 boundary (disk v1.1.0)；新对话体感待人工 |
 | 2026-09-13 | agent skill_search + full sandbox | B1–B4/D1–D3 PASS；F-B5 weak；sandbox 101/0；三路径 hash 一致 |
 | 2026-09-13 | agent F-B5 retest + residual close | B5 engine#1 (0.64)；加词退出条件；spec/checklist 对齐 `8f9c932` |
+| 2026-09-13 | agent P-domain yield + independent review | static 106/0；评审 PASS 10/10 无 critical；分支 `optimize/v1.3-compose-complement` |
