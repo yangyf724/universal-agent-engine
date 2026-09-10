@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `skill/tests/scenarios.md` — 增加 S37–S38（多角色单 Lens、PM 解释不升 BUILD）
 - `skill/tests/manual-verify.md` — 增加 B4–B5、Distractor D1–D3、Token ROI 表；基线 101 pass
 
-[1.2.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.1.0...HEAD
+[1.2.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.1.0...v1.2.0
 
 ## [1.1.0] - 2026-09-13
 
