@@ -77,14 +77,17 @@ For each scenario in `tests/scenarios.md`:
 - [x] 协议走查：B2 单文件 PPT 优先 official（S31）
 - [x] 协议走查：B3 架构师 Role Lens、禁 MAS（S34 + intent-router）
 - [x] 协议走查：天气/列目录/闲聊负例
+- [x] skill_search 抽检（2026-09-13，disk v1.2）：B1/B4→compose-next；D1→github-sync；D2→imagegen；触发词正例 engine#1；完整包沙盒 static 101 PASS
 - [ ] **新对话** `用 universal-agent-engine 做一个员工报销审批流程方案` → 有 DoD/约束（待用户开新会话）
 - [ ] **新对话** 真实体感确认 compose-next 边界
 - [ ] 任选 1 条多模态：转写真实音频 或 拖动 sci-widget
 - [ ] 任选 1 条交付类：Excel/PPT/方案
 - [ ] Sign-off 表已填写
+- [ ] F-B5：中文「架构师和 QA 一起评审」→ product-design 领先；下轮 description 补「评审方案/架构师评审」
 
 ## Sign-off
 
 | Date | Tester | Result |
 |------|--------|--------|
 | 2026-09-13 | agent protocol walkthrough | PASS 8/8 boundary (disk v1.1.0)；新对话体感待人工 |
+| 2026-09-13 | agent skill_search + full sandbox | B1–B4/D1–D3 PASS；F-B5 weak；sandbox 101/0；三路径 hash 一致 |
