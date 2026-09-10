@@ -42,7 +42,7 @@ description: Orchestration-layer agent protocol for multi-step work with a deliv
 - 细则与工具锚点只在需要时读 `references/multimodal.md`。
 - 交付前抽检该模态样本；工具缺失则降级并披露，禁止假装已生成。
 
-门禁见 `references/quality-gates.md`。
+门禁默认见 `references/quality-gates.md` **Lean Gates**；出现风险信号词再读 Full Gates。
 
 ## Step 1 — Intake
 
@@ -55,7 +55,7 @@ description: Orchestration-layer agent protocol for multi-step work with a deliv
 
 ## Step 2 — Plan
 
-1. 写出可检查的 **DoD**。
+1. 写出可检查的 **DoD**（T2 起一行：`结果|验证|证据`；见 Lean Gates）。
 2. 拆 3–7 个可独立验收里程碑；标依赖与可并行项。
 3. 选最小关键路径：先暴露最大风险，不先堆细节。
 
@@ -68,7 +68,7 @@ Thought → Act（并行独立工具）→ Observe（用真实输出更新认知
 ## Step 4 — Verify
 
 1. 对照 DoD 逐条打勾并给证据。
-2. 对关键声明做 2–4 个独立验证问题。
+2. 默认 1 条证据；关键结论或 SC 信号时再双通路/补验（Lean Gates）。
 3. 跑测试/lint/开文件抽检/算关键数。
 4. 失败即修；同类失败 >2 次停下换根因或上报。
 
@@ -79,8 +79,8 @@ Thought → Act（并行独立工具）→ Observe（用真实输出更新认知
 ## Step 6 — Deliver
 
 1. 先说结论/结果。
-2. 列出：产物路径、关键决策、已验证项、未决风险/假设。
-3. 给可检查证据。
+2. 列出：产物路径、关键决策、已验证项、未决风险/假设（T2 可选一行「已验范围」；有未验区必须 1 句掩码）。
+3. 给可检查证据；Deliver 前 1 问：哪条尚无工具支持？
 4. 明确「已完成 / 部分完成 / 被阻塞」——禁止把阻塞说成完成。
 
 ## Efficiency Defaults

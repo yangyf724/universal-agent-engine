@@ -44,6 +44,10 @@ Each row is a regression case. `Expected` is the primary mode after Step 0 routi
 | S38 | 你是产品经理，解释一下这个报错 | ADVISE | — | Role Lens: 产品经理；不升 BUILD |
 | S39 | 把登录超时修掉，合并前要有规格和独立评审 | （不路由全协议） | — | P-domain：建议 compose-next，未点名不进全协议 |
 | S40 | 不用 compose-next，直接修登录超时 | FIX | — | 用户拒绝建议后走本 skill 轻量 FIX |
+| S41 | 写个一次性脚本处理这批 CSV | BUILD | — | 非 P-domain：不建议 compose-next |
+| S42 | （改完未跑测试却说）已修好 | （阻塞 Deliver） | — | verification skip → Lean SC 阻塞 |
+| S43 | 做一个 10 页产品介绍 PPT | OPERATE | — | 近邻 official 负例；不抢编排层 |
+| S44 | 解释一下缓存穿透是什么 | ADVISE | — | T0：不强制 DoD 表/Full Gates |
 
 ## Multimodal overlay rules
 

@@ -2,6 +2,16 @@
 
 来源思想：Reflexion（失败后言语反思）、CoVe（独立验证问题）、12-Factor Agents（compact errors）、Anthropic Context Engineering（高信号上下文）。
 
+## Lean Gates（默认；有信号再深读下文 Full Gates）
+
+- **T0/T1**：DoD≤1 行 → 做 → ≤1 条工具证据 → Deliver；不读 Full Gates。
+- **T2**：DoD=`结果|验证|证据` 勾选；存在未验区则 1 句「未验:…；假设:…」（验证掩码，**禁止强制双表**）；可选一行「已验: 主路径」。
+- **信号**（风险/该测/可能有问题/应该没问题/大概/看起来完成）→ Anti-SC：说出风险或该测必须**补证或标未验**；改完零验证称完成→**阻塞**；关键结论（对外数字/版本/钱数/安全与合并结论/用户点名）尽量双通路否则披露；Deliver 前 **1** 问：哪条尚无工具输出/抽检支持？
+- **Reflect 写入 checklist**：≥2 次同类 + 工具证据 + 责任侧（model/harness/env/user）。
+- **边界**：要 worktree / Spec / **独立 Review** / Finish → **compose-next**；本 skill 不提供。
+
+以下为 **Full Gates**（T2+ 加深、评审/QA Lens、或 Lean 信号触发后需要细则时再读）。
+
 ## Universal Gates（所有模式）
 
 1. **DoD Gate**：开工前有完成清单；交付前逐条打勾。
@@ -81,7 +91,7 @@
 
 ## Token Discipline
 
-- 同任务只加载一个编排层技能；P-domain（git 多步实现要合并/规格）未点名时建议 compose-next，不进全协议；单文件 Office/PDF 委托 official。
+- 同任务只加载一个编排层技能；P-domain（git 多步实现要合并/规格）未点名时建议 compose-next，不进全协议；单文件 Office/PDF 委托 official。要独立 Review/Spec/worktree → compose-next。
 - SKILL 主体只含 actionable 核心；细则按需读 references，禁止一次灌全量。
 - 禁止多角色 MAS 会审；角色只作 Role Lens。评审/QA Lens 时 Evidence/No Fake Done 必过。
 - Effort Tier：T0 单题不进全协议；T1 委托 official；T2 全协议不 fan-out；T3 广度研究才有限 fan-out（子代理回摘要、产物落盘）。

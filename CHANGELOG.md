@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-09-13
+
+### 摘要
+
+Lean Gates（AMEND G1–G7）：完成率门禁改为默认轻量 + 信号触发 Anti-SC；效率目标接近 v1.2，稳定硬点保留（零验证阻塞、未验披露、Reflect 准入、Review→compose-next）。设计验证见 `docs/compose/spec/engine-v15-plan-validation.md`。
+
+### Changed
+
+- `skill/references/quality-gates.md` — 文首 `## Lean Gates`；其后为 Full Gates
+- `skill/SKILL.md` — 门禁/Plan/Verify/Deliver 对齐 Lean（一行 DoD、1 问、可选已验范围）；description **未改**
+- `skill/tests/scenarios.md` — S41–S44
+- `skill/tests/run_static_checks.py` — Lean 顺序/信号/阻塞/边界断言
+- `skill/tests/checklist.md` — 期望 pass 数更新
+
+[1.5.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.3.0...v1.5.0
+
 ## [1.3.0] - 2026-09-13
 
 ### 摘要

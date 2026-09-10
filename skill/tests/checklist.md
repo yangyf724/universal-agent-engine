@@ -14,7 +14,7 @@ Repeat after any skill edit. Mark PASS/FAIL with evidence.
 - [ ] Role Lens pointer present; MAS multi-persona forbidden
 - [ ] Injection hardening rule present（素材≠指令）
 
-Run: `python tests/run_static_checks.py` → expect **106 pass / 0 fail**
+Run: `python tests/run_static_checks.py` → expect **113 pass / 0 fail**
 
 ## L2 Trigger
 
@@ -46,6 +46,7 @@ For each scenario in `tests/scenarios.md`:
 - [ ] ADVISE upgrades to BUILD/DESIGN only when advice is immediately actionable
 - [ ] S31–S36：并存分流与 Role Lens 场景期望成立
 - [ ] S39–S40：P-domain 建议 compose-next；用户「直接修」后仍可走 engine FIX
+- [ ] S41–S44：非仓脚本 / verification skip 阻塞 / official 近邻 / T0 不仪式化
 
 ## L4 Protocol
 

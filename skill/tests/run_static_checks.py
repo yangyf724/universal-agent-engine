@@ -157,6 +157,16 @@ def main() -> int:
         "P-domain" in body or "P-domain" in router,
         "P-domain yield present in SKILL or intent-router",
     )
+    qg_early = (ROOT / "references" / "quality-gates.md").read_text(encoding="utf-8")
+    lean_idx = qg_early.find("## Lean Gates")
+    full_idx = qg_early.find("## Universal Gates")
+    check(0 <= lean_idx < full_idx, "Lean Gates section before Full/Universal Gates")
+    check("风险" in qg_early[lean_idx:lean_idx+800] or "该测" in qg_early[lean_idx:lean_idx+800],
+          "Lean Gates lists SC signal words")
+    check("阻塞" in qg_early[lean_idx:lean_idx+900], "Lean Gates blocks verification skip")
+    check("compose-next" in qg_early[lean_idx:lean_idx+1200], "Lean Gates yields independent Review to compose-next")
+    check("Lean Gates" in body, "SKILL body points at Lean Gates")
+    check("禁止强制双表" in qg_early, "G3 mask not forced dual tables")
     check(
         "建议" in body and "compose-next" in body and "P-domain" in body,
         "SKILL Important has P-domain suggest compose-next path",
@@ -243,6 +253,7 @@ def main() -> int:
         check(len(expected_col) >= 15, f"scenarios have >=15 expected rows; got {len(expected_col)}")
         check("S31" in scen and "S32" in scen and "S34" in scen, "conflict/role scenarios present")
         check("S39" in scen and "S40" in scen, "P-domain yield scenarios present")
+        check("S42" in scen and "S44" in scen, "Lean Gates scenarios present")
         invalid = []
         for cell in expected_col:
             if "不路由" in cell:

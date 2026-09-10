@@ -37,6 +37,11 @@
 | arXiv:2607.02911 CoACT | 观察压缩须保持下一动作 |
 | arXiv:2607.17528 Token ROI | 同等质量下比 token/成本 |
 | arXiv:2604.03088 SkVM | 跨 harness 技能编译有价值（本 skill 暂不引入） |
+| arXiv:2606.07889 Strained Coherence | 口头承认风险仍硬做 → 失败信号；Lean Anti-SC |
+| arXiv:2607.04528 Belief Divergence | 选择性验证可假成功 → 未验区掩码 |
+| arXiv:2607.28802 Model or Harness | 失败责任侧定位 → Reflect 四类+责任侧 |
+| arXiv:2608.21867 MemGuard | 验证器输出作持久元数据 → Reflect 准入 |
+| agentskills.io | 渐进披露；近邻负例；with/without eval |
 
 ## How to Refresh This Skill
 
