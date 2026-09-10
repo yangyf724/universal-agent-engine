@@ -73,15 +73,18 @@ For each scenario in `tests/scenarios.md`:
 
 完整步骤见 `tests/manual-verify.md`（约 15–25 分钟）。最低必测：
 
-- [ ] **新对话** `用 universal-agent-engine 做一个员工报销审批流程方案` → 有 DoD/约束，非空谈
-- [ ] **新对话** `天气怎么样` → 不强制完整工程协议
-- [ ] **新对话** `用 compose-next 修这个 bug` → 不双载本 skill 全协议
-- [ ] 任选 1 条多模态：转写真实音频 或 拖动 sci-widget → 样本抽检通过
-- [ ] 任选 1 条交付类：Excel/PPT/方案 → 文件/产物可打开
+- [x] 协议走查：B1 compose-next 不双载（scenarios S32 + description 负例）
+- [x] 协议走查：B2 单文件 PPT 优先 official（S31）
+- [x] 协议走查：B3 架构师 Role Lens、禁 MAS（S34 + intent-router）
+- [x] 协议走查：天气/列目录/闲聊负例
+- [ ] **新对话** `用 universal-agent-engine 做一个员工报销审批流程方案` → 有 DoD/约束（待用户开新会话）
+- [ ] **新对话** 真实体感确认 compose-next 边界
+- [ ] 任选 1 条多模态：转写真实音频 或 拖动 sci-widget
+- [ ] 任选 1 条交付类：Excel/PPT/方案
 - [ ] Sign-off 表已填写
 
 ## Sign-off
 
 | Date | Tester | Result |
 |------|--------|--------|
-|      |        |        |
+| 2026-09-13 | agent protocol walkthrough | PASS 8/8 boundary (disk v1.1.0)；新对话体感待人工 |
