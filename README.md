@@ -5,7 +5,7 @@
 目标：**高效率、高完成率、低错误率、低返工率**。分析用户语句自动路由主模式，并可叠加全模态 I/O；角色为决策透镜（非多智能体），主体按 actionable 核心压缩以降低 token。
 
 <!-- github-sync:begin -->
-**Version:** 1.3.0  
+**Version:** 1.5.0  
 **Last sync:** 2026-09-13
 <!-- github-sync:end -->
 
@@ -36,7 +36,7 @@ foreach ($dst in @(
 
 新开对话后，在插件页应能看到「通用智能体执行引擎」。也可显式说：`用 universal-agent-engine …`。
 
-边界：显式 `/compose-next`、git 仓内多步实现要合并/发版/规格（P-domain，未点名时建议 compose-next）、或单文件 Office/PDF 成稿时，不要加载本编排层全协议。
+边界：显式 `/compose-next`、git 仓内多步实现要合并/发版/规格（P-domain，未点名时建议 compose-next）、或单文件 Office/PDF 成稿时，不要加载本编排层全协议。要 worktree/Spec/独立 Review/Finish → compose-next。门禁默认走 quality-gates **Lean Gates**（信号触发 Anti-SC）。
 
 ## 能力
 
@@ -60,7 +60,7 @@ foreach ($dst in @(
 
 ## 执行协议
 
-Step 0 路由 → Intake → Plan(DoD) → Execute(ReAct) → Verify(CoVe) → Reflect → Deliver
+Step 0 路由 → Intake → Plan(DoD) → Execute(ReAct) → Verify(Lean Gates) → Reflect → Deliver
 
 ## 回归
 
