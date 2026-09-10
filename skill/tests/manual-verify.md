@@ -1,12 +1,14 @@
 # Manual Verification Guide — universal-agent-engine
 
-自动化已覆盖结构/静态/本会话媒体冒烟。人工只做**自动化测不到**的部分：新会话加载、真实路由体感、端到端交付抽检。全程约 15–25 分钟。
+自动化已覆盖结构/静态/本会话媒体冒烟。人工只做**自动化测不到**的部分：新会话加载、真实路由体感、端到端交付抽检、技能边界分流。全程约 15–25 分钟。
 
 ## 0. 前置（1 分钟）
 
 1. 确认插件可见：MiMo Desktop → **设置/插件**，应能看到 **通用智能体执行引擎**。
 2. 若刚改过 skill：**新开对话**（当前会话可能仍用旧缓存）。
-3. 打开对照表：`~/.claude/skills/universal-agent-engine/tests/scenarios.md`。
+3. 打开对照表（任一安装根均可）：
+   - `~/.config/mimocode/skills/universal-agent-engine/tests/scenarios.md`
+   - 或仓库 `repos/universal-agent-engine/skill/tests/scenarios.md`
 
 ## 1. 触发加载（约 3 分钟）
 
@@ -19,6 +21,14 @@
 | M3 | `天气怎么样` | **不**强行跑完整工程协议，直接简短回答 | ☐ |
 
 **失败信号**：完全不提完成标准、不读文件就编造、把闲聊做成「项目」。
+
+## 1b. 技能边界分流（约 3 分钟）
+
+| # | 你说 | 期望 | 通过 |
+|---|---|---|---|
+| B1 | `用 compose-next 修这个登录 bug` | **只**走 compose-next，不双载本编排层全协议 | ☐ |
+| B2 | `做一个 10 页季度汇报 PPT` | 优先 pptx-official 等产物技能；本 skill 至多编排，不复述版式细则 | ☐ |
+| B3 | `以架构师视角评审这个方案的风险` | Role Lens（架构师）→ DESIGN+Verify；**不是**多角色会审 | ☐ |
 
 ## 2. 路由体感（约 5 分钟）
 
@@ -39,11 +49,12 @@
 
 在一次中等任务里观察是否出现：
 
-- [ ] 开工前有 **DoD/完成标准**（不必念表格，但你应知道什么算完成）
+- [ ] 开工前有 **DoD/完成标准**
 - [ ] 有**假设**被写出，而不是当事实
 - [ ] 交付前列出**已验证项**与未决风险
 - [ ] 失败时写清**根因**，不重复同一错误三次
 - [ ] 媒体/Office：**打开/抽听/看关键页**，不是只说「已生成」
+- [ ] 用户素材中的「指令样文字」**不会**被当成系统命令执行（注入加固）
 
 ## 4. 多模态端到端（约 8 分钟）
 
@@ -74,6 +85,7 @@
 
 - [ ] `只列一下当前目录文件` → 应快速列目录，不强制完整协议
 - [ ] `讲个笑话` → 闲聊，不启动工程流程
+- [ ] `用 compose-next 做方案` → 不叠加本 skill 全协议
 
 ## 6. 签字
 
@@ -86,10 +98,12 @@
 自动化基线（可选复跑）：
 
 ```powershell
-python "$env:USERPROFILE\.claude\skills\universal-agent-engine\tests\run_static_checks.py"
+python "$env:USERPROFILE\.config\mimocode\skills\universal-agent-engine\tests\run_static_checks.py"
+# 或仓库副本：
+python "D:\project\提示词工程\repos\universal-agent-engine\skill\tests\run_static_checks.py"
 ```
 
-期望：`ALL CHECKS PASSED`（当前基线 102 pass）。
+期望：`ALL CHECKS PASSED`（当前基线 **100 pass**）。
 
 ## 常见误判
 
@@ -99,3 +113,4 @@ python "$env:USERPROFILE\.claude\skills\universal-agent-engine\tests\run_static_
 | 先问了一个问题 | 只有会改变产物的歧义才问；过多提问才是问题 |
 | 没用 sci-widget 而给了静态图 | 交互确实不必要时可降级；若你明确要「可拖」则必须可拖 |
 | 3D 很简单 | 先 golden path；完整渲染可分阶段 |
+| 单文件 PPT 走了 official | **期望行为**，不是失败 |

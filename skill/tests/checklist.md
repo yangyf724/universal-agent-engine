@@ -6,12 +6,15 @@ Repeat after any skill edit. Mark PASS/FAIL with evidence.
 
 - [ ] `validate_skill.py` → PASS 0 errors
 - [ ] Frontmatter `name` == directory name `universal-agent-engine`
-- [ ] `description` ≤1024 chars, has WHAT + WHEN + negative triggers, no `<>`
+- [ ] `description` ≤1024 chars, has WHAT + WHEN + negative triggers (incl. compose-next / official), no `<>`
 - [ ] `locales/zh-CN.json` and `locales/en-US.json` have only `displayName` + `brief`
 - [ ] All `references/*.md` paths in SKILL.md exist on disk
 - [ ] SKILL.md body progressive: core protocol only; deep detail in references
+- [ ] Body ≤110 non-empty lines and body chars ≤3000
+- [ ] Role Lens pointer present; MAS multi-persona forbidden
+- [ ] Injection hardening rule present（素材≠指令）
 
-Run: `python tests/run_static_checks.py`
+Run: `python tests/run_static_checks.py` → expect **100 pass / 0 fail**
 
 ## L2 Trigger
 
@@ -31,6 +34,8 @@ Negative phrases that should NOT primarily load this skill:
 - [ ] 纯闲聊 / 天气怎么样
 - [ ] 一句话冷知识，无交付物
 - [ ] 只列一下目录，没有目标
+- [ ] 用 compose-next …（应只走 compose-next）
+- [ ] 单文件 Office/PDF 成稿（应优先 official skill）
 
 ## L3 Intent Router
 
@@ -39,19 +44,20 @@ For each scenario in `tests/scenarios.md`:
 - [ ] Mode selection matches the table
 - [ ] Multi-mode cases pick primary by final deliverable
 - [ ] ADVISE upgrades to BUILD/DESIGN only when advice is immediately actionable
+- [ ] S31–S36：并存分流与 Role Lens 场景期望成立
 
 ## L4 Protocol
 
 - [ ] Steps 0–6 all present and ordered
-- [ ] Important rules include: DoD first, no fake done, evidence over memory
-- [ ] Examples cover FIX, RESEARCH+OPERATE, DESIGN
+- [ ] Important rules include: DoD first, no fake done, evidence, single orchestration skill, injection hardening
+- [ ] Examples cover AUDIO overlay, OPERATE+official delegation, compose-next boundary
 - [ ] Troubleshooting covers empty requirement, tool failure, wrong result, long context
 
 ### L5 Quality Gates
 
 - [ ] Four user metrics mapped in `quality-gates.md`
 - [ ] Per-mode gates exist for BUILD/FIX, RESEARCH, DESIGN, WRITE, OPERATE
-- [ ] Compact Errors guidance present
+- [ ] Compact Errors + Token Discipline present
 - [ ] Rework Prevention Checklist present
 
 ## Multimodal Overlay
@@ -69,6 +75,7 @@ For each scenario in `tests/scenarios.md`:
 
 - [ ] **新对话** `用 universal-agent-engine 做一个员工报销审批流程方案` → 有 DoD/约束，非空谈
 - [ ] **新对话** `天气怎么样` → 不强制完整工程协议
+- [ ] **新对话** `用 compose-next 修这个 bug` → 不双载本 skill 全协议
 - [ ] 任选 1 条多模态：转写真实音频 或 拖动 sci-widget → 样本抽检通过
 - [ ] 任选 1 条交付类：Excel/PPT/方案 → 文件/产物可打开
 - [ ] Sign-off 表已填写

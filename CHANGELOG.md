@@ -18,8 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `skill/references/quality-gates.md` — 增加 Token Discipline 与上下文预检要点
 - `skill/references/research-citations.md` — 增补 SkillReducer/MoRe/Context-Fails-First 等 2026 来源
 - `skill/tests/scenarios.md` — 增加并存分流与角色场景 S31–S36
-- `skill/tests/run_static_checks.py` — 支持瘦 mode 表；校验负例、主体行数预算、Role Lens、冲突场景
-- README 安装路径改为 `~/.config/mimocode/skills/`
+- `skill/tests/run_static_checks.py` — 支持瘦 mode 表；校验负例、主体行数预算、Role Lens、冲突场景、注入加固
+- `skill/tests/manual-verify.md` / `checklist.md` — 对齐新安装路径与边界用例；基线 100 pass
+- README 安装路径改为 `~/.config/mimocode/skills/`（兼容 `~/.claude/skills/`）
 
 ### Added
 
