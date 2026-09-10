@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 编排层分流硬规则（单编排层、Office 委托 official、compose-next 互斥）
 
-[1.1.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.0.0...HEAD
+[1.1.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.0.0...v1.1.0
 
 ## [1.0.0] - 2026-09-10
 
