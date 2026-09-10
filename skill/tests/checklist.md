@@ -91,4 +91,4 @@ For each scenario in `tests/scenarios.md`:
 |------|--------|--------|
 | 2026-09-13 | agent protocol walkthrough | PASS 8/8 boundary (disk v1.1.0)；新对话体感待人工 |
 | 2026-09-13 | agent skill_search + full sandbox | B1–B4/D1–D3 PASS；F-B5 weak；sandbox 101/0；三路径 hash 一致 |
-| 2026-09-13 | agent F-B5 retest + residual close | B5 engine#1 (0.64)；加词退出条件；spec/checklist 对齐 HEAD `105d005` |
+| 2026-09-13 | agent F-B5 retest + residual close | B5 engine#1 (0.64)；加词退出条件；spec/checklist 对齐 `8f9c932` |
