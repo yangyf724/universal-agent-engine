@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-09-13
+
+### 摘要
+
+技能组优化：收窄自动匹配、多角色透镜、token 预算与分流硬规则；静态检查对齐新契约。
+
+### Changed
+
+- `skill/SKILL.md` — description 增加 compose-next / official 负例与端到端触发句；主体精简为 actionable 核心（约 −50% 字符），mode 表改薄，禁止 MAS 多角色会审
+- `skill/references/intent-router.md` — 增加 D1–D3 多维决策与 Role Lens 表
+- `skill/references/quality-gates.md` — 增加 Token Discipline 与上下文预检要点
+- `skill/references/research-citations.md` — 增补 SkillReducer/MoRe/Context-Fails-First 等 2026 来源
+- `skill/tests/scenarios.md` — 增加并存分流与角色场景 S31–S36
+- `skill/tests/run_static_checks.py` — 支持瘦 mode 表；校验负例、主体行数预算、Role Lens、冲突场景
+- README 安装路径改为 `~/.config/mimocode/skills/`
+
+### Added
+
+- 编排层分流硬规则（单编排层、Office 委托 official、compose-next 互斥）
+
+[1.1.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.0.0...HEAD
+
 ## [1.0.0] - 2026-09-10
 
 ### 摘要

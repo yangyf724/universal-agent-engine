@@ -2,11 +2,11 @@
 
 跨行业通用智能体执行引擎（MiMo Desktop Skill）。
 
-目标：**高效率、高完成率、低错误率、低返工率**。分析用户语句自动路由主模式，并可叠加全模态 I/O。
+目标：**高效率、高完成率、低错误率、低返工率**。分析用户语句自动路由主模式，并可叠加全模态 I/O；角色为决策透镜（非多智能体），主体按 actionable 核心压缩以降低 token。
 
 <!-- github-sync:begin -->
-**Version:** 1.0.0  
-**Last sync:** 2026-09-10
+**Version:** 1.1.0  
+**Last sync:** 2026-09-13
 <!-- github-sync:end -->
 
 ## 安装
@@ -14,12 +14,16 @@
 将仓库中的 **`skill/` 目录**复制为：
 
 ```text
-~/.claude/skills/universal-agent-engine/
+~/.config/mimocode/skills/universal-agent-engine/
 ```
+
+（兼容旧路径 `~/.claude/skills/universal-agent-engine/`。）
 
 不要把仓库根目录的 README/CHANGELOG 拷进 skill 文件夹（桌面加载器会拒绝含 README 的 skill 包）。
 
 新开对话后，在插件页应能看到「通用智能体执行引擎」。也可显式说：`用 universal-agent-engine …`。
+
+边界：显式 `/compose-next` 或单文件 Office/PDF 成稿时，不要加载本编排层技能。
 
 ## 能力
 

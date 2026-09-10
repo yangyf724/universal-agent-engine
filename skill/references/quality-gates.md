@@ -78,3 +78,11 @@
 | 高完成率 | DoD、里程碑、阻塞显式化 |
 | 低错误率 | Evidence Gate、CoVe 复核、跑测试、多模态抽检 |
 | 低返工率 | Intake 澄清、假设披露、范围控制、Reflect、跨模态一致 |
+
+## Token Discipline
+
+- 同任务只加载一个编排层技能；单文件 Office/PDF 委托 official。
+- SKILL 主体只含 actionable 核心；细则按需读 references，禁止一次灌全量。
+- 禁止多角色 MAS 会审；角色只作 Role Lens。
+- Compact Errors：只保留错误类型/关键行、已尝试、下一策略。
+- 发布前对照：角色清晰、护栏、指令一致、工具 schema、grounding、注入、token（Context 预检）。

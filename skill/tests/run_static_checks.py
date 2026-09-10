@@ -32,15 +32,20 @@ def check(cond: bool, msg: str) -> None:
 
 
 def parse_skill_mode_signals(body: str) -> dict[str, set[str]]:
-    """Parse Step 0 table rows: | signals | MODE | ... |"""
+    """Parse slim or full Step 0 table. Slim: | MODE | product |.
+    Full legacy: | signals | MODE | product |."""
     found: dict[str, set[str]] = {}
     for line in body.splitlines():
-        if not line.startswith("|") or line.startswith("|---") or "Mode" in line and "产物" in line:
+        if not line.startswith("|") or line.startswith("|---"):
             continue
         cells = [c.strip() for c in line.strip("|").split("|")]
         if len(cells) < 2:
             continue
-        mode = cells[1].strip()
+        if cells[0] in MODES and "信号" not in cells[0]:
+            # slim table: Mode first
+            found[cells[0]] = set()
+            continue
+        mode = cells[1].strip() if len(cells) > 1 else ""
         if mode not in MODES:
             continue
         signals = {s.strip().lower() for s in cells[0].split("/") if s.strip()}
@@ -140,33 +145,31 @@ def main() -> int:
     missing_pos = [p for p in positive_phrases if p.lower() not in desc_l]
     check(not missing_pos, f"positive triggers in description; missing={missing_pos}")
     check("chit-chat" in desc_l or "闲聊" in desc, "negative: chit-chat excluded")
+    check("compose-next" in desc_l, "negative: compose-next boundary in description")
+    check(
+        "official" in desc_l or "xlsx" in desc_l,
+        "negative: office official boundary in description",
+    )
 
-    # --- L3 signal alignment SKILL table <-> intent-router cards ---
+    # --- token / role contracts ---
+    body_lines = [ln for ln in body.splitlines() if ln.strip()]
+    check(len(body_lines) <= 110, f"SKILL body non-empty lines {len(body_lines)} <= 110")
+    check("Role Lens" in body, "SKILL body references Role Lens")
+    check("Role Lens" in router or "决策透镜" in router, "intent-router has Role Lens section")
+    check(
+        "禁止" in body and ("MAS" in body or "会审" in body or "并行发言" in body),
+        "SKILL forbids multi-persona MAS",
+    )
+
+    # --- L3 signal alignment: slim table lists modes; full signals live in router ---
     skill_signals = parse_skill_mode_signals(body)
     router_signals = parse_router_mode_signals(router)
     check(set(skill_signals) == set(MODES), f"SKILL table modes parsed: {sorted(skill_signals)}")
     check(set(router_signals) == set(MODES), f"router modes parsed: {sorted(router_signals)}")
 
-    # Exclusive English signal 'fix' must not appear in BUILD
-    build_en = skill_signals.get("BUILD", set())
-    check("fix" not in build_en, "BUILD skill-table does not contain exclusive signal 'fix'")
-    check("fix" in skill_signals.get("FIX", set()), "FIX skill-table contains 'fix'")
+    # Exclusive English signals enforced on router cards (authoritative signal source)
     check("fix" not in router_signals.get("BUILD", set()), "BUILD router-card does not contain 'fix'")
     check("fix" in router_signals.get("FIX", set()), "FIX router-card contains 'fix'")
-
-    # Every SKILL table signal should appear in corresponding router card (alignment)
-    for mode in MODES:
-        sk = skill_signals.get(mode, set())
-        rt = router_signals.get(mode, set())
-        missing = {s for s in sk if s not in rt}
-        # allow Chinese signals that are substrings of router tokens
-        still_missing = set()
-        for s in missing:
-            if not any(s in r or r in s for r in rt):
-                still_missing.add(s)
-        check(not still_missing, f"signals aligned SKILL→router {mode}; missing={sorted(still_missing)}")
-
-    # Cross-mode exclusive English signals
     exclusive = {
         "fix": "FIX",
         "build": "BUILD",
@@ -175,8 +178,20 @@ def main() -> int:
         "write": "WRITE",
     }
     for sig, owner in exclusive.items():
-        owners = [m for m, sigs in skill_signals.items() if sig in sigs]
+        owners = [m for m, sigs in router_signals.items() if sig in sigs]
         check(owners == [owner], f"exclusive signal '{sig}' only on {owner}; owners={owners}")
+
+    # If SKILL table still carries full signal cells, align them to router
+    for mode in MODES:
+        sk = skill_signals.get(mode, set())
+        if not sk:
+            continue
+        rt = router_signals.get(mode, set())
+        still_missing = set()
+        for s in sk:
+            if not any(s in r or r in s for r in rt):
+                still_missing.add(s)
+        check(not still_missing, f"signals aligned SKILL→router {mode}; missing={sorted(still_missing)}")
 
     # --- scenarios.md coverage ---
     scen_path = ROOT / "tests" / "scenarios.md"
@@ -195,8 +210,12 @@ def main() -> int:
                     if part not in {"ID"}:
                         bad.append(part)
         # also catch Expected column patterns like BUILD / （不路由全协议）
-        expected_col = re.findall(r"\|\s*((?:BUILD|FIX|RESEARCH|DESIGN|WRITE|OPERATE|ADVISE)(?:\s*\+\s*[A-Z]+)*|（不路由全协议）)\s*\|", scen)
+        expected_col = re.findall(
+            r"\|\s*((?:BUILD|FIX|RESEARCH|DESIGN|WRITE|OPERATE|ADVISE)(?:\s*\+\s*[A-Z]+)*|（不路由全协议）)\s*\|",
+            scen,
+        )
         check(len(expected_col) >= 15, f"scenarios have >=15 expected rows; got {len(expected_col)}")
+        check("S31" in scen and "S32" in scen and "S34" in scen, "conflict/role scenarios present")
         invalid = []
         for cell in expected_col:
             if "不路由" in cell:
@@ -205,6 +224,7 @@ def main() -> int:
                 if part and part not in MODES:
                     invalid.append(part)
         check(not invalid, f"scenario Expected modes legal; invalid={invalid}")
+
 
     # --- quality-gates ---
     qg = (ROOT / "references" / "quality-gates.md").read_text(encoding="utf-8")

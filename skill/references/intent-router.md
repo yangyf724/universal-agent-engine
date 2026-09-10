@@ -80,3 +80,27 @@
 执行前用一句话自检：  
 「用户最终要的是 ______（文件/代码/方案/结论/修复/媒体/交互）。」  
 填不出来 → 用 ADVISE 或问一个关键问题。
+
+## Multi-Dimension Decision (D1–D3)
+
+| 维 | 决策 |
+|---|---|
+| D1 主产物 | BUILD / FIX / RESEARCH / DESIGN / WRITE / OPERATE / ADVISE |
+| D2 模态叠加 | VISION / AUDIO / DOCOFFICE / VIDEO / THREE_D / INTERACTIVE |
+| D3 技能边界 | 本编排层 vs compose-next vs official/专项 |
+
+## Role Lens（决策透镜，非多智能体）
+
+用户以角色口吻提出时切换对应透镜，仍走同一套 Step。**禁止**多角色并行发言或 MAS 会审。
+
+| 角色 | 强调 | 偏向 |
+|---|---|---|
+| 需求方 / 产品经理 | D1 范围约束 | Intake、ADVISE、DESIGN 范围 |
+| 架构师 / 方案负责人 | D1 DESIGN + D3 边界 | 备选、风险、非目标 |
+| 工程师 | D1 BUILD/FIX | 可运行、回归 |
+| 研究员 / 分析师 | D1 RESEARCH + D2 输入 | 来源、交叉验证 |
+| 作者 / 编辑 | D1 WRITE | 结构、受众 |
+| 数据 / 运营执行 | D1 OPERATE + D2 DOCOFFICE | 可打开文件、抽检 |
+| 评审 / QA | Verify 门禁 | 证据、No Fake Done |
+
+例：「你是架构师，评审这个方案」→ 架构师 Lens + DESIGN + 质量门禁。

@@ -34,6 +34,12 @@ Each row is a regression case. `Expected` is the primary mode after Step 0 routi
 | S28 | 做一个可拖动参数的抛物线演示 | BUILD | — | overlay: INTERACTIVE；sci-widget |
 | S29 | 把流程画成 mermaid 图 | WRITE | — | overlay: INTERACTIVE；静态图 |
 | S30 | 只听一下这段录音说了啥 | WRITE | — | overlay: AUDIO |
+| S31 | 做 10 页季度汇报 PPT | OPERATE | — | 负例边界：优先 official，不强制全引擎协议 |
+| S32 | 用 compose-next 修这个登录 bug | （不路由全协议） | — | 负例：只 compose-next |
+| S33 | 调研竞品并做成对比 PPT | OPERATE | RESEARCH | 委托 office official |
+| S34 | 以架构师视角评审这个方案的风险 | DESIGN | — | Role Lens: 架构师 |
+| S35 | 以产品经理口径写一页需求澄清 | WRITE | ADVISE | Role Lens: 产品经理；不默认 BUILD |
+| S36 | 以 QA 视角列出验收清单再修失败用例 | FIX | — | Role Lens: QA + 门禁 |
 
 ## Multimodal overlay rules
 

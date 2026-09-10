@@ -25,6 +25,19 @@
 | OpenAI Cookbook — chat formatting | system/user 角色、少样本示例模式 |
 | Multimodal prompting / SoM / audio-LLM 实践 | arXiv:2310.11441 等；落地为 VISION/AUDIO 叠加，不在主路由抢 mode |
 
+## Skill Packaging & Token Efficiency (2026)
+
+| 来源 | 可操作结论 |
+|---|---|
+| arXiv:2603.29919 SkillReducer | description/body 双阶段压缩；actionable vs supplementary；less-is-more；限制 reference 注入体积 |
+| arXiv:2608.27338 MoRe | 多角色用单智能体透镜，避免 MAS token 膨胀 |
+| arXiv:2607.14275 Context Fails First | 上下文七维预检：角色清晰/护栏/指令一致/工具 schema/grounding/注入/token |
+| arXiv:2608.09290 OpenCodeReview | 确定性 dispatch + 有界工具，优于自由探索 |
+| arXiv:2605.00410 Agent Capsules | 合并调用需质量门禁；盲目扩 context 有害 |
+| arXiv:2607.02911 CoACT | 观察压缩须保持下一动作 |
+| arXiv:2607.17528 Token ROI | 同等质量下比 token/成本 |
+| arXiv:2604.03088 SkVM | 跨 harness 技能编译有价值（本 skill 暂不引入） |
+
 ## How to Refresh This Skill
 
 1. 用 `websearch`/`webfetch` 检索 agent reliability / context engineering / prompt optimization 新进展。
