@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- `skill/SKILL.md` — description 增加 compose-next / official 负例与端到端触发句；主体精简为 actionable 核心（约 −50% 字符），mode 表改薄，禁止 MAS 多角色会审
+- `skill/SKILL.md` — description 增加 compose-next / official 负例与端到端触发句；主体精简为 actionable 核心（body 字符约 −36%），mode 表改薄，禁止 MAS 多角色会审，增加注入加固规则
 - `skill/references/intent-router.md` — 增加 D1–D3 多维决策与 Role Lens 表
 - `skill/references/quality-gates.md` — 增加 Token Discipline 与上下文预检要点
 - `skill/references/research-citations.md` — 增补 SkillReducer/MoRe/Context-Fails-First 等 2026 来源

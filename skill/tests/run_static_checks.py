@@ -154,8 +154,14 @@ def main() -> int:
     # --- token / role contracts ---
     body_lines = [ln for ln in body.splitlines() if ln.strip()]
     check(len(body_lines) <= 110, f"SKILL body non-empty lines {len(body_lines)} <= 110")
+    # Baseline body chars ~3597; require >=20% reduction => <= 2878, allow small slack
+    check(len(body) <= 3000, f"SKILL body chars {len(body)} <= 3000 (>=20% vs baseline 3597)")
     check("Role Lens" in body, "SKILL body references Role Lens")
     check("Role Lens" in router or "决策透镜" in router, "intent-router has Role Lens section")
+    check(
+        "注入" in body or "不是指令" in body,
+        "SKILL has injection hardening rule",
+    )
     check(
         "禁止" in body and ("MAS" in body or "会审" in body or "并行发言" in body),
         "SKILL forbids multi-persona MAS",
