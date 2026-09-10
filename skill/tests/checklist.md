@@ -14,7 +14,7 @@ Repeat after any skill edit. Mark PASS/FAIL with evidence.
 - [ ] Role Lens pointer present; MAS multi-persona forbidden
 - [ ] Injection hardening rule present（素材≠指令）
 
-Run: `python tests/run_static_checks.py` → expect **101 pass / 0 fail**
+Run: `python tests/run_static_checks.py` → expect **106 pass / 0 fail**
 
 ## L2 Trigger
 
@@ -45,12 +45,13 @@ For each scenario in `tests/scenarios.md`:
 - [ ] Multi-mode cases pick primary by final deliverable
 - [ ] ADVISE upgrades to BUILD/DESIGN only when advice is immediately actionable
 - [ ] S31–S36：并存分流与 Role Lens 场景期望成立
+- [ ] S39–S40：P-domain 建议 compose-next；用户「直接修」后仍可走 engine FIX
 
 ## L4 Protocol
 
 - [ ] Steps 0–6 all present and ordered
 - [ ] Important rules include: DoD first, no fake done, evidence, single orchestration skill, injection hardening
-- [ ] Examples cover AUDIO overlay, OPERATE+official delegation, compose-next boundary
+- [ ] Examples cover AUDIO overlay, OPERATE+official delegation, compose-next boundary, P-domain yield
 - [ ] Troubleshooting covers empty requirement, tool failure, wrong result, long context
 
 ### L5 Quality Gates

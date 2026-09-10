@@ -154,6 +154,19 @@ def main() -> int:
     check("chit-chat" in desc_l or "闲聊" in desc, "negative: chit-chat excluded")
     check("compose-next" in desc_l, "negative: compose-next boundary in description")
     check(
+        "P-domain" in body or "P-domain" in router,
+        "P-domain yield present in SKILL or intent-router",
+    )
+    check(
+        "建议" in body and "compose-next" in body,
+        "SKILL Important/example has P-domain suggest compose-next path",
+    )
+    check("### D3" in router or "D3 技能边界" in router, "intent-router D3 boundary section")
+    check(
+        "直接修" in router or "without spec" in router or "不用 compose-next" in router,
+        "D3 documents user opt-out to stay on engine",
+    )
+    check(
         "official" in desc_l or "xlsx" in desc_l,
         "negative: office official boundary in description",
     )
@@ -229,6 +242,7 @@ def main() -> int:
         )
         check(len(expected_col) >= 15, f"scenarios have >=15 expected rows; got {len(expected_col)}")
         check("S31" in scen and "S32" in scen and "S34" in scen, "conflict/role scenarios present")
+        check("S39" in scen and "S40" in scen, "P-domain yield scenarios present")
         invalid = []
         for cell in expected_col:
             if "不路由" in cell:

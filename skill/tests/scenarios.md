@@ -42,6 +42,8 @@ Each row is a regression case. `Expected` is the primary mode after Step 0 routi
 | S36 | 以 QA 视角列出验收清单再修失败用例 | FIX | — | Role Lens: QA + 门禁 |
 | S37 | 以架构师和 QA 一起评审这个方案 | DESIGN | — | 单 Lens；禁止双角色会审 |
 | S38 | 你是产品经理，解释一下这个报错 | ADVISE | — | Role Lens: 产品经理；不升 BUILD |
+| S39 | 把登录超时修掉，合并前要有规格和独立评审 | （不路由全协议） | — | P-domain：建议 compose-next，未点名不进全协议 |
+| S40 | 不用 compose-next，直接修登录超时 | FIX | — | 用户拒绝建议后走本 skill 轻量 FIX |
 
 ## Multimodal overlay rules
 

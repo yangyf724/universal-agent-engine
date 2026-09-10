@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-09-13
+
+### 摘要
+
+与 compose-next 互补化：不删 BUILD/FIX；将 git 仓内「要合并/发版/规格」的多步实现从 engine **建议让位**给 compose-next（P-domain），保留研究/写作/媒体/非仓交付独占面。
+
+### Changed
+
+- `skill/SKILL.md` — Important 扩为点名让位 + P-domain 建议 + 「直接修」回退；Examples 增加 P-domain 边界例；description **未改**
+- `skill/references/intent-router.md` — D3 扩为可执行四步：点名 / P-domain 建议 / E-domain / official·github-sync
+- `skill/references/quality-gates.md` — Token Discipline 增加 P-domain 让位一句
+- `skill/tests/scenarios.md` — S39 P-domain 建议；S40 用户拒绝后 FIX
+- `skill/tests/run_static_checks.py` — 断言 P-domain、D3 让位、直接修回退、S39/S40
+- `skill/tests/checklist.md` — L3/L4 互补项；期望 pass 数 101→106
+
+[1.3.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.2.0...v1.3.0
+
 ## [1.2.0] - 2026-09-13
 
 ### 摘要

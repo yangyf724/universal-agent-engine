@@ -87,7 +87,14 @@
 |---|---|
 | D1 主产物 | BUILD / FIX / RESEARCH / DESIGN / WRITE / OPERATE / ADVISE |
 | D2 模态叠加 | VISION / AUDIO / DOCOFFICE / VIDEO / THREE_D / INTERACTIVE |
-| D3 技能边界 | 本编排层 vs compose-next vs official/专项 |
+| D3 技能边界 | 本编排层 vs compose-next vs official/专项（见下） |
+
+### D3 技能边界（互补让位）
+
+1. **点名让位**：`/compose-next` 或「用 compose-next 流程」→ 只走 compose-next，本 skill 不加载全协议。
+2. **P-domain 建议**：git 仓内多步实现/修 bug/上线/合并准备，且要合并、发版或 durable 规格，用户未点名 → **不**进 Step 2–6；一句建议 `/compose-next …`，等确认。用户明确「直接修 / 不用 compose-next / without spec」→ 走本 skill 轻量 BUILD/FIX。
+3. **E-domain**：调研/方案本体/写作/Office/媒体/答疑/非 git 交付 → 正常 D1 路由。
+4. **专项委托**：单文件 Office/PDF → official；GitHub 建仓/同步 → github-sync。本 skill 不引入 worktree/Spec/Finish/独立 Review 合同（those belong to compose-next）。
 
 ## Role Lens（决策透镜，非多智能体）
 

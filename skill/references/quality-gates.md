@@ -81,7 +81,7 @@
 
 ## Token Discipline
 
-- 同任务只加载一个编排层技能；单文件 Office/PDF 委托 official。
+- 同任务只加载一个编排层技能；P-domain（git 多步实现要合并/规格）未点名时建议 compose-next，不进全协议；单文件 Office/PDF 委托 official。
 - SKILL 主体只含 actionable 核心；细则按需读 references，禁止一次灌全量。
 - 禁止多角色 MAS 会审；角色只作 Role Lens。评审/QA Lens 时 Evidence/No Fake Done 必过。
 - Effort Tier：T0 单题不进全协议；T1 委托 official；T2 全协议不 fan-out；T3 广度研究才有限 fan-out（子代理回摘要、产物落盘）。
