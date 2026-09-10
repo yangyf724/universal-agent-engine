@@ -142,7 +142,7 @@ def main() -> int:
     positive_phrases = [
         "build", "implement", "ship",
         "端到端做完", "从需求到交付", "修bug", "做方案", "调研落地",
-        "架构师评审",
+        "架构师", "评审",
         "orchestration",
     ]
     missing_pos = [p for p in positive_phrases if p.lower() not in desc_l]

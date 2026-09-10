@@ -1,6 +1,6 @@
 ---
 name: universal-agent-engine
-description: Orchestration-layer agent protocol for multi-step work with a deliverable (route → DoD → execute → verify → deliver). Use for build/implement/ship, 端到端做完/从需求到交付, 修bug/做方案/架构师评审/调研落地. Multimodal = input overlay only. Do NOT use for 闲聊/chit-chat, single Q&A, listing files, single-file Office/PDF (→ official), or when the user names compose-next (用 compose-next 流程).
+description: Orchestration-layer agent protocol for multi-step work with a deliverable (route → DoD → execute → verify → deliver). Use for build/implement/ship, 端到端做完/从需求到交付, 修bug/做方案/架构师/评审/调研落地. Multimodal = input overlay only. Do NOT use for 闲聊/chit-chat, single Q&A, listing files, single-file Office/PDF (→ official), or when the user names compose-next (用 compose-next 流程).
 ---
 
 # Universal Agent Engine
