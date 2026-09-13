@@ -14,7 +14,7 @@ Repeat after any skill edit. Mark PASS/FAIL with evidence.
 - [ ] Role Lens pointer present; MAS multi-persona forbidden
 - [ ] Injection hardening rule present（素材≠指令）
 
-Run: `python tests/run_static_checks.py` → expect **134 pass / 0 fail**
+Run: `python tests/run_static_checks.py` → expect **135 pass / 0 fail**
 
 ## L2 Trigger
 
