@@ -248,6 +248,6 @@ Effort 与 fan-out **正交**：T 档管深度/是否全协议；fan-out 管广�
 - [x] T5: 设计契约（过程门/effort 表/Soft 深度/四门）— acceptance: §2.4 各件可独立验收 (covers: S2)
 - [x] T6: compose-next 双清单 + 宿主修订草案 — acceptance: §2.5 A/B 分离；B 不进入实现任务 (covers: S2)
 - [x] T7: 实现轮：process-gates + audit 协议 + token 决策表 + Soft 深度卡 + 场景/静态/smoke — acceptance: 静态 174/0；body 2851；S71–S74；smoke 矩阵 PASS（P1–P4 契约级） (covers: S2)
-- [ ] T8: 实现轮评审 + 版本发布 — acceptance: 无 critical；静态 0 fail；tag `v1.11.0`（merge 后打 tag） (covers: S2)
+- [x] T8: 实现轮评审 + 版本发布 — acceptance: 评审 0 critical；静态 174/0；main `e4e5cbf`；tag `v1.11.0` 已推送 (covers: S2)
 
 > 本 feature 已完成 **规划 T1–T6 + 实现 T7**。T8（merge/tag 发布）待用户选择收尾方式后执行。
