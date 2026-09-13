@@ -151,6 +151,7 @@ def main() -> int:
         "references/multimodal.md",
         "references/compose-handoff.md",
         "references/compose-token.md",
+        "references/compose-phases.md",
     ):
         p = ROOT / rel
         check(p.exists() and p.stat().st_size > 0, f"{rel} exists non-empty")
@@ -265,6 +266,16 @@ def main() -> int:
     check((ROOT / "references" / "compose-token.md").exists(), "compose-token.md exists")
     # Grill 证据包行数上限（token 合同 load-bearing）
     check("≤40" in (ROOT / "references" / "compose-token.md").read_text(encoding="utf-8") or "40 行" in (ROOT / "references" / "compose-token.md").read_text(encoding="utf-8"), "evidence pack line cap documented")
+    # v1.9 — compose-next 九阶段 Soft 矩阵
+    phases = (ROOT / "references" / "compose-phases.md").read_text(encoding="utf-8")
+    check("compose-phases" in body, "SKILL links compose-phases.md")
+    check("Workspace" in phases and "Finish" in phases, "phases documents Workspace/Finish")
+    check("排除" in phases and "永不" in phases, "phases hard-excludes Workspace/Finish")
+    for card in ("Soft-Orient", "Soft-Spec-input", "Soft-Evidence", "Soft-Review-pack", "Soft-Report"):
+        check(card in phases, f"phases card present: {card}")
+    check("派 Reviewer" in phases and "不" in phases[phases.find("Soft-Review-pack"):phases.find("Soft-Review-pack")+800], "Soft-Review-pack does not dispatch reviewer")
+    check("compose-phases" in router, "intent-router points at compose-phases")
+    check("Soft-Review-pack" in phases and "Soft-Spec-input" in phases, "Spec/Review input cards named")
 
     # ------------------------------------------------------------------
     # Token / 角色 / 注入加固
@@ -350,6 +361,8 @@ def main() -> int:
         check("Soft" in scen or "Soft Companion" in scen, "scenarios mention Soft Companion")
         check("S55" in scen and "S60" in scen, "soft-research/test scenarios present")
         check("Soft-Research" in scen and "Soft-Test" in scen, "scenarios name Soft-Research/Test")
+        check("S61" in scen and "S70" in scen, "compose-phase matrix scenarios present")
+        check("Soft-Spec-input" in scen and "Soft-Review-pack" in scen, "scenarios name Spec/Review packs")
         invalid = []
         for cell in expected_col:
             if "不路由" in cell:

@@ -2,16 +2,16 @@
 
 engine 是 compose-next 的**能力同伴**，不是它的子流程。同任务仍只加载一个编排层。
 
-## 何时用哪一角色
+**compose 运行中**的 Soft 供给（九阶段矩阵、Spec/Review/Report 卡）→ `references/compose-phases.md`。  
+token 合同 → `references/compose-token.md`。
+
+## 何时用哪一角色（前置 / 拒绝）
 
 | 角色 | 信号 | 你交付什么 | 你不做什么 |
 |---|---|---|---|
 | **R1 前置输入** | 用户要调研/选项/方案/验收草案，且下一步明显进 git 仓实现/合并/规格；或明说「喂给 / 帮我准备 compose-next」 | **compose-ready 包**（下节模板） | 不写 feature Spec；不建 worktree；不跑 Finish/独立 Review |
-| **R2 能力补位** | 主产物是多模态/Office/媒体/交互，或非 git 的研究/方案/写作/答疑 | 正常 D1+D2 产物 + Lean Gates | 不接管 git feature；compose 运行中媒体子任务改走 **Soft**（勿全协议双载） |
+| **R2 能力补位** | 主产物是多模态/Office/媒体/交互，或非 git 的研究/方案/写作/答疑 | 正常 D1+D2 产物 + Lean Gates | 不接管 git feature |
 | **R3 拒绝回退** | 「直接修 / 不用 compose-next / without spec」或非 P 多步 | 轻量 BUILD/FIX 等 | 不强制补 Spec/Review |
-| **Soft 媒体** | compose/P 运行中多模态感知/媒体子任务 | 只读 `multimodal.md` + 抽检 | 不进 Step 2–6；无 compose 勿 Soft（R2） |
-| **Soft-Research** | compose Grill/P 决策 + 调研/对比/论文/高星仓/选型信号 | 研究卡（web/arxiv/gh）+ **证据包**（≤40 行） | **不替 Grill 拍板**；不建 Spec；无 compose → R2 RESEARCH |
-| **Soft-Test** | compose Implement/Verify + UI/音/视频/图/交互待测 | 测试卡：视/听抽检、跨模态一致、禁 Fake；高风险可 **1** 个盲测子代理（默认关） | 不写业务实现；**不**宣布 feature 总 Verify |
 
 ## R1 判定（满足任一才走）
 
@@ -43,7 +43,7 @@ engine 是 compose-next 的**能力同伴**，不是它的子流程。同任务�
 
 - 包内关键结论仍过 Lean Gates：有证据；未验区 1 句掩码；禁止把猜测写成推荐依据。
 - 交付包后**再**建议用户 `/compose-next …`；用户未确认前不进 feature 工作流。
-- 已在 compose-next 会话中 → 不加载本 skill 全协议（compose-next 无内部 skill hand-off）。
+- 已在 compose-next 会话中 → 不加载本 skill 全协议（compose-next 无内部 skill hand-off）；需要 Soft 时按 `compose-phases.md`。
 - 单文件 Office/PDF 成稿 → official；GitHub 建仓/同步 → github-sync。
 
 ## 反例
@@ -52,5 +52,5 @@ engine 是 compose-next 的**能力同伴**，不是它的子流程。同任务�
 |---|---|
 | 把 compose-ready 包写成 `docs/compose/spec/*.md` feature 文档 | 包只是输入；Spec 归属 compose-next |
 | 用户只要「修 bug 并合并」却先做长调研 | 建议 `/compose-next`，不默认 R1 |
-| compose-next 执行中双载 engine 全协议 | 只走 compose-next |
+| compose-next 执行中双载 engine 全协议 | 只走 compose-next；独立子任务用 phases Soft |
 | 用 R1 回避 worktree/Review | 这些能力 engine 永不提供 |

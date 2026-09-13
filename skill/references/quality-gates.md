@@ -91,7 +91,7 @@
 
 ## Token Discipline
 
-- 同任务只加载一个编排层；P-domain 无前置未点名→建议 compose-next；前置包→`compose-handoff.md`（包≠Spec）；**Soft**（媒体/Grill 调研/Implement 模态测）只 JIT `compose-token.md` 所指单卡并抽检，**禁止** Step 2–6/七 mode 表/Full Gates 灌进 compose 会话；fan-out 默认 0、高风险≤1。要 Review/Spec/worktree→compose-next。
+- 同任务只加载一个编排层；P-domain 无前置未点名→建议 compose-next；前置包→`compose-handoff.md`（包≠Spec）；**Soft**（九阶段：含 Spec/Review/Report 输入卡，Workspace/Finish 零 Soft）只 JIT `compose-token.md`→`compose-phases.md` 单卡并抽检，**禁止** Step 2–6/七 mode 表/Full Gates 灌进 compose 会话；fan-out 默认 0、高风险≤1、Review 包 0。要 worktree/Finish/独立 Review→compose-next。
 - SKILL 主体只含 actionable 核心；细则按需读 references，禁止一次灌全量。
 - 禁止多角色 MAS 会审；角色只作 Role Lens。评审/QA Lens 时 Evidence/No Fake Done 必过。
 - Effort Tier：T0 单题不进全协议；T1 委托 official；T2 全协议不 fan-out；T3 广度研究才有限 fan-out（子代理回摘要、产物落盘）。

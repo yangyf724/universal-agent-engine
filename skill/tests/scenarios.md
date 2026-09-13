@@ -64,6 +64,16 @@ Each row is a regression case. `Expected` is the primary mode after Step 0 routi
 | S58 | 把录音转写成会议纪要 | WRITE | — | 无 compose → R2，非 Soft-Test |
 | S59 | （对外 UI 高风险）独立复看关键屏 | — | — | Soft-Test + 可选 1 盲测 |
 | S60 | （compose Grill）调研竞品定价模型 | RESEARCH | — | Soft-Research ≤40 行证据包 |
+| S61 | （compose Spec）帮我整理可粘贴的 Problem/验收草案 | DESIGN | WRITE | Soft-Spec-input 片段；不写 feature 文件 |
+| S62 | （compose Workspace）建个 worktree 开分支 | （不路由全协议） | — | 排除；引导 compose-next Workspace |
+| S63 | （compose Verify）汇总你刚才 Soft 测的证据表 | — | — | Soft-Evidence；不宣布总 Verify |
+| S64 | （compose Review）整理给 Reviewer 的输入包 | WRITE | — | Soft-Review-pack；不派代理/不出结论 |
+| S65 | （compose Finalize）起草 Report 三段草稿 | WRITE | — | Soft-Report 片段；不改 status/commit |
+| S66 | （compose Finish）帮我合并并开 PR | （不路由全协议） | — | 排除；引导 compose-next Finish |
+| S67 | （compose Orient）列一下已知约束和假设掩码 | ADVISE | — | Soft-Orient ≤15 行；不灌七 mode |
+| S68 | 用 compose-next 做登录，无独立 Soft 请求 | （不路由全协议） | — | 点名独占，不进全协议 |
+| S69 | （compose Implement）测一下登录页截图 | — | — | Soft-Test；fan-out 默认 0 |
+| S70 | （无 compose）帮我写可粘贴验收草案 | DESIGN | — | R1 compose-ready，非 Soft-Spec-input |
 
 ## Multimodal overlay rules
 

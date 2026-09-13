@@ -95,17 +95,18 @@ engine 是 compose-next 的能力同伴，不是子流程。细则与包模板�
 
 | 信号 | 行为 |
 |---|---|
-| 点名 `/compose-next` 或「用 compose-next 流程」且无独立调研/模态测请求 | 只走 compose-next；本 skill 不加载全协议 |
-| 会话已在 compose-next/P-domain + 多模态感知/媒体子任务 | **Soft 媒体**：只 `multimodal.md` + 抽检 |
+| 点名 `/compose-next` 或「用 compose-next 流程」且无独立 Soft 请求 | 只走 compose-next；本 skill 不加载全协议 |
+| 会话已在 compose-next/P-domain + 独立子任务（媒体/调研/Spec 草稿/证据/Review 输入/Report 草稿） | **Soft**：只读 `compose-phases.md` 对应卡或 `multimodal.md`；跳过 Step 2–6 |
 | compose Grill/P 决策 + 调研/论文/高星仓/选型 | **Soft-Research**：研究卡 + 证据包（≤40 行）；不拍板 |
 | compose Implement/Verify + UI/音视频/图/交互待测 | **Soft-Test**：测试卡；高风险可 1 盲测（默认关）；不宣布总 Verify |
+| compose Workspace / Finish | **排除**：永不建 worktree / Finish；引导 compose-next |
 | P-domain（git 多步 + 要合并/发版/规格）且**无**前置输入 | **不**进 Step 2–6；一句建议 `/compose-next …`；等确认 |
 | P-domain + 先要调研/选项/验收草案，或点名喂 Grill/Spec | **R1**：RESEARCH/DESIGN/WRITE → compose-ready 包 → 再建议 `/compose-next` |
 | E-domain（研究/方案本体/写作/Office/媒体/答疑/非 git） | **R2**：正常 D1 路由（多模态可叠加） |
 | 用户「直接修 / 不用 compose-next / without spec」 | **R3**：轻量 BUILD/FIX 等 |
 | 单文件 Office/PDF；GitHub 建仓/同步 | 委托 official / github-sync |
 
-**不变量**：不引入 worktree / Spec 生命周期 / Finish / 独立 Review；Soft 时禁止再展开全编排；无 compose 上下文的独立多模态 → **R2 全协议**（勿误 Soft）。
+**不变量**：不引入 worktree / Spec 生命周期 / Finish / 独立 Review；Review 只供输入包；Soft 时禁止再展开全编排；无 compose 上下文的独立多模态 → **R2 全协议**（勿误 Soft）。细则：`compose-phases.md` / `compose-handoff.md`。
 
 ## Role Lens（决策透镜，非多智能体）
 

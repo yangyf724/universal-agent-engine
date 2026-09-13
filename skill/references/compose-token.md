@@ -2,15 +2,19 @@
 
 engine 在 compose-next/P-domain 会话里只做 **Soft 供给**，目标：同等质量下 token 不升。
 
+九阶段 Soft 角色与卡模板：`references/compose-phases.md`。
+
 ## 硬规则
 
 1. **禁止**把七 mode 全表、Role Lens 会审、Full Gates 常读灌进 compose 会话。
 2. **每次 Soft 只 JIT 一个 pointer**（细则可在同一文件内展开；禁止并行灌第二份编排/门禁全文）：
    - 媒体子任务 → `references/multimodal.md`
-   - Grill 调研 → `references/compose-token.md`（研究卡与证据包；完整 R1 模板仅用户要前置包时再读 handoff）
-   - Implement 模态测 → `references/multimodal.md` Universal Gates / 对应模态卡
-3. **跳过 Step 2–6**；不建 Spec/worktree/Finish/独立 Review。
+   - Grill 调研 → 本文件（研究卡与证据包；完整 R1 模板仅用户要前置包时再读 handoff）
+   - Spec/Review/Finalize 输入卡 → `references/compose-phases.md` 对应节
+   - Implement 模态测 / Verify 证据表 → `references/multimodal.md` Universal Gates 或本文件测试卡
+3. **跳过 Step 2–6**；不建 Spec/worktree/Finish；不派独立 Reviewer；不出 feature 总 Verify 结论。
 4. 点名 `/compose-next` 且无独立 Soft 请求 → **只** compose-next，engine 不加载。
+5. **Workspace / Finish 零 Soft**（见 phases 矩阵排除行）。
 
 ## Grill 研究卡（Soft-Research）
 
@@ -36,9 +40,18 @@ engine 在 compose-next/P-domain 会话里只做 **Soft 供给**，目标：同�
 - 高风险（对外发布/安全/关键 UI）可 **最多 1** 个独立子代理盲测；**默认不 fan-out**。  
 - 只回报模态测结论，**不**宣布整个 feature Verify 通过。
 
+## Fan-out 预算
+
+| 场景 | 上限 |
+|---|---|
+| 默认 Soft（任何阶段） | **0** |
+| Soft-Test 高风险盲测 | **1** |
+| Soft-Review-pack | **0**（Review 归 compose） |
+| Soft-Spec-input / Soft-Report / Soft-Evidence | **0** |
+
 ## Token ROI 记录（人工）
 
-| 会话 | Soft 类型 | 读过的 ref | 粗估 token | 结论质量 | 备注 |
+| 会话 | Soft 类型/阶段 | 读过的 ref | 粗估 token | 结论质量 | 备注 |
 |---|---|---|---|---|---|
 | | | | | | |
 
