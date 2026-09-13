@@ -78,9 +78,9 @@ python skill/tests/run_static_checks.py
 ```text
 skill/                    # 安装到 ~/.config/mimocode/skills/universal-agent-engine/（兼 ~/.claude/skills/）
   SKILL.md                # 编排主协议（瘦 body；Soft 短路）
-  references/             # intent-router / quality-gates / compose-handoff / compose-token / multimodal / research-citations
+  references/             # intent-router / quality-gates / compose-handoff / compose-token / compose-phases / process-gates / multimodal / research-citations
   locales/                # displayName + brief
-  tests/                  # run_static_checks.py（153 pass）/ scenarios / checklist / manual-verify / token-roi
+  tests/                  # run_static_checks.py（190 pass）/ scenarios / checklist / manual-verify / token-roi / process-audit
 docs/compose/spec|smoke/  # 本仓 feature 规格与验证矩阵
 README.md
 CHANGELOG.md
