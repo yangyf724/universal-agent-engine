@@ -3,7 +3,7 @@ feature: engine-compose-phase-matrix
 status: delivered
 updated: 2026-09-13
 branch: optimize/v1.9-compose-phases
-commits: 32565b6..pending
+commits: 32565b6..47abe82
 ---
 
 # Engine × compose-next 全阶段能力矩阵 (v1.9)
