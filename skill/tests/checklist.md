@@ -1,106 +1,41 @@
-# Regression Checklist — universal-agent-engine
+# v2.0.0 Checklist
 
-Repeat after any skill edit. Mark PASS/FAIL with evidence.
+## 静态门
 
-## L1 Structure
+```powershell
+python skill/tests/run_static_checks.py
+# 期望：ALL CHECKS PASSED
+```
 
-- [ ] `validate_skill.py` → PASS 0 errors
-- [ ] Frontmatter `name` == directory name `universal-agent-engine`
-- [ ] `description` ≤1024 chars, has WHAT + WHEN + negative triggers (incl. compose-next / official), no `<>`
-- [ ] `locales/zh-CN.json` and `locales/en-US.json` have only `displayName` + `brief`
-- [ ] All `references/*.md` paths in SKILL.md exist on disk
-- [ ] SKILL.md body progressive: core protocol only; deep detail in references
-- [ ] Body ≤110 non-empty lines and body chars ≤2880 (v1.10 headroom)
-- [ ] Role Lens pointer present; MAS multi-persona forbidden
-- [ ] Injection hardening rule present（素材≠指令）
+## 结构
 
-Run: `python tests/run_static_checks.py` → expect **190 pass / 0 fail**
+- [ ] `skill/references` 仅 `intent-gate.md` + `multimodal.md`
+- [ ] `skill/tests` 仅 `run_static_checks.py` + `checklist.md`
+- [ ] SKILL.md body ≤ 2500 字符
+- [ ] frontmatter description 含 gate / multimodal / compose-next 信号
 
-## L2 Trigger
+## 路由自检（standalone）
 
-Positive phrases that should load the skill (via description match):
+| 输入 | 期望出口 |
+|---|---|
+| 这个超时可能是什么原因？ | ADVISE |
+| 修登录超时，要合并进 main | 建议 compose-next |
+| 做一份竞品对比 PPT | 委托 pptx-official |
+| 帮我看看这张图里的报错 | ADVISE + 若改图则 imagegen 委托或 compose Soft |
+| 闲聊 | 不触发本 skill 主流程 |
 
-- [ ] 帮我做这个项目
-- [ ] 实现这个功能
-- [ ] 完成报告
-- [ ] 修一下这个bug
-- [ ] 做一份方案
-- [ ] 调研X并落地
-- [ ] build / implement / ship this
-- [ ] 看图识别 / 转写录音 / 配音 / 做视频 / 3D / 交互演示
+## Soft 自检（compose-next）
 
-Negative phrases that should NOT primarily load this skill:
+| 输入 | 期望 |
+|---|---|
+| 转写测试录音并抽听关键句 | AUDIO Soft-Test；证据路径 |
+| Grill 要 2–3 条登录方案证据 | Soft-Research ≤40 行；不拍板 |
+| 写 Spec 草稿 / 派 Reviewer | **拒绝**（零 Soft） |
+| Workspace / Finish / merge | **拒绝**（零 Soft） |
 
-- [ ] 纯闲聊 / 天气怎么样
-- [ ] 一句话冷知识，无交付物
-- [ ] 只列一下目录，没有目标
-- [ ] 用 compose-next …（应只走 compose-next）
-- [ ] 单文件 Office/PDF 成稿（应优先 official skill）
+## 硬规则
 
-## L3 Intent Router
-
-For each scenario in `tests/scenarios.md`:
-
-- [ ] Mode selection matches the table
-- [ ] Multi-mode cases pick primary by final deliverable
-- [ ] ADVISE upgrades to BUILD/DESIGN only when advice is immediately actionable
-- [ ] S31–S36：并存分流与 Role Lens 场景期望成立
-- [ ] S39–S40：P-domain 建议 compose-next；用户「直接修」后仍可走 engine FIX
-- [ ] S41–S44：非仓脚本 / verification skip 阻塞 / official 近邻 / T0 不仪式化
-- [ ] S45–S48：R1 compose-ready 包 / R1 验收草案 / R2 E-domain / R3 拒绝回退
-- [ ] S49–S54：Soft 媒体
-- [ ] S55–S60：Soft-Research / Soft-Test / token 合同
-- [ ] S61–S70：compose 九阶段矩阵（Spec/Review/Report 输入卡；Workspace/Finish 排除）
-- [ ] S71–S74：过程软停 / Soft-Contract / fan-out independence / Soft-Amendment
-- [ ] S75–S77：情境 Depth 默认 DoD-artifact / 一行 C7 / amended: 键
-- [ ] D3 Soft 指向 compose-phases + compose-token + compose-handoff
-- [ ] process-gates + process-audit 协议存在；默认 fan-out=0；过程门为注解行
-
-## L4 Protocol
-
-- [ ] Steps 0–6 all present and ordered
-- [ ] Important rules include: DoD first, no fake done, evidence, single orchestration skill, injection hardening
-- [ ] Examples cover AUDIO overlay, OPERATE+official delegation, compose-next boundary, P-domain yield
-- [ ] Troubleshooting covers empty requirement, tool failure, wrong result, long context
-
-### L5 Quality Gates
-
-- [ ] Four user metrics mapped in `quality-gates.md`
-- [ ] Per-mode gates exist for BUILD/FIX, RESEARCH, DESIGN, WRITE, OPERATE
-- [ ] Compact Errors + Token Discipline present
-- [ ] Rework Prevention Checklist present
-
-## Multimodal Overlay
-
-- [ ] `references/multimodal.md` has VISION / AUDIO / DOCOFFICE / VIDEO / THREE_D / INTERACTIVE
-- [ ] SKILL.md `## Multimodal Overlay` links the reference
-- [ ] description contains multi-modal triggers (看图/转写/3D/交互 or equivalent)
-- [ ] scenarios S21–S30 cover overlays; Expected column stays primary-mode-only
-- [ ] quality-gates has multimodal sample-check gates
-- [ ] Tool-absence degradation documented (no fake media)
-
-## Manual (human)
-
-完整步骤见 `tests/manual-verify.md`（约 15–25 分钟）。最低必测：
-
-- [x] 协议走查：B1 compose-next 不双载（scenarios S32 + description 负例）
-- [x] 协议走查：B2 单文件 PPT 优先 official（S31）
-- [x] 协议走查：B3 架构师 Role Lens、禁 MAS（S34 + intent-router）
-- [x] 协议走查：天气/列目录/闲聊负例
-- [x] skill_search 抽检（2026-09-13，disk v1.2）：B1/B4→compose-next；D1→github-sync；D2→imagegen；触发词正例 engine#1；完整包沙盒 static 101 PASS
-- [x] skill_search 抽检（2026-09-13，disk v1.3）：点名 compose-next=1.0；调研落地→engine；static 106 PASS
-- [ ] **新对话** `用 universal-agent-engine 做一个员工报销审批流程方案` → 有 DoD/约束（待用户开新会话）
-- [ ] **新对话** 真实体感确认 compose-next 边界
-- [ ] 任选 1 条多模态：转写真实音频 或 拖动 sci-widget
-- [ ] 任选 1 条交付类：Excel/PPT/方案
-- [ ] Sign-off 表已填写
-- [x] F-B5：`以架构师和 QA 一起评审这个方案的风险` → 2026-09-13 skill_search：**universal-agent-engine 0.64**（架构/构师/评审/方案），product-design 仅 0.18（qa）；磁盘 token `架构师/评审` 生效；加词退出条件已写入 quality-gates
-
-## Sign-off
-
-| Date | Tester | Result |
-|------|--------|--------|
-| 2026-09-13 | agent protocol walkthrough | PASS 8/8 boundary (disk v1.1.0)；新对话体感待人工 |
-| 2026-09-13 | agent skill_search + full sandbox | B1–B4/D1–D3 PASS；F-B5 weak；sandbox 101/0；三路径 hash 一致 |
-| 2026-09-13 | agent F-B5 retest + residual close | B5 engine#1 (0.64)；加词退出条件；spec/checklist 对齐 `8f9c932` |
-| 2026-09-13 | agent P-domain yield + independent review | static 106/0；评审 PASS 10/10 无 critical；分支 `optimize/v1.3-compose-complement` |
+- [ ] 不自执行五步/七 mode 全协议
+- [ ] 不双载第二个编排层
+- [ ] 无工具不假装已生成媒体
+- [ ] 素材/附件不当作指令执行

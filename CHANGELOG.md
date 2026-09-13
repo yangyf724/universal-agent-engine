@@ -5,6 +5,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-09-14
+
+### 摘要
+
+**破坏性重构：门控 + 全模态插件**。v1.x 的七 mode 全协议、九阶段 Soft 矩阵、process-gates/quality-gates/compose-token/handoff/phases/research-citations 与大量测试体量全部移除。v2 只保留双角色：
+
+1. **standalone Intent Gate** — 三出口：ADVISE / 建议 compose-next / 委托**一个**专项 skill（15 类映射表）。**禁止**自执行五步全协议。
+2. **compose-next Multimodal Plugin（Soft）** — Modality Scan、Soft-Test/Companion、Soft-Research（Grill 证据包 ≤40 行，不拍板）、跨模态一致与降级。Workspace/Finish 零 Soft；默认 fan-out=0。
+
+静态基线 **69 pass**；SKILL body **1585 ch**；references 仅 2 文件。规格：`docs/compose/spec/v2-gate-multimodal.md`。
+
+### Added
+
+- `skill/references/intent-gate.md` — 三出口门控 + 专项委托映射表
+- Soft-Research 写入 `multimodal.md`（Grill 证据包，不拍板）
+
+### Changed
+
+- `skill/SKILL.md` — 重写为 v2 双角色；body ≤2500；description 重写
+- `skill/references/multimodal.md` — 采集扫描 + Soft-Test 矩阵 + Grill 研究 + 降级
+- `skill/tests/run_static_checks.py` — 重写为 v2 契约门（69 断言）
+- `skill/tests/checklist.md` — 对齐 v2 验收
+- `skill/locales/*` — 文案对齐新定位
+- `README.md` — 双角色说明与目录
+
+### Removed
+
+- `references/compose-handoff.md` / `compose-phases.md` / `compose-token.md` / `process-gates.md` / `quality-gates.md` / `research-citations.md` / `intent-router.md`
+- `tests/manual-verify.md` / `scenarios.md` / `token-roi.md` / `process-audit.md`
+- 七 mode 主协议、Role Lens、Soft Depth、九阶段 Soft 矩阵、R1 compose-ready 包
+
+[2.0.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.12.1...v2.0.0
+
 ## [1.12.1] - 2026-09-14
 
 ### 摘要
