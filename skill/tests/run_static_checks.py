@@ -204,6 +204,7 @@ def main() -> int:
     )
     check("Soft Companion" in body, "SKILL has Soft Companion rule")
     check("跳过 Step 2" in body or "跳过 Step 2–6" in body, "Soft Companion short-circuits orchestration")
+    check(body.find("Soft Companion") < body.find("## Step 2"), "Soft Companion appears before Step 2 Plan")
     check("Soft Companion" in router, "intent-router documents Soft Companion")
     check("Soft Companion" in qg_early, "quality-gates Token Discipline covers Soft Companion")
 

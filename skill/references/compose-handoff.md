@@ -7,7 +7,7 @@ engine 是 compose-next 的**能力同伴**，不是它的子流程。同任务�
 | 角色 | 信号 | 你交付什么 | 你不做什么 |
 |---|---|---|---|
 | **R1 前置输入** | 用户要调研/选项/方案/验收草案，且下一步明显进 git 仓实现/合并/规格；或明说「喂给 / 帮我准备 compose-next」 | **compose-ready 包**（下节模板） | 不写 feature Spec；不建 worktree；不跑 Finish/独立 Review |
-| **R2 能力补位** | 主产物是多模态/Office/媒体/交互，或非 git 的研究/方案/写作/答疑 | 正常 D1+D2 产物 + Lean Gates | 不接管 git feature；不在 compose-next 运行中再加载本协议 |
+| **R2 能力补位** | 主产物是多模态/Office/媒体/交互，或非 git 的研究/方案/写作/答疑 | 正常 D1+D2 产物 + Lean Gates | 不接管 git feature；compose 运行中媒体子任务改走 **Soft**（勿全协议双载） |
 | **R3 拒绝回退** | 「直接修 / 不用 compose-next / without spec」或非 P 多步 | 轻量 BUILD/FIX 等 | 不强制补 Spec/Review |
 | **Soft Companion** | 会话已在 compose-next/P-domain，且本次主要是多模态感知/媒体子任务 | **只**读 `multimodal.md` + 抽检；产物交回编排层 | 不进 Step 2–6；不建 Spec/worktree/Review；无 compose 上下文勿 Soft（走 R2） |
 

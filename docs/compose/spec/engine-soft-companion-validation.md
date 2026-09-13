@@ -1,24 +1,25 @@
 ---
 feature: engine-soft-companion-validation
-status: in-progress
+status: delivered
 updated: 2026-09-13
 branch: optimize/v1.7-soft-companion
-commits: e6f86d9..<head> # filled at delivery
+commits: e6f86d9..6eb2db8
 ---
 
-# Engine Soft Companion — Design Validation (v1.7)
+# Engine Soft Companion — Design Validation + Implementation (v1.7)
 
 ## Report
 
-**What was built** — 对 **Soft Companion**（compose-next 运行中只供给全模态卡）做设计验证，未改 skill 行为。裁定：**PASS+AMENDMENTS**——C1/C2/C3 条件通过，实施前必须合入 SC1–SC7。证据矩阵：`docs/compose/smoke/v1.7-soft-companion-matrix.md`。
+**What was built** — 先做设计验证裁定 **PASS+AMENDMENTS**（SC1–SC7），再落地 **Soft Companion**：compose-next/P-domain 运行中的多模态感知/媒体子任务，engine **跳过 Step 2–6**，只读 `references/multimodal.md` 并抽检，产物交回当前编排层；不建 Spec/worktree/Review。点名 compose-next 且无独立多模态仍独占；无 compose 上下文的独立多模态仍走 R2 全协议。证据矩阵：`docs/compose/smoke/v1.7-soft-companion-matrix.md`。
 
-**Verification** — 设计矩阵 V1–V6 + 三门裁定见 matrix；本轮 diff 仅 docs。skill 静态检查保持 v1.6 基线（实施 AMEND 后再跑）。
+**Verification** — `python skill/tests/run_static_checks.py` → **130 pass / 0 fail**（实施后；三路径 SKILL SHA `d3deaf01946f…`）。独立评审 `e6f86d9..6eb2db8`：三类 PASS，无 critical。`skill_search`：点名 compose-next → 1.0 独占加载。
 
 **Journey log** —
-1. 软同伴 load-bearing 在 SC1：无文首短路则 JIT 仍进 Step 2–6，等于双编排。
+1. Soft load-bearing 在 SC1：无 Important 文首短路则 JIT 仍进 Step 2–6，等于双编排。
 2. 点名 compose-next 必须继续独占（SC2），否则互补变抢路由。
 3. Soft 只吃 multimodal.md，不 Role Lens、不 R1 包——供给面越小越安全。
-4. V4 的 P-domain+截图要用「媒体子任务」判定，避免整单被 Soft 吞掉。
+4. V4 的 P-domain+截图用「媒体子任务」判定，避免整单被 Soft 吞掉。
+5. body 为加 Soft 段压缩到 ≤3000；下一步改动先腾预算。
 
 ## [S1] Problem
 
@@ -108,5 +109,5 @@ v1.6 已做到「compose-next 之前/之外」的互补（R1 包、R2 独立多�
 ## Tasks
 
 - [x] T1: 本验证文档 + 证据矩阵裁定 — acceptance: 三门均有结论；裁定为 PASS / PASS+AMENDMENTS / FAIL 之一 (covers: S2)
-- [ ] T2: （若非 FAIL）按 AMEND 实施 Soft Companion — acceptance: SC1–SC7 落地；static 0 fail；V1–V6 有场景/断言 (covers: S2; depends: T1 非 FAIL)
-- [ ] T3: 双安装 + live 抽检 — acceptance: 三路径 SHA 一致；点名 compose-next 不双载；compose 上下文多模态可软载体感 (covers: S2; depends: T2)
+- [x] T2: （若非 FAIL）按 AMEND 实施 Soft Companion — acceptance: SC1–SC7 落地；static 0 fail；V1–V6 有场景/断言 (covers: S2; depends: T1 非 FAIL)
+- [x] T3: 双安装 + live 抽检 — acceptance: 三路径 SHA 一致；点名 compose-next 不双载；compose 上下文多模态可软载体感 (covers: S2; depends: T2)
