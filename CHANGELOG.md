@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.10.0] - 2026-09-13
+
+### 摘要
+
+**Soft Proof**：compose Soft 供给可度量、可验收。`compose-phases.md` 增 **质量抽检**（8 卡 DoD，不进 body）；新建 `tests/token-roi.md` 四场景对照协议并完成实测（ROI-1–4 全 PASS，Soft 指令上下文约为全协议灌入的 2–4%）；SKILL body 腾空至 **2852/2880**；静态基线 **153**；补齐 v1.9 发布卫生（本条目与 README Version）。不改 compose-next；Workspace/Finish 仍零 Soft。
+
+### Added
+
+- `skill/references/compose-phases.md` — Soft 质量抽检表
+- `skill/tests/token-roi.md` — ROI-1–4 可复填对照 + 实测数据
+- `docs/compose/smoke/v1.10-soft-proof-matrix.md` — 契约 + 实测矩阵
+- `docs/compose/spec/engine-v110-roadmap.md` — 分析与规格
+
+### Changed
+
+- `skill/SKILL.md` — body 腾空；Soft 指针指向质量抽检/ROI
+- `skill/references/compose-token.md` — ROI 指针
+- `skill/tests/run_static_checks.py` — +3 检查；body≤2880；基线 153
+- `skill/tests/checklist.md` — 期望 153；body 2880
+- `README.md` / `CHANGELOG.md` — 版本卫生对齐 v1.9→v1.10
+
+[1.10.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.9.0...v1.10.0
+
 ## [1.9.0] - 2026-09-13
 
 ### 摘要
