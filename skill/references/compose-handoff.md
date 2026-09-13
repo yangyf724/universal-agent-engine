@@ -26,10 +26,8 @@ engine 是 compose-next 的**能力同伴**，不是它的子流程。同任务�
 一句话用户可见问题（不是任务清单）。
 ### Constraints / Non-goals
 硬约束；明确不做什么。
-### Options
-2–3 条可行路径；每条：做法 / 代价 / 风险。
-### Recommendation
-推荐一条 + 主要取舍。
+### Options + Recommendation
+2–3 条可行路径（做法/代价/风险）+ 推荐一条与主要取舍。
 ### Acceptance draft
 可观察验收 3–5 条（结果|如何验证|证据形态）。
 ### Open questions for Grill
