@@ -1,6 +1,6 @@
 ---
 feature: engine-compose-phase-matrix
-status: designed
+status: delivered
 updated: 2026-09-13
 branch: optimize/v1.9-compose-phases
 commits: 32565b6..pending
@@ -10,7 +10,15 @@ commits: 32565b6..pending
 
 ## Report
 
-（待 Finalize）
+**What was built** — 在不改 compose-next 的前提下，把 engine Soft 供给扩展到 compose-next **九阶段**：Orient→Soft-Orient；Grill→Soft-Research；Workspace/Finish **硬排除**；Spec→Soft-Spec-input（可粘贴草稿，不落盘 feature 文档）；Implement→Soft-Test/Companion；Verify→Soft-Evidence（命令|结果|路径）；Review→Soft-Review-pack（只供输入，不派 Reviewer）；Finalize→Soft-Report（三段草稿，不改 status）。新建 `compose-phases.md`；handoff 收缩回纯 R1/R2/R3；token/router/qg/SKILL Soft 全部指针化。
+
+**Verification** — `python skill/tests/run_static_checks.py` → **150 pass / 0 fail**；body **2991** chars / 80 非空行；三路径 SKILL SHA `A05D0B42447A…` 一致。独立评审 `32565b6..7dcdde1`：三门 MET；1 条非 critical（token JIT 将 Verify 误指 multimodal）已修并重装。
+
+**Journey log** —
+1. 「全阶段」不等于接管：Workspace/Finish 必须显式排除行，否则 Soft 会漂成第二编排。
+2. Review 只能供输入包；写结论或派 Reviewer 就破坏 compose-next 所有权。
+3. Soft-Evidence/Orient 必须进 JIT 指针表，否则 Verify 阶段会读错文件。
+4. body 已 2991/3000，Important 只能指针化；细则永远在 references。
 
 ## [S1] Problem
 
@@ -144,8 +152,8 @@ base..head + workspace path
 
 ## Tasks
 
-- [ ] T1: 设计验证矩阵裁定 — acceptance: 三门结论 PASS/PASS+AMENDMENTS/FAIL (covers: S2)
-- [ ] T2: 新建 compose-phases.md（矩阵+卡模板）— acceptance: 九阶段齐全；排除行明确；模板可粘贴 (covers: S2)
-- [ ] T3: 收缩 handoff + 更新 token/router/qg 指针 — acceptance: handoff 仅 R1–R3；Soft 指向 phases；无死链 (covers: S2; depends: T2)
-- [ ] T4: SKILL Soft 行指针化 + body ≤3000 — acceptance: Soft 在 Step 2 前短路；Workspace/Finish 永不可见；静态 0 fail (covers: S2; depends: T3)
-- [ ] T5: 场景 S61–S70 + static 断言 + 双安装 — acceptance: 矩阵场景覆盖；checklist 期望数更新；仓内+双路径 SHA (covers: S2; depends: T4)
+- [x] T1: 设计验证矩阵裁定 — acceptance: 三门结论 PASS/PASS+AMENDMENTS/FAIL (covers: S2)
+- [x] T2: 新建 compose-phases.md（矩阵+卡模板）— acceptance: 九阶段齐全；排除行明确；模板可粘贴 (covers: S2)
+- [x] T3: 收缩 handoff + 更新 token/router/qg 指针 — acceptance: handoff 仅 R1–R3；Soft 指向 phases；无死链 (covers: S2; depends: T2)
+- [x] T4: SKILL Soft 行指针化 + body ≤3000 — acceptance: Soft 在 Step 2 前短路；Workspace/Finish 永不可见；静态 0 fail (covers: S2; depends: T3)
+- [x] T5: 场景 S61–S70 + static 断言 + 双安装 — acceptance: 矩阵场景覆盖；checklist 期望数更新；仓内+双路径 SHA (covers: S2; depends: T4)

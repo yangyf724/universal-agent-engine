@@ -10,8 +10,8 @@ engine 在 compose-next/P-domain 会话里只做 **Soft 供给**，目标：同�
 2. **每次 Soft 只 JIT 一个 pointer**（细则可在同一文件内展开；禁止并行灌第二份编排/门禁全文）：
    - 媒体子任务 → `references/multimodal.md`
    - Grill 调研 → 本文件（研究卡与证据包；完整 R1 模板仅用户要前置包时再读 handoff）
-   - Spec/Review/Finalize 输入卡 → `references/compose-phases.md` 对应节
-   - Implement 模态测 / Verify 证据表 → `references/multimodal.md` Universal Gates 或本文件测试卡
+   - Orient / Spec / Review / Finalize 输入卡 / Verify 证据表 → `references/compose-phases.md` 对应卡
+   - Implement 模态测 → `references/multimodal.md` Universal Gates 或本文件测试卡
 3. **跳过 Step 2–6**；不建 Spec/worktree/Finish；不派独立 Reviewer；不出 feature 总 Verify 结论。
 4. 点名 `/compose-next` 且无独立 Soft 请求 → **只** compose-next，engine 不加载。
 5. **Workspace / Finish 零 Soft**（见 phases 矩阵排除行）。
