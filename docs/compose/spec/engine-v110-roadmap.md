@@ -1,25 +1,38 @@
 ---
 feature: engine-v110-roadmap
-status: in-progress
+status: delivered
 updated: 2026-09-13
 branch: plan/v110-iteration
-commits: 9870790..(impl)
+commits: 9870790..ff8256d
 ---
 
 # Engine v1.10 Roadmap — v1.9 系统分析与迭代规划
 
 ## Report
 
-**What was built** — 对 v1.9 九阶段 Soft 矩阵做了仓内可追溯的系统分析（150 静态检查、body 2991/3000、CHANGELOG/README 仍停 1.8.0 等缺口 G1–G6），并汇入 8 路联网证据（SkillReducer、Token ROI、Context Fails First、MoRe、Strained Coherence、Anthropic context/multi-agent、agentskills）。比较三条主轴后推荐 **A Soft Proof**（Soft 质量卡 + Token ROI 对照）并捆绑发布卫生与 body 腾空；写出可实施契约（质量抽检表、四场景 ROI 协议、body≤2880、P1–P3 三门）。本轮**未改 skill 行为**，实现任务 T6/T7 留待拍板后执行。
+**What was built** —
+第一阶段（规划）：对 v1.9 做仓内可追溯系统分析（150 静态检查、body 2991/3000、CHANGELOG/README 停 1.8.0 等缺口 G1–G6），汇入 8 路联网证据，比较三主轴后推荐 **A Soft Proof** 并写出 §2.4 实施契约。
 
-**Verification** — `python skill/tests/run_static_checks.py` → **150 pass / 0 fail**（docs-only，基线未变）；规格无 TBD；路径锚点（compose-phases/token/phase-matrix/v1.9 smoke）均存在。独立评审 `general-1`：六项 AC 全 MET，**REVIEW_PASS**，无 critical；已吸收非阻塞修订（Soft-Orient/Companion 质量行、`skill/tests/` 全路径、SkillReducer 版本史 framing）。
+第二阶段（实现，用户拍板后并入本分支）：
+1. `compose-phases.md` 增加 **Soft 质量抽检**（Orient/Research/Companion/Spec-input/Test/Evidence/Review-pack/Report），不进 SKILL body。
+2. 新建 `skill/tests/token-roi.md`：ROI-1–4 固定场景、可复填表、通过判据（同等 DoD 下 token 不升）；`compose-token.md` 指针。
+3. body 腾空至 **2852/2880**；静态检查加 3 项并收紧 body≤2880；基线 **153 pass**。
+4. 发布卫生：CHANGELOG `[1.9.0]`、仓 README Version 1.9.0、父 README 版本表同步。
+5. smoke：`docs/compose/smoke/v1.10-soft-proof-matrix.md`（契约 PASS；C6 实测 ROI 数据诚实 OPEN）。
+
+**Verification** —
+- `python skill/tests/run_static_checks.py` → **153 pass / 0 fail**
+- body chars **2852** ≤ 2880；非空行 80
+- CHANGELOG 含 `[1.9.0]`；README `Version: 1.9.0`
+- 独立评审：规划轮 `general-1` **REVIEW_PASS**；实现轮 `1f388c5..ff8256d` `general-2` **REVIEW_PASS**（0 critical）
+- 未做：ROI 四场景对照实测回填（C6 OPEN）；双路径安装 A4 待 merge
 
 **Journey log** —
-1. 沙箱禁止 `git worktree add`（共享 registry）→ 用 `git clone --local --shared` 到 `.worktrees/v110-plan` 作隔离 workspace，需在交付说明中披露。
-2. v1.9 能力面已闭合；再扩 Soft 卡枚举 ROI 低——应先补「可证明」台架。
-3. body 2991/3000 是硬墙：任何新 Important 必须先腾空（§2.4.3）。
-4. 发布卫生（CHANGELOG/README）与 tag v1.9.0 脱节，应并入下一列车，避免文档债复利。
-5. 联网检索在 websearch 不可用时走 webfetch 直达原文（Anthropic/arXiv/agentskills），比二手中文综述更可引用。
+1. 沙箱禁止 `git worktree add` → `git clone --local --shared` 到 `.worktrees/v110-plan`。
+2. v1.9 能力面已闭合；v1.10 应先补「可证明」台架而非再扩 Soft 枚举。
+3. body 是硬墙：新 Important 必须先腾空；本次压到 2852 留出余量。
+4. 发布卫生与 tag 脱节会复利文档债；已并入本列车补 1.9。
+5. websearch 不可用时 webfetch 直达原文更可引用；Smoke 对未测数据必须 OPEN，禁止假 PASS。
 
 ## [S1] Problem
 
@@ -214,9 +227,9 @@ compose-next 九阶段
 ## Tasks
 
 - [x] T1: Workspace 隔离（沙箱禁 worktree add → local clone 替代）— acceptance: 独立分支可改文档且不污染 main 工作树 (covers: S2)
-- [x] T2: v1.9 系统分析写入本规格（建成物/缺口/版本史）— acceptance: §2.1 可追溯到仓内路径与 150 pass 证据 (covers: S2)
+- [x] T2: v1.9 系统分析写入本规格（建成物/缺口/版本史）— acceptance: §2.1 可追溯到仓内路径与静态证据 (covers: S2)
 - [x] T3: 联网证据包 ≥6 源且标注可操作结论 — acceptance: §2.2 含 SkillReducer/Token ROI/Context/MoRe/Anthropic/agentskills (covers: S2)
 - [x] T4: 三主轴比较 + 推荐 Soft Proof（捆绑卫生）— acceptance: §2.3 有否决理由与依赖顺序 (covers: S2)
 - [x] T5: v1.10 设计契约（质量卡/ROI 协议/body 腾空/卫生/三门）— acceptance: §2.4 任务可独立验收；Out-of-Scope 明确 (covers: S2)
-- [x] T6: 实现轮落地质量卡与 ROI 四场景 — acceptance: smoke 矩阵文档 + token-roi 表可复填；静态 0 fail (covers: S2)
+- [x] T6: 实现轮落地质量卡与 ROI 四场景 — acceptance: smoke 矩阵 + token-roi 表可复填；静态 0 fail (covers: S2)
 - [x] T7: body 腾空 + CHANGELOG/README 卫生 — acceptance: body≤2880；CHANGELOG `[1.9.0]`；README Version 1.9.0 (covers: S2)
