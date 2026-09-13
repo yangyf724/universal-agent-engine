@@ -3,7 +3,7 @@ feature: engine-v111-roadmap
 status: delivered
 updated: 2026-09-14
 branch: plan/v111-roadmap
-commits: 75f9331..HEAD # planning-only delivery; fill at commit
+commits: 75f9331..a0e2e7d # planning-only; reviewed range excludes finalize hygiene commits
 ---
 
 # Engine v1.11 Roadmap — v1.10 短板总账与一次补齐规划
