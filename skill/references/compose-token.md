@@ -5,10 +5,10 @@ engine 在 compose-next/P-domain 会话里只做 **Soft 供给**，目标：同�
 ## 硬规则
 
 1. **禁止**把七 mode 全表、Role Lens 会审、Full Gates 常读灌进 compose 会话。
-2. **每次 Soft 只 JIT 一个 pointer**：
+2. **每次 Soft 只 JIT 一个 pointer**（细则可在同一文件内展开；禁止并行灌第二份编排/门禁全文）：
    - 媒体子任务 → `references/multimodal.md`
-   - Grill 调研 → 本文件 + `compose-handoff.md` 证据包节（研究工具卡见下）
-   - Implement 模态测 → `multimodal.md` Universal Gates / 对应模态卡
+   - Grill 调研 → `references/compose-token.md`（研究卡与证据包；完整 R1 模板仅用户要前置包时再读 handoff）
+   - Implement 模态测 → `references/multimodal.md` Universal Gates / 对应模态卡
 3. **跳过 Step 2–6**；不建 Spec/worktree/Finish/独立 Review。
 4. 点名 `/compose-next` 且无独立 Soft 请求 → **只** compose-next，engine 不加载。
 

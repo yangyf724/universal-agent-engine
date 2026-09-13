@@ -13,7 +13,7 @@ compose 会话 Soft 扩展：**Soft-Research**（Grill 调研/论文/高星仓�
 
 ### Changed
 
-- `skill/SKILL.md` — Soft 合并为一条（媒体/研究/测）；body ~2955
+- `skill/SKILL.md` — Soft 合并为一条（媒体/研究/测）；body ~2988
 - `skill/references/compose-token.md` — **新建**供给与 ROI 合同
 - `skill/references/compose-handoff.md` — Soft-Research/Test 角色
 - `skill/references/intent-router.md` — D3 三行 Soft

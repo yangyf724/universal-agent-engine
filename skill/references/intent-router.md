@@ -95,7 +95,7 @@ engine 是 compose-next 的能力同伴，不是子流程。细则与包模板�
 
 | 信号 | 行为 |
 |---|---|
-| 点名 `/compose-next` 或「用 compose-next 流程」且无独立多模态请求 | 只走 compose-next；本 skill 不加载全协议 |
+| 点名 `/compose-next` 或「用 compose-next 流程」且无独立调研/模态测请求 | 只走 compose-next；本 skill 不加载全协议 |
 | 会话已在 compose-next/P-domain + 多模态感知/媒体子任务 | **Soft 媒体**：只 `multimodal.md` + 抽检 |
 | compose Grill/P 决策 + 调研/论文/高星仓/选型 | **Soft-Research**：研究卡 + 证据包（≤40 行）；不拍板 |
 | compose Implement/Verify + UI/音视频/图/交互待测 | **Soft-Test**：测试卡；高风险可 1 盲测（默认关）；不宣布总 Verify |

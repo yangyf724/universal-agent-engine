@@ -1,14 +1,25 @@
 ---
 feature: engine-compose-soft-ext
-status: designed
+status: delivered
 updated: 2026-09-13
 branch: optimize/v1.8-compose-soft-ext
-commits: f421c98..<head> # filled at delivery
+commits: f421c98..1656d71
 ---
 
 # Engine × Compose Soft Extensions (v1.8)
 
 ## Report
+
+**What was built** — 在不改 compose-next 的前提下扩展 compose 会话 Soft 供给：**Soft-Research**（Grill 调研/论文/高星仓 → 研究卡 + 证据包≤40行，不拍板）；**Soft-Test**（Implement 视/听/跨模态测，默认 fan-out=0、高风险≤1 盲测，不宣布 feature 总 Verify）；**compose-token.md** 供给合同（单卡 JIT、禁七 mode/Full Gates 灌会话）。SKILL Soft 合并为一条并保持 body ≤3000。设计验证 PASS+AMENDMENTS（SE1–SE6）。
+
+**Verification** — `python skill/tests/run_static_checks.py` → **135 pass / 0 fail**；body 2988 chars / 80 行；三路径 SKILL SHA `09ff1d0f06e3…`。独立评审 `f421c98..1656d71`：三类 PASS，无 critical；非 critical（D3 SE2 措辞、SE3 单指针、命名残留）已在 Finalize 前关闭。
+
+**Journey log** —
+1. compose-next 不会主动 load engine；Grill/测只能靠 **被需求触发的 Soft**，不能写成官方 hand-off。
+2. Soft-Research 只供证据、不拍板，否则又变成第二编排。
+3. 证据包≤40 行 + 单卡 JIT 是 C2 load-bearing；双 pointer 会把 token 打回灌协议。
+4. fan-out 默认必须 0，否则「全模态测」会烧成多智能体会审。
+5. Soft 改名后 D3/场景/正文要一次扫全，避免 exclusive 行滞后。
 
 ## [S1] Problem
 
@@ -99,7 +110,7 @@ commits: f421c98..<head> # filled at delivery
 
 ## Tasks
 
-- [ ] T1: 设计验证矩阵裁定 — acceptance: 三门结论；PASS/PASS+AMENDMENTS/FAIL (covers: S2)
-- [ ] T2: Soft-Research + Soft-Test + D3/handoff 落地 — acceptance: 激活/供给/禁止齐全；static 断言；body ≤3000 (covers: S2; depends: T1 非 FAIL)
-- [ ] T3: compose-token 供给合同 + checklist/manual ROI — acceptance: 合同可执行；场景 W1–W6 覆盖 (covers: S2; depends: T2)
-- [ ] T4: 双安装 + static + live 抽检 — acceptance: 三路径 SHA 一致；0 fail；点名 compose-next 不双载 (covers: S2; depends: T2–T3)
+- [x] T1: 设计验证矩阵裁定 — acceptance: 三门结论；PASS/PASS+AMENDMENTS/FAIL (covers: S2)
+- [x] T2: Soft-Research + Soft-Test + D3/handoff 落地 — acceptance: 激活/供给/禁止齐全；static 断言；body ≤3000 (covers: S2; depends: T1 非 FAIL)
+- [x] T3: compose-token 供给合同 + checklist/manual ROI — acceptance: 合同可执行；场景 W1–W6 覆盖 (covers: S2; depends: T2)
+- [x] T4: 双安装 + static + live 抽检 — acceptance: 三路径 SHA 一致；0 fail；点名 compose-next 不双载 (covers: S2; depends: T2–T3)

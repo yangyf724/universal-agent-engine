@@ -40,7 +40,7 @@ description: Orchestration-layer agent protocol for multi-step deliverables (rou
 主 mode 不变。Step 0 后静默 Modality Scan：
 
 - 视觉→VISION；听觉→AUDIO（转写/配音）；Office→DOCOFFICE；视频→VIDEO；建模/3D→THREE_D；可拖动交互演示→INTERACTIVE。
-- 细则与工具锚点只在需要时读 `references/multimodal.md`（**Soft Companion 时仅此文件**）。
+- 细则与工具锚点只在需要时读 `references/multimodal.md`（**Soft 媒体/测时仅此文件**）。
 - 交付前抽检该模态样本；工具缺失则降级并披露，禁止假装已生成。
 
 门禁默认见 `references/quality-gates.md` **Lean Gates**；出现风险信号词再读 Full Gates。
