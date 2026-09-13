@@ -13,7 +13,7 @@
 ----
     python skill/tests/run_static_checks.py
     # 期望：SUMMARY passes=N failures=0 且 ALL CHECKS PASSED
-    # N 以 checklist.md 记载的期望值为准（当前 188）
+    # N 以 checklist.md 记载的期望值为准（当前 190）
 
 设计约定
 --------

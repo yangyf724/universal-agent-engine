@@ -1,14 +1,31 @@
 ---
 feature: engine-v112-lean-process
-status: in-progress
+status: delivered
 updated: 2026-09-14
 branch: feat/v112-lean-process
-commits: f05c771..HEAD # filled at finalize
+commits: f05c771..d3ed1b9 # reviewed range; finalize docs commit outside by construction
 ---
 
 # Engine v1.12 — Lean Process（效率与节省率）
 
 ## Report
+
+**What was built** —
+v1.12 **Lean Process**：把 v1.11 过程门从「独立仪式」改为交付附证行（Context-7 默认一行；canary 写入 Soft-Evidence 表行；SC 软停保留）。Soft Depth 改为**情境触发**（默认仅 Soft-DoD-artifact），禁止默认强制四卡。压缩 process-gates / compose-phases / compose-token / process-audit，增加 Soft 供给路径纪律与 token-roi Pack-size 口径。修复 Soft-Amendment 必含 frontmatter `amended:` 建议；process-audit efficiency 明确惩罚「为过门而加轮」。评审 critical（`雁 Soft` 边界回归）已修并加静态字面断言。
+
+**Verification** —
+- `python skill/tests/run_static_checks.py` → **190 pass / 0 fail**（修复后）
+- 体量：process-gates **1399** / compose-phases **3489** / compose-token **1786** / process-audit **1001**（均过门）
+- Soft 相关四文件合计 **7675**（v1.11 工作树 ≈12061 → −37%）
+- 独立评审 general-1：1 critical + 2 major；修复 commit `d3ed1b9` 后 general-2 复审 **PASS（0 critical）**
+- 未做（S3）：生产 compose e2e 计费 token/轮次 A/B、LLM-judge 平台、fan-out>0 实跑
+
+**Journey log** —
+1. R1/R2 证明 v1.11 过程门可用但 Soft +33.5%、轮次 +60%——v1.12 主轴是「附证行」而非再加卡。
+2. 压缩硬规则时 `零`→`雁` 单字回归可骗过子串静态；关键边界必须断言字面量。
+3. checklist 期望 pass 数与 CHANGELOG 必须跟静态基线同步，否则 T4「对齐」空转。
+4. Spec finalize（status/Report/勾选）是独立验收门，先 bump CHANGELOG 会留下「版本已发、规格未交付」裂缝。
+5. process-gates 1399/1400 仅 1 字符余量；后续任何编辑先跑体量门。
 
 ## [S1] Problem
 
@@ -138,10 +155,10 @@ R1/R2 A/B 报告（`docs/compose-next-ab-test/report.md`、`…-hard/report.md`�
 
 ## Tasks
 
-- [ ] T1: Workspace 分支就绪 — acceptance: `feat/v112-lean-process` 可改且从 v1.11.0 起 (covers: S2)
-- [ ] T2: 压缩 process-gates / compose-phases / compose-token 并落 D1–D3 合同 — acceptance: 体量达标；一行 C7；情境 Depth；canary 行内 (covers: S2)
-- [ ] T3: 修 Soft-Amendment `amended:` + process-audit efficiency 惩罚 + token-roi pack-size — acceptance: 模板含键；场景 S75–S77 (covers: S2)
-- [ ] T4: 静态检查与基线 — acceptance: `run_static_checks.py` 0 fail；checklist 对齐 (covers: S2)
-- [ ] T5: smoke `v1.12-lean-process-matrix.md` 体量与契约矩阵 — acceptance: L1–L5 可勾；未验区 1 句 (covers: S2)
-- [ ] T6: 独立评审 0 critical — acceptance: 评审记录；critical 已修或有据驳回 (covers: S2)
-- [ ] T7: Finalize 规格 + CHANGELOG/README 1.12.0 — acceptance: status delivered；Report 三段 (covers: S2)
+- [x] T1: Workspace 分支就绪 — acceptance: `feat/v112-lean-process` 可改且从 v1.11.0 起 (covers: S2)
+- [x] T2: 压缩 process-gates / compose-phases / compose-token 并落 D1–D3 合同 — acceptance: 体量达标；一行 C7；情境 Depth；canary 行内 (covers: S2)
+- [x] T3: 修 Soft-Amendment `amended:` + process-audit efficiency 惩罚 + token-roi pack-size — acceptance: 模板含键；场景 S75–S77 (covers: S2)
+- [x] T4: 静态检查与基线 — acceptance: `run_static_checks.py` 0 fail；checklist 对齐 (covers: S2)
+- [x] T5: smoke `v1.12-lean-process-matrix.md` 体量与契约矩阵 — acceptance: L1–L5 可勾；未验区 1 句 (covers: S2)
+- [x] T6: 独立评审 0 critical — acceptance: 评审记录；critical 已修或有据驳回 (covers: S2)
+- [x] T7: Finalize 规格 + CHANGELOG/README 1.12.0 — acceptance: status delivered；Report 三段 (covers: S2)
