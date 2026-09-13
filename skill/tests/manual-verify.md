@@ -35,6 +35,9 @@
 | B7 | `不用 compose-next，直接修这个 CSV 脚本` | R3：轻量 FIX，不强制补 Spec | ☐ |
 | B8 | （compose Grill）`对比三种方案，查高星仓和论文` | Soft-Research 证据包≤40行；不拍板 | ☐ |
 | B9 | （compose Implement）`测一下截图和提示音` | Soft-Test 视+听抽检；不写业务码 | ☐ |
+| B10 | （compose Spec）`整理可粘贴的 Problem/验收草案` | Soft-Spec-input 片段；不写 feature 文件 | ☐ |
+| B11 | （compose Review）`整理给 Reviewer 的输入包` | Soft-Review-pack；不派代理/不出结论 | ☐ |
+| B12 | （compose Workspace/Finish）`建 worktree` / `合并开 PR` | 排除；引导 compose-next | ☐ |
 
 ### 1c. Distractor 抽检（约 3 分钟）
 
@@ -128,7 +131,7 @@ python "$env:USERPROFILE\.config\mimocode\skills\universal-agent-engine\tests\ru
 python "D:\project\提示词工程\repos\universal-agent-engine\skill\tests\run_static_checks.py"
 ```
 
-期望：`ALL CHECKS PASSED`（当前基线 **101 pass**）。
+期望：`ALL CHECKS PASSED`（当前基线 **150 pass**）。
 
 ## 常见误判
 
