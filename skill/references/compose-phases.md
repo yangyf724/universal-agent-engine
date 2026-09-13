@@ -24,7 +24,7 @@ engine 是 compose-next 的**能力同伴**。同任务只一个编排层；comp
 2. 对应阶段有**独立 Soft 请求**才供给。
 3. 点名 `/compose-next` 且无 Soft 请求 → 不加载 engine 全协议。
 4. **单卡 JIT**（见 compose-token）。
-5. 跳过 Step 2–6；Workspace/Finish 无 Soft。
+5. 跳过 Step 2–6；**Workspace / Finish 零 Soft**。
 
 ## Soft 阶段卡
 

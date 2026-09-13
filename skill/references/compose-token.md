@@ -14,7 +14,7 @@ engine 只做 **Soft 供给**；目标：同等质量下 token **不升**，效�
    - Implement 模态测 → `multimodal.md` 或本文件测试卡
 3. **跳过 Step 2–6**；不建 Spec/worktree/Finish；不派 Reviewer；不出 feature 总 Verify。
 4. 点名 `/compose-next` 且无独立 Soft 请求 → **只** compose-next。
-5. **Workspace / Finish 雁 Soft**。
+5. **Workspace / Finish 零 Soft**（见 phases 矩阵排除行）。
 6. **供给路径（v1.12）**：coding 默认不灌 process-gates 全文与全部 Depth 卡；过程信号是注解行。禁止「一次打包五卡+全门」。
 
 ## Grill 研究卡（Soft-Research）

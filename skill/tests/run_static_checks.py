@@ -13,7 +13,7 @@
 ----
     python skill/tests/run_static_checks.py
     # 期望：SUMMARY passes=N failures=0 且 ALL CHECKS PASSED
-    # N 以 checklist.md 记载的期望值为准（当前 135）
+    # N 以 checklist.md 记载的期望值为准（当前 188）
 
 设计约定
 --------
@@ -311,6 +311,9 @@ def main() -> int:
     check("为过门" in audit or "仪式" in audit or "可避免轮次" in audit, "process-audit efficiency penalizes ceremony")
     check("Pack-size" in (ROOT / "tests" / "token-roi.md").read_text(encoding="utf-8") or "pack-size" in (ROOT / "tests" / "token-roi.md").read_text(encoding="utf-8").lower(), "token-roi pack-size protocol")
     check("供给路径" in token_text or "单卡" in token_text, "compose-token Soft supply path discipline")
+    check("零 Soft" in token_text, "compose-token hard rule keeps literal 零 Soft")
+    check("零 Soft" in phases, "compose-phases keeps Workspace/Finish 零 Soft")
+    check("雁 Soft" not in token_text and "雁 Soft" not in phases, "no garbled 雁 Soft boundary")
     # Soft related source size budgets (v1.12 efficiency targets)
     def _chars(p: Path) -> int:
         return len(p.read_text(encoding="utf-8"))
