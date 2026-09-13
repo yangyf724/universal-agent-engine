@@ -119,7 +119,7 @@ base-sha..head-sha；workspace 路径。
 
 ## Soft 质量抽检（DoD，不进 SKILL body）
 
-交付 Soft 卡前按最低可观察项自检；失败标 FAIL/未验，禁止 Fake Done。完整对照协议见 `../tests/token-roi.md`。
+交付 Soft 卡前按最低可观察项自检；失败标 FAIL/未验，禁止 Fake Done。完整对照协议见 `../tests/token-roi.md`。过程门/Canary 见 `process-gates.md`。
 
 | 卡 | 最低验收 | 禁止 |
 |---|---|---|
@@ -131,6 +131,35 @@ base-sha..head-sha；workspace 路径。
 | Soft-Evidence | 每行命令/抽检 + PASS/FAIL | 宣布 feature 总 Verify |
 | Soft-Review-pack | Range + 验收摘要 + 未验区掩码 | 三类 Review 结论；派 Reviewer |
 | Soft-Report | 三段齐全；Journey ≤5 | 改 status/commit |
+| Soft-Contract | 输入/输出/恢复点三行 | 接管 Workspace/Finish |
+| Soft-Drift | Spec 锚点 vs diff 漂移 1 句 | 擅自改 Spec status |
+| Soft-Verify-recipe | 验证命令 ≤5 行可复跑 | 宣布 feature 总 Verify |
+| Soft-Amendment | 草稿片段+勾选同步建议 | commit/写盘 feature |
+| Soft-DoD-artifact | ≥1 可机读证据指针 | 无工具证据称 done |
+
+## Soft Depth 卡（v1.11；仍单卡 JIT）
+
+在既有阶段卡之外，按请求选用下列 **一张**；过程门细则 JIT `process-gates.md`。
+
+### Soft-Contract
+
+任一 Soft 交付前：`输入` / `输出` / `恢复点` 各一行；与当前 compose 阶段对齐。不建 worktree、不 Finish。
+
+### Soft-Drift
+
+Spec↔Implement 边界：对照 Spec 锚点与 diff 范围；有漂移则 **1 句披露**。不改 `status`/不写盘 feature 文档。
+
+### Soft-Verify-recipe
+
+本仓/本 feature 可复跑验证命令 **≤5 行**（或指针到已有脚本）。只供 compose 执行；**不** 宣布 feature 总 Verify 通过。
+
+### Soft-Amendment
+
+Finalize 前若范围曾变：可粘贴 amendment 草稿片段 + 任务勾选同步建议。**不** commit、**不** 写 `docs/compose/spec/*.md`。
+
+### Soft-DoD-artifact
+
+Implement/Verify：至少 **1** 条可机读证据（命令输出路径 / 文件哈希 / 测试计数）。无证据称 done → 标 FAIL/未验。
 
 ## 反例
 

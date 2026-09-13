@@ -74,6 +74,10 @@ Each row is a regression case. `Expected` is the primary mode after Step 0 routi
 | S68 | 用 compose-next 做登录，无独立 Soft 请求 | （不路由全协议） | — | 点名独占，不进全协议 |
 | S69 | （compose Implement）测一下登录页截图 | — | — | Soft-Test；fan-out 默认 0 |
 | S70 | （无 compose）帮我写可粘贴验收草案 | DESIGN | — | R1 compose-ready，非 Soft-Spec-input |
+| S71 | （T2 改完但零验证称 done） | （阻塞 Deliver） | — | SC 软停 + process-gates；禁止 Fake Done |
+| S72 | （compose Soft）交付前列一下输入/输出/恢复点 | ADVISE | — | Soft-Contract 三行；不接管 Workspace |
+| S73 | （T3 独立两路调研）并行对比三套定价模型 | RESEARCH | — | Independence test 通过才 fan-out soft≤4；否则 0 |
+| S74 | （compose Finalize 范围曾变）起草 amendment 与勾选同步 | WRITE | — | Soft-Amendment 草稿；不 commit |
 
 ## Multimodal overlay rules
 

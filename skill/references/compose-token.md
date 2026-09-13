@@ -2,7 +2,8 @@
 
 engine 在 compose-next/P-domain 会话里只做 **Soft 供给**，目标：同等质量下 token 不升。
 
-九阶段 Soft 角色与卡模板：`references/compose-phases.md`。
+九阶段 Soft 角色与卡模板：`references/compose-phases.md`。  
+过程门（Context-7 / SC 软停 / canary）：`references/process-gates.md`；抽样协议 `tests/process-audit.md`。
 
 ## 硬规则
 
@@ -40,14 +41,23 @@ engine 在 compose-next/P-domain 会话里只做 **Soft 供给**，目标：同�
 - 高风险（对外发布/安全/关键 UI）可 **最多 1** 个独立子代理盲测；**默认不 fan-out**。  
 - 只回报模态测结论，**不**宣布整个 feature Verify 通过。
 
-## Fan-out 预算
+## Fan-out / Effort 决策表（v1.11 G6）
 
-| 场景 | 上限 |
-|---|---|
-| 默认 Soft（任何阶段） | **0** |
-| Soft-Test 高风险盲测 | **1** |
-| Soft-Review-pack | **0**（Review 归 compose） |
-| Soft-Spec-input / Soft-Report / Soft-Evidence | **0** |
+Effort（T 档深度）与 fan-out（广度）**正交**。host 的 `effort: low…max` 只作建议映射，**不是** engine 功能。
+
+| 条件 | Soft fan-out | 备注 |
+|---|---|---|
+| 默认（任何 Soft） | **0** | 对齐 MoRe 单代理 / MAS≈15× token |
+| Soft-Test 高风险盲测 | **1** | 保持 |
+| Soft-Review-pack | **0** | Review 归 compose |
+| Soft-Spec-input / Soft-Report / Soft-Evidence | **0** | 保持 |
+| **T3 且独立分支≥2 且低风险** | soft cap **2–4** | 仅广度研究；子代理回摘要、产物落盘 |
+| 共享上下文 / Implement 耦合 / coding 主路径 | **强制 0–1** | Anthropic：coding 并行度低 |
+| 用户点名要并行且价值可付 token | 可 raise，写明预算 | 禁止静默爆 fan-out |
+
+Independence test（一行）：子代理任务能否互不依赖、结果可并集、无需共享同一工作副本？否则 fan-out 不得 >0。
+
+Raise 路径必须在证据包或 Soft 卡备注写：为何独立、预算、回传摘要格式。
 
 ## Token ROI（对照协议）
 

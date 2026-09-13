@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.11.0] - 2026-09-14
+
+### 摘要
+
+**Process Proof + Effort Reset + Soft Depth**：关闭 v1.10 留白 G5/G6（协议级，非生产错误率）。新建 `references/process-gates.md`（Context-7 预检、SC 软停、canary、禁 LLM-judge 平台）与 `tests/process-audit.md`（四维抽样）；`compose-token.md` 落 fan-out/effort 决策表（默认 0、Independence test、T3 soft 2–4、coding 0–1）；`compose-phases.md` 增 Soft-Contract/Drift/Verify-recipe/Amendment/DoD-artifact 五卡。场景 S71–S74；静态 **174 pass**；body **2851**。不改 compose-next；Workspace/Finish 仍零 Soft。规格：`docs/compose/spec/engine-v111-roadmap.md`；smoke：`v1.11-process-matrix.md`。
+
+### Added
+
+- `skill/references/process-gates.md` — Context-7 / SC 软停 / canary
+- `skill/tests/process-audit.md` — 过程抽样协议
+- `docs/compose/smoke/v1.11-process-matrix.md` — 契约矩阵
+- `docs/compose/spec/engine-v111-roadmap.md` — 规划与实现契约
+
+### Changed
+
+- `skill/references/compose-token.md` — fan-out/effort 决策表；process-gates 指针
+- `skill/references/compose-phases.md` — Soft Depth 五卡 + 质量抽检行
+- `skill/references/quality-gates.md` — Lean/Token Discipline 过程门与 effort 细表指针
+- `skill/tests/scenarios.md` — S71–S74
+- `skill/tests/run_static_checks.py` — v1.11 断言；基线 174
+- `skill/tests/checklist.md` — 期望 174
+- `README.md` / `CHANGELOG.md` — 版本卫生
+
+[1.11.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.10.0...v1.11.0
+
 ## [1.10.0] - 2026-09-13
 
 ### 摘要

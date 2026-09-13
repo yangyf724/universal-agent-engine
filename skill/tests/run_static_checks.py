@@ -281,6 +281,26 @@ def main() -> int:
     check((ROOT / "tests" / "token-roi.md").exists(), "token-roi.md exists")
     token_text = (ROOT / "references" / "compose-token.md").read_text(encoding="utf-8")
     check("token-roi" in token_text, "compose-token points at token-roi")
+    # v1.11 — process gates + effort table + Soft depth
+    pg_path = ROOT / "references" / "process-gates.md"
+    check(pg_path.exists(), "process-gates.md exists")
+    if pg_path.exists():
+        pg = pg_path.read_text(encoding="utf-8")
+        check("Context-7" in pg or "Context 7" in pg, "process-gates has Context-7 preflight")
+        check("canary" in pg.lower(), "process-gates has canary")
+        check("软停" in pg, "process-gates has SC soft-halt")
+        check("LLM-judge" in pg and "平台" in pg, "process-gates forbids full LLM-judge platform")
+    check((ROOT / "tests" / "process-audit.md").exists(), "process-audit.md exists")
+    audit = (ROOT / "tests" / "process-audit.md").read_text(encoding="utf-8")
+    check("verify" in audit and "canary" in audit.lower(), "process-audit has verify+canary fields")
+    check("goal" in audit and "efficiency" in audit, "process-audit four dimensions")
+    check("Independence test" in token_text or "independence" in token_text.lower(), "compose-token independence test")
+    check("2–4" in token_text or "2-4" in token_text, "compose-token T3 soft cap documented")
+    check("默认" in token_text and "**0**" in token_text, "compose-token default fan-out 0")
+    for card in ("Soft-Contract", "Soft-Drift", "Soft-Verify-recipe", "Soft-Amendment", "Soft-DoD-artifact"):
+        check(card in phases, f"phases Soft depth card: {card}")
+    check("process-gates" in qg_early, "Lean Gates points at process-gates")
+    check("process-gates" in token_text or "process-gates" in phases, "Soft supply references process-gates")
 
     # ------------------------------------------------------------------
     # Token / 角色 / 注入加固
@@ -367,6 +387,9 @@ def main() -> int:
         check("S55" in scen and "S60" in scen, "soft-research/test scenarios present")
         check("Soft-Research" in scen and "Soft-Test" in scen, "scenarios name Soft-Research/Test")
         check("S61" in scen and "S70" in scen, "compose-phase matrix scenarios present")
+        check("S71" in scen and "S74" in scen, "v1.11 process/effort/depth scenarios present")
+        check("Soft-Contract" in scen or "Soft-Amendment" in scen, "scenarios name Soft depth cards")
+        check("Independence" in scen or "fan-out" in scen, "scenarios cover fan-out discipline")
         check("Soft-Spec-input" in scen and "Soft-Review-pack" in scen, "scenarios name Spec/Review packs")
         invalid = []
         for cell in expected_col:

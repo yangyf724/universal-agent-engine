@@ -9,6 +9,7 @@
 - **信号**（风险/该测/可能有问题/应该没问题/大概/看起来完成）→ Anti-SC：说出风险或该测必须**补证或标未验**；改完零验证称完成→**阻塞**；关键结论（对外数字/版本/钱数/安全与合并结论/用户点名）尽量双通路否则披露；Deliver 前 **1** 问：哪条尚无工具输出/抽检支持？
 - **Reflect 写入 checklist**：≥2 次同类 + 工具证据 + 责任侧（model/harness/env/user）。
 - **边界**：要 worktree / Spec / **独立 Review** / Finish → **compose-next**；本 skill 不提供。
+- **过程门（T2+ / 信号）**：Context-7 预检、SC 软停、canary、抽样过程分 → `references/process-gates.md`（协议 `tests/process-audit.md`）。确定性证据优先；禁止常开 LLM-judge。
 
 以下为 **Full Gates**（T2+ 加深、评审/QA Lens、或 Lean 信号触发后需要细则时再读）。
 
@@ -94,7 +95,8 @@
 - 同任务只加载一个编排层；P-domain 无前置未点名→建议 compose-next；前置包→`compose-handoff.md`（包≠Spec）；**Soft**（九阶段：含 Spec/Review/Report 输入卡，Workspace/Finish 零 Soft）只 JIT `compose-token.md`→`compose-phases.md` 单卡并抽检，**禁止** Step 2–6/七 mode 表/Full Gates 灌进 compose 会话；fan-out 默认 0、高风险≤1、Review 包 0。要 worktree/Finish/独立 Review→compose-next。
 - SKILL 主体只含 actionable 核心；细则按需读 references，禁止一次灌全量。
 - 禁止多角色 MAS 会审；角色只作 Role Lens。评审/QA Lens 时 Evidence/No Fake Done 必过。
-- Effort Tier：T0 单题不进全协议；T1 委托 official；T2 全协议不 fan-out；T3 广度研究才有限 fan-out（子代理回摘要、产物落盘）。
+- Effort Tier：T0 单题不进全协议；T1 委托 official；T2 全协议不 fan-out；T3 广度研究才有限 fan-out（子代理回摘要、产物落盘）。细表 `compose-token.md`（默认 0；独立 T3 soft 2–4；coding 0–1）。
+- 过程门指针：`process-gates.md` + `tests/process-audit.md`（v1.11 G5）。
 - Token ROI 抽检（`tests/manual-verify.md`）：记录是否加载 / 是否双载 / 主体+按需 ref 规模 / DoD 完成；目标同等质量下 token 不升。
 - Description 加词退出：先复现 `skill_search` 排名失败；一次只加 1–2 个高信号 token；成功=目标查询下本 skill 高于主要 distractor；同一 miss 最多 2 轮加词，仍败则停手改方案或记宿主权重，禁止继续堆词。
 - Compact Errors：只保留错误类型/关键行、已尝试、下一策略。
