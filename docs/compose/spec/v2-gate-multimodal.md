@@ -3,7 +3,7 @@ feature: v2-gate-multimodal
 status: delivered
 updated: 2026-09-14
 branch: feat/v2-gate-multimodal
-commits: b2a1663..d314040
+commits: b2a1663..f7129ef
 ---
 
 # v2.0.0 Gate + Multimodal Plugin
