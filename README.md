@@ -77,14 +77,15 @@ python skill/tests/run_static_checks.py
 
 ```text
 skill/                    # 安装到 ~/.config/mimocode/skills/universal-agent-engine/（兼 ~/.claude/skills/）
-  SKILL.md
-  references/             # intent-router / quality-gates / compose-handoff / multimodal / research-citations
-  locales/
-  tests/
-docs/compose/spec/        # 本仓 feature 规格（engine-compose-aux 等）
+  SKILL.md                # 编排主协议（瘦 body；Soft 短路）
+  references/             # intent-router / quality-gates / compose-handoff / compose-token / multimodal / research-citations
+  locales/                # displayName + brief
+  tests/                  # run_static_checks.py（135 pass）/ scenarios / checklist / manual-verify
+docs/compose/spec|smoke/  # 本仓 feature 规格与验证矩阵
 README.md
 CHANGELOG.md
 LICENSE
+.gitignore
 ```
 
 ## License

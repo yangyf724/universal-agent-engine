@@ -1,0 +1,10 @@
+# 本地/工具垃圾（勿提交）
+.playwright-mcp/
+.sandbox/
+*.wav
+*.mp3
+.DS_Store
+__pycache__/
+*.pyc
+.worktrees/*
+!.worktrees/.gitignore
