@@ -1,9 +1,9 @@
 ---
 feature: engine-v111-roadmap
-status: in-progress
+status: delivered
 updated: 2026-09-14
 branch: plan/v111-roadmap
-commits: 8377f61..HEAD # implementation train started
+commits: 8377f61..2c39e59 # reviewed implementation range; finalize commits outside by construction
 ---
 
 # Engine v1.11 Roadmap — v1.10 短板总账与一次补齐规划
@@ -11,25 +11,25 @@ commits: 8377f61..HEAD # implementation train started
 ## Report
 
 **What was built** —
-本 feature 为 **v1.11 规划规格**（非 skill 实现）。完成：
-1. v1.10 短板总账 H1–H5 + 历史残留 R1–R6 回扫（可追溯 smoke/spec/token-roi）。
-2. 全模态联网证据包 ≥10 源（Context-7 / SC / Anthropic effort / MoRe / agentskills / SkillReducer / 过程评测 / 轻量 Judge 等），事实与推断分列。
-3. 推荐 **A Process Proof + B Effort Reset + C Soft Depth** 三主轴同列车；不变量：不改 compose-next、Workspace/Finish 零 Soft、body≤2880。
-4. 设计契约 §2.4（过程门、fan-out 决策表、Soft 深度五卡、验收四门 P1–P4）。
-5. compose-next 短板双清单：A 本仓 Soft 可补 7 项；B 宿主本体 6 项仅建议草案，不进实现任务。
+v1.11 **规划 + 实现**同列车：
+1. 规划：v1.10 短板 H1–H5、历史 R1–R6、联网证据 ≥10 源、三主轴 A+B+C、compose-next 双清单（A Soft / B 宿主草案）。
+2. 实现：新建 `process-gates.md`（Context-7 / SC 软停 / canary / 禁 LLM-judge 平台）与 `process-audit.md`；`compose-token` fan-out 决策表（默认 0、Independence test、T3 soft 2–4、coding 0–1）；`compose-phases` Soft Depth 五卡；场景 S71–S74；静态 **174**；CHANGELOG/README **1.11.0**；smoke `v1.11-process-matrix.md`。
+3. 不变量保持：不改 compose-next；Workspace/Finish 零 Soft；description 未堆词；body ≤2880。
 
 **Verification** —
-- 规格结构：frontmatter + S1/S2/S3 + Tasks covers/acceptance 齐全；`status: designed`→本轮交付后 `delivered`（实现未开始）。
-- 证据可追溯：§2.2 含 arXiv id 与 Anthropic 原文；仓内对照 `v1.10-soft-proof-matrix.md` / `engine-v110-roadmap.md`。
-- 独立评审 `general-4`：三类结论均 MET/PASS，**0 critical**；非 critical（R5 归因、部分 arXiv id、任务勾选）已在 Finalize 前关闭。
-- 未做：skill 本体改动、静态 153、生产 e2e token/错误率、LLM-judge 平台（见 S3）。
+- `python skill/tests/run_static_checks.py` → **174 pass / 0 fail**（评审复跑一致）
+- body chars **2850–2851** ≤ 2880；非空行 80
+- 双路径安装已同步；SKILL SHA `A87089ACDD46A74E…`
+- 规划轮评审 `general-4` 0 critical；实现轮 `general-5` **0 critical**（8/8 MET）
+- Smoke：Gate A–E **PASS**（协议级）；PA-1/PA-2 回填
+- **未做**（S3）：生产 compose e2e token/错误率、自动 LLM-judge 平台、改 compose-next 本体、tag/merge（待用户收尾）
 
 **Journey log** —
-1. 用户要求「一次补齐」→ 采用可闭环优先级全集：能进本仓契约的进 A/C，宿主与生产度量进 B/边界，禁止假 CLOSED。
-2. websearch 本会话不可用 → webfetch 主源 + 百度中文源 + 3 路子代理证据包交叉。
-3. G5 关闭口径定为「协议存在 + ≥1 次对照抽检」，而非生产错误率下降。
-4. G6 采用风险×独立度表，默认 fan-out=0 对齐 MoRe/15× MAS 证据；host effort 旋钮不伪造成 engine 功能。
-5. Review over-finding / Spec amendment 双写来自 compose-next 实践缺口，已映射为 Soft-Drift / Soft-Amendment。
+1. 「一次补齐」= 可闭环全集：本仓契约进 A/C，宿主与生产度量进边界，禁止假 CLOSED。
+2. G5 口径 =「协议存在 + 抽样过程分」，非生产错误率下降。
+3. G6 默认 fan-out=0 对齐 MoRe / MAS 15×；Independence test 可判定后才 raise。
+4. Soft Depth 五卡进 phases 附录，body 未增。
+5. Review 0 critical 后仍改 stale footer / PA-1 canary 格，避免下一轮再提。
 
 ## [S1] Problem
 
@@ -250,4 +250,4 @@ Effort 与 fan-out **正交**：T 档管深度/是否全协议；fan-out 管广�
 - [x] T7: 实现轮：process-gates + audit 协议 + token 决策表 + Soft 深度卡 + 场景/静态/smoke — acceptance: 静态 174/0；body 2851；S71–S74；smoke 矩阵 PASS（P1–P4 契约级） (covers: S2)
 - [ ] T8: 实现轮评审 + 版本发布 — acceptance: 无 critical；静态 0 fail；tag `v1.11.0`（merge 后打 tag） (covers: S2)
 
-> 本 feature 本轮交付 = **规划规格 T1–T6**。T7–T8 不阻塞规划验收，待用户拍板「继续实现」后执行。
+> 本 feature 已完成 **规划 T1–T6 + 实现 T7**。T8（merge/tag 发布）待用户选择收尾方式后执行。
