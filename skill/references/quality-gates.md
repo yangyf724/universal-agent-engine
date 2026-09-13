@@ -91,7 +91,7 @@
 
 ## Token Discipline
 
-- 同任务只加载一个编排层技能；P-domain（git 多步实现要合并/规格）未点名时建议 compose-next，不进全协议；单文件 Office/PDF 委托 official。要独立 Review/Spec/worktree → compose-next。
+- 同任务只加载一个编排层技能；P-domain 无前置输入未点名时建议 compose-next，不进全协议；要调研/选项/验收草案且下一步进 compose-next → 只交 **compose-ready 包**（`references/compose-handoff.md`，包≠feature Spec）；compose-next 运行中**禁止**再双载本协议；单文件 Office/PDF 委托 official。要独立 Review/Spec/worktree → compose-next。
 - SKILL 主体只含 actionable 核心；细则按需读 references，禁止一次灌全量。
 - 禁止多角色 MAS 会审；角色只作 Role Lens。评审/QA Lens 时 Evidence/No Fake Done 必过。
 - Effort Tier：T0 单题不进全协议；T1 委托 official；T2 全协议不 fan-out；T3 广度研究才有限 fan-out（子代理回摘要、产物落盘）。

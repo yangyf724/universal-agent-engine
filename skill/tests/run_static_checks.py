@@ -105,6 +105,7 @@ def main() -> int:
         "references/quality-gates.md",
         "references/research-citations.md",
         "references/multimodal.md",
+        "references/compose-handoff.md",
     ):
         p = ROOT / rel
         check(p.exists() and p.stat().st_size > 0, f"{rel} exists non-empty")
@@ -180,6 +181,27 @@ def main() -> int:
         "official" in desc_l or "xlsx" in desc_l,
         "negative: office official boundary in description",
     )
+    check(
+        "complementary" in desc_l or "互补" in desc,
+        "description signals compose-next complement",
+    )
+    check(
+        "pre-feature" in desc_l or "research/option" in desc_l,
+        "description signals pre-feature research packs",
+    )
+    check("references/compose-handoff.md" in body, "SKILL links compose-handoff.md")
+    check(
+        "compose-ready" in body or "compose-ready" in router,
+        "compose-ready pack referenced in SKILL or router",
+    )
+    check(
+        ("R1" in router or "R1" in body) and ("前置" in router or "前置" in body or "pre-feature" in desc_l),
+        "R1 pre-work path documented",
+    )
+    check(
+        "包≠" in qg_early or "包≠feature" in qg_early,
+        "quality-gates marks pack is not feature Spec",
+    )
 
     # --- token / role contracts ---
     body_lines = [ln for ln in body.splitlines() if ln.strip()]
@@ -254,6 +276,8 @@ def main() -> int:
         check("S31" in scen and "S32" in scen and "S34" in scen, "conflict/role scenarios present")
         check("S39" in scen and "S40" in scen, "P-domain yield scenarios present")
         check("S42" in scen and "S44" in scen, "Lean Gates scenarios present")
+        check("S45" in scen and "S48" in scen, "compose-aux R1-R3 scenarios present")
+        check("compose-ready" in scen, "scenarios mention compose-ready pack")
         invalid = []
         for cell in expected_col:
             if "不路由" in cell:

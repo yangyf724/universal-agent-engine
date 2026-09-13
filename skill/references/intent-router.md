@@ -89,12 +89,20 @@
 | D2 模态叠加 | VISION / AUDIO / DOCOFFICE / VIDEO / THREE_D / INTERACTIVE |
 | D3 技能边界 | 本编排层 vs compose-next vs official/专项（见下） |
 
-### D3 技能边界（互补让位）
+### D3 技能边界（互补让位 + 三角色）
 
-1. **点名让位**：`/compose-next` 或「用 compose-next 流程」→ 只走 compose-next，本 skill 不加载全协议。
-2. **P-domain 建议**：git 仓内多步实现/修 bug/上线/合并准备，且要合并、发版或 durable 规格，用户未点名 → **不**进 Step 2–6；一句建议 `/compose-next …`，等确认。用户明确「直接修 / 不用 compose-next / without spec」→ 走本 skill 轻量 BUILD/FIX。
-3. **E-domain**：调研/方案本体/写作/Office/媒体/答疑/非 git 交付 → 正常 D1 路由。
-4. **专项委托**：单文件 Office/PDF → official；GitHub 建仓/同步 → github-sync。本 skill 不引入 worktree/Spec/Finish/独立 Review 合同（归属 compose-next）。
+engine 是 compose-next 的能力同伴，不是子流程。细则与包模板：`references/compose-handoff.md`。
+
+| 信号 | 行为 |
+|---|---|
+| 点名 `/compose-next` 或「用 compose-next 流程」 | 只走 compose-next；本 skill 不加载全协议 |
+| P-domain（git 多步 + 要合并/发版/规格）且**无**前置输入 | **不**进 Step 2–6；一句建议 `/compose-next …`；等确认 |
+| P-domain + 先要调研/选项/验收草案，或点名喂 Grill/Spec | **R1**：RESEARCH/DESIGN/WRITE → compose-ready 包 → 再建议 `/compose-next` |
+| E-domain（研究/方案本体/写作/Office/媒体/答疑/非 git） | **R2**：正常 D1 路由（多模态可叠加） |
+| 用户「直接修 / 不用 compose-next / without spec」 | **R3**：轻量 BUILD/FIX 等 |
+| 单文件 Office/PDF；GitHub 建仓/同步 | 委托 official / github-sync |
+
+**不变量**：不引入 worktree / Spec 生命周期 / Finish / 独立 Review；已在 compose-next 运行中禁止再双载本协议。
 
 ## Role Lens（决策透镜，非多智能体）
 

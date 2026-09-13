@@ -48,6 +48,10 @@ Each row is a regression case. `Expected` is the primary mode after Step 0 routi
 | S42 | （改完未跑测试却说）已修好 | （阻塞 Deliver） | — | verification skip → Lean SC 阻塞 |
 | S43 | 做一个 10 页产品介绍 PPT | OPERATE | — | 近邻 official 负例；不抢编排层 |
 | S44 | 解释一下缓存穿透是什么 | ADVISE | — | T0：不强制 DoD 表/Full Gates |
+| S45 | 调研三家登录方案并列取舍，我要拿去开 compose-next | RESEARCH | DESIGN | R1：交付 compose-ready 包后再建议 compose-next |
+| S46 | 帮我准备给 compose-next Grill 的验收草案 | DESIGN | WRITE | R1：包是输入，不写 feature Spec |
+| S47 | 把这段会议录音转写成纪要 | WRITE | — | R2：E-domain 主产物；不建议 compose-next |
+| S48 | 不用 compose-next，先把这段 CSV 脚本直接修好 | FIX | — | R3：拒绝后轻量 FIX |
 
 ## Multimodal overlay rules
 

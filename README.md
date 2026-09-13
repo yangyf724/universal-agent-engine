@@ -5,7 +5,7 @@
 目标：**高效率、高完成率、低错误率、低返工率**。分析用户语句自动路由主模式，并可叠加全模态 I/O；角色为决策透镜（非多智能体），主体按 actionable 核心压缩以降低 token。
 
 <!-- github-sync:begin -->
-**Version:** 1.5.0  
+**Version:** 1.6.0  
 **Last sync:** 2026-09-13
 <!-- github-sync:end -->
 
@@ -36,7 +36,9 @@ foreach ($dst in @(
 
 新开对话后，在插件页应能看到「通用智能体执行引擎」。也可显式说：`用 universal-agent-engine …`。
 
-边界：显式 `/compose-next`、git 仓内多步实现要合并/发版/规格（P-domain，未点名时建议 compose-next）、或单文件 Office/PDF 成稿时，不要加载本编排层全协议。要 worktree/Spec/独立 Review/Finish → compose-next。门禁默认走 quality-gates **Lean Gates**（信号触发 Anti-SC）。
+边界：显式 `/compose-next`、git 仓内多步实现要合并/发版/规格且无前置输入（P-domain，未点名时建议 compose-next）、或单文件 Office/PDF 成稿时，不要加载本编排层全协议。要 worktree/Spec/独立 Review/Finish → compose-next。门禁默认走 quality-gates **Lean Gates**（信号触发 Anti-SC）。
+
+互补辅助（v1.6.0）：**R1** 前置调研/选项/验收草案 → 产出 compose-ready 包再建议 compose-next（`skill/references/compose-handoff.md`）；**R2** 多模态/Office/媒体/非 git 多步由本 skill 正常路由；**R3** 用户拒绝 compose-next 后轻量 BUILD/FIX。compose-next 运行中不双载本协议。
 
 ## 能力
 
@@ -76,10 +78,10 @@ python skill/tests/run_static_checks.py
 ```text
 skill/                    # 安装到 ~/.config/mimocode/skills/universal-agent-engine/（兼 ~/.claude/skills/）
   SKILL.md
-  references/
+  references/             # intent-router / quality-gates / compose-handoff / multimodal / research-citations
   locales/
   tests/
-docs/compose/spec/        # 本仓 feature 规格（engine-compose-next-complement 等）
+docs/compose/spec/        # 本仓 feature 规格（engine-compose-aux 等）
 README.md
 CHANGELOG.md
 LICENSE

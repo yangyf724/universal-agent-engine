@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-09-13
+
+### 摘要
+
+定位升级为 compose-next **最互补辅助**（能力同伴 + 交接物）：R1 前置 compose-ready 包、R2 能力补位（多模态/Office/媒体/非 git）、R3 拒绝后轻量 BUILD/FIX。description 允许重写以露出互补信号；仍不引入 worktree/Spec/Finish/独立 Review，不在 compose-next 运行中双载。
+
+### Changed
+
+- `skill/SKILL.md` — description 重写（Complementary companion + pre-feature packs + 负例含 merge/spec/worktree→compose-next）；Important/Examples 增 R1 指针
+- `skill/references/compose-handoff.md` — **新建**：三角色判定、compose-ready 包模板、反例
+- `skill/references/intent-router.md` — D3 扩为三角色边界表
+- `skill/references/quality-gates.md` — Token Discipline：包≠Spec；compose-next 运行中禁双载
+- `skill/locales/*.json` — brief 对齐互补辅助
+- `skill/tests/scenarios.md` — S45–S48
+- `skill/tests/run_static_checks.py` — handoff/互补/pre-feature/R1/场景断言（基线 123 pass）
+- `skill/tests/checklist.md` / `manual-verify.md` — 期望 pass 数与 B6/B7
+
+[1.6.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.5.0...v1.6.0
+
 ## [1.5.0] - 2026-09-13
 
 ### 摘要

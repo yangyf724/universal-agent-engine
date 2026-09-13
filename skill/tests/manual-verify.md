@@ -31,6 +31,8 @@
 | B3 | `以架构师视角评审这个方案的风险` | Role Lens（架构师）→ DESIGN+Verify；**不是**多角色会审 | ☐ |
 | B4 | `用 compose-next 流程做方案` | 同 B1（不要求打出 `/`） | ☐ |
 | B5 | `以架构师和 QA 一起评审` | 单 Lens；禁止双角色会审 | ☐ |
+| B6 | `调研三家登录方案并列取舍，我要拿去开 compose-next` | R1：compose-ready 包后再建议 compose-next；不写 feature Spec | ☐ |
+| B7 | `不用 compose-next，直接修这个 CSV 脚本` | R3：轻量 FIX，不强制补 Spec | ☐ |
 
 ### 1c. Distractor 抽检（约 3 分钟）
 
