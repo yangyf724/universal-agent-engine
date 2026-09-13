@@ -214,7 +214,7 @@ compose-next 九阶段
 
 - 规格：分析 + 证据 + 主轴推荐 + 实施契约（首轮）。
 - 实现（用户拍板「继续实现」后并入本分支）：质量抽检、`tests/token-roi.md`、body 腾空、CHANGELOG/README 卫生、smoke 矩阵。
-- **不**改 compose-next；**不**重写 description；**不**发 v1.10 tag（待合并与双路径安装后再定）。
+- **不**改 compose-next；**不**重写 description。`v1.10.0` tag 已随卫生补齐对齐 main。
 
 ## [S3] Out of Scope
 
