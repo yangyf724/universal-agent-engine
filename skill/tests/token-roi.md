@@ -27,12 +27,19 @@
 
 ## 记录表（可复填）
 
+计量口径（2026-09-13 编排复核）：**指令上下文成本**（非全会话）。tok_est ≈ chars/1.5。  
+对照臂 = SKILL body(after frontmatter) + quality-gates + intent-router + compose-phases 全量灌入 = **14486 chars / ≈9657 tok**。
+
 | ID | Soft 臂 ref | Soft DoD | Soft tok/轮 | 对照臂 | 对照 DoD | 对照 tok/轮 | 判定 | 备注 |
 |---|---|---|---|---|---|---|---|---|
-| ROI-1 | | | | | | | | |
-| ROI-2 | | | | | | | | |
-| ROI-3 | | | | | | | | |
-| ROI-4 | | | | | | | | |
+| ROI-1 | compose-token Grill 卡 319ch + phases 指针/DoD ≈130ch | 5/5 | ≈301（452ch） | 全协议四文件 | 5/5 | ≈9657 | **PASS** | 证据包≤40行；不拍板；子代理实测+编排复核 |
+| ROI-2 | phases Soft-Spec-input 436ch + DoD ≈50ch | 4/4 | ≈324（486ch） | 同上 | 4/4 | ≈9657 | **PASS** | 可粘贴；不写盘 feature |
+| ROI-3 | phases Soft-Review-pack 396ch + DoD ≈50ch | 4/4 | ≈297（446ch） | 同上 | 4/4 | ≈9657 | **PASS** | 不派 Reviewer；不写三类结论 |
+| ROI-4 | phases Soft-Report 271ch + DoD ≈50ch | 4/4 | ≈214（321ch） | 同上 | 4/4 | ≈9657 | **PASS** | 三段齐全；不改 status/commit |
+
+**汇总**：四场景 Soft DoD 均不低于对照；Soft 指令上下文约为对照的 **2.2%–3.1%**（约 32–46× 更省）。质量未掉档 → 协议判据 PASS。
+
+子代理原始产出见本会话测量报告；数字以编排侧 `len()` 复核为准。
 
 ## 通过判据
 

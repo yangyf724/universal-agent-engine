@@ -3,7 +3,7 @@ feature: engine-v110-roadmap
 status: delivered
 updated: 2026-09-13
 branch: plan/v110-iteration
-commits: 9870790..ff8256d
+commits: 9870790..HEAD
 ---
 
 # Engine v1.10 Roadmap — v1.9 系统分析与迭代规划
@@ -18,21 +18,23 @@ commits: 9870790..ff8256d
 2. 新建 `skill/tests/token-roi.md`：ROI-1–4 固定场景、可复填表、通过判据（同等 DoD 下 token 不升）；`compose-token.md` 指针。
 3. body 腾空至 **2852/2880**；静态检查加 3 项并收紧 body≤2880；基线 **153 pass**。
 4. 发布卫生：CHANGELOG `[1.9.0]`、仓 README Version 1.9.0、父 README 版本表同步。
-5. smoke：`docs/compose/smoke/v1.10-soft-proof-matrix.md`（契约 PASS；C6 实测 ROI 数据诚实 OPEN）。
+5. smoke：`docs/compose/smoke/v1.10-soft-proof-matrix.md`（契约 PASS）。
+6. **ROI 四场景对照实测**（4 子代理并行 + 编排 `len()` 复核）：ROI-1–4 全 **PASS**；Soft 指令上下文 ≈214–324 tok vs 全协议对照 ≈9657 tok（约 2–3%）；DoD 均不掉档。已回填 `skill/tests/token-roi.md` 与 smoke C6。
 
 **Verification** —
 - `python skill/tests/run_static_checks.py` → **153 pass / 0 fail**
 - body chars **2852** ≤ 2880；非空行 80
 - CHANGELOG 含 `[1.9.0]`；README `Version: 1.9.0`
 - 独立评审：规划轮 `general-1` **REVIEW_PASS**；实现轮 `1f388c5..ff8256d` `general-2` **REVIEW_PASS**（0 critical）
-- 未做：ROI 四场景对照实测回填（C6 OPEN）；双路径安装 A4 待 merge
+- ROI 计量：对照臂 SKILL+qg+router+phases = **14486 ch / ≈9657 tok**；Soft 卡段 321–486 ch → tok ≈214–324（编排复核）
+- 未做：双路径安装 A4 待 merge；全会话端到端 token 未测（本协议为指令上下文口径）
 
 **Journey log** —
 1. 沙箱禁止 `git worktree add` → `git clone --local --shared` 到 `.worktrees/v110-plan`。
 2. v1.9 能力面已闭合；v1.10 应先补「可证明」台架而非再扩 Soft 枚举。
 3. body 是硬墙：新 Important 必须先腾空；本次压到 2852 留出余量。
 4. 发布卫生与 tag 脱节会复利文档债；已并入本列车补 1.9。
-5. websearch 不可用时 webfetch 直达原文更可引用；Smoke 对未测数据必须 OPEN，禁止假 PASS。
+5. Smoke 未测必须 OPEN；子代理报告须编排复核数字后再回填（子代理 Control 报 ≈15k，复核为 14486，以复核为准）。
 
 ## [S1] Problem
 
