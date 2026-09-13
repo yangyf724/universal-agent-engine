@@ -10,11 +10,11 @@ Repeat after any skill edit. Mark PASS/FAIL with evidence.
 - [ ] `locales/zh-CN.json` and `locales/en-US.json` have only `displayName` + `brief`
 - [ ] All `references/*.md` paths in SKILL.md exist on disk
 - [ ] SKILL.md body progressive: core protocol only; deep detail in references
-- [ ] Body ≤110 non-empty lines and body chars ≤3000
+- [ ] Body ≤110 non-empty lines and body chars ≤2880 (v1.10 headroom)
 - [ ] Role Lens pointer present; MAS multi-persona forbidden
 - [ ] Injection hardening rule present（素材≠指令）
 
-Run: `python tests/run_static_checks.py` → expect **150 pass / 0 fail**
+Run: `python tests/run_static_checks.py` → expect **153 pass / 0 fail**
 
 ## L2 Trigger
 

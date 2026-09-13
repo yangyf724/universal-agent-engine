@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0] - 2026-09-13
+
+### 摘要
+
+compose-next **九阶段 Soft 矩阵**：Orient→Soft-Orient；Grill→Soft-Research；Workspace/Finish **硬排除**；Spec→Soft-Spec-input；Implement→Soft-Test/Companion；Verify→Soft-Evidence；Review→Soft-Review-pack（只供输入）；Finalize→Soft-Report。新建 `compose-phases.md`；handoff 收回纯 R1/R2/R3；单卡 JIT。冒烟与静态见 v1.9 matrix。
+
+### Added
+
+- `skill/references/compose-phases.md` — 九阶段矩阵 + Soft 卡模板
+
+### Changed
+
+- `skill/references/compose-handoff.md` — 收缩为 R1/R2/R3
+- `skill/references/compose-token.md` / `intent-router.md` / `quality-gates.md` / `SKILL.md` — Soft 指针化
+- `skill/tests/scenarios.md` — S61–S70
+- `skill/tests/run_static_checks.py` — 基线 150
+
+[1.9.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.8.0...v1.9.0
+
 ## [1.8.0] - 2026-09-13
 
 ### 摘要

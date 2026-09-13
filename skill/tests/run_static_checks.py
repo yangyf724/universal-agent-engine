@@ -276,14 +276,19 @@ def main() -> int:
     check("派 Reviewer" in phases and "不" in phases[phases.find("Soft-Review-pack"):phases.find("Soft-Review-pack")+800], "Soft-Review-pack does not dispatch reviewer")
     check("compose-phases" in router, "intent-router points at compose-phases")
     check("Soft-Review-pack" in phases and "Soft-Spec-input" in phases, "Spec/Review input cards named")
+    # v1.10 Soft Proof — quality DoD + Token ROI protocol
+    check("质量抽检" in phases, "phases Soft quality DoD section")
+    check((ROOT / "tests" / "token-roi.md").exists(), "token-roi.md exists")
+    token_text = (ROOT / "references" / "compose-token.md").read_text(encoding="utf-8")
+    check("token-roi" in token_text, "compose-token points at token-roi")
 
     # ------------------------------------------------------------------
     # Token / 角色 / 注入加固
     # ------------------------------------------------------------------
     body_lines = [ln for ln in body.splitlines() if ln.strip()]
     check(len(body_lines) <= 110, f"SKILL body non-empty lines {len(body_lines)} <= 110")
-    # 相对历史基线 ~3597 至少瘦 20%；允许到 3000 的小余量
-    check(len(body) <= 3000, f"SKILL body chars {len(body)} <= 3000 (>=20% vs baseline 3597)")
+    # 相对历史基线 ~3597 至少瘦 20%；v1.10 腾空目标 2880（保留 ≥120 余量）
+    check(len(body) <= 2880, f"SKILL body chars {len(body)} <= 2880 (v1.10 headroom)")
     check("Role Lens" in body, "SKILL body references Role Lens")
     check("Role Lens" in router or "决策透镜" in router, "intent-router has Role Lens section")
     check(

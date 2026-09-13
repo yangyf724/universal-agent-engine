@@ -117,6 +117,21 @@ base-sha..head-sha；workspace 路径。
 | **compose 运行中** | 已在 compose-next 阶段 | **本文件** Soft 卡 |
 | **Token 合同** | 任何 Soft | `compose-token.md` |
 
+## Soft 质量抽检（DoD，不进 SKILL body）
+
+交付 Soft 卡前按最低可观察项自检；失败标 FAIL/未验，禁止 Fake Done。完整对照协议见 `../tests/token-roi.md`。
+
+| 卡 | 最低验收 | 禁止 |
+|---|---|---|
+| Soft-Orient | ≤15 行；含假设或未验区掩码 | 重跑全仓 Orient；灌七 mode |
+| Soft-Research | 来源标识；≤40 行；开放问；事实/推断可分 | 无来源「结论」 |
+| Soft-Companion | 只 `multimodal.md`；产物路径可指 | 写业务实现 |
+| Soft-Spec-input | 可粘贴；无 frontmatter/status；任务有 acceptance | 写盘 feature 文档 |
+| Soft-Test | 每模态 ≥1 次工具证据路径 | 只报「已生成」 |
+| Soft-Evidence | 每行命令/抽检 + PASS/FAIL | 宣布 feature 总 Verify |
+| Soft-Review-pack | Range + 验收摘要 + 未验区掩码 | 三类 Review 结论；派 Reviewer |
+| Soft-Report | 三段齐全；Journey ≤5 | 改 status/commit |
+
 ## 反例
 
 | 错误 | 纠正 |
@@ -127,3 +142,4 @@ base-sha..head-sha；workspace 路径。
 | 用 Soft 回避 Workspace/Finish | 这两阶段 engine **永不**提供 |
 | compose 会话灌七 mode 表 / Full Gates | 只 JIT 单卡 |
 | 点名 compose-next 仍加载 engine 全协议 | 只 compose-next，除非另有独立 Soft 请求 |
+| 质量抽检失败仍称 Soft 已完成 | 标 FAIL/未验；补证后再交 |

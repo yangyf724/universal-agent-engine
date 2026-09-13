@@ -49,10 +49,12 @@ engine 在 compose-next/P-domain 会话里只做 **Soft 供给**，目标：同�
 | Soft-Review-pack | **0**（Review 归 compose） |
 | Soft-Spec-input / Soft-Report / Soft-Evidence | **0** |
 
-## Token ROI 记录（人工）
+## Token ROI（对照协议）
 
-| 会话 | Soft 类型/阶段 | 读过的 ref | 粗估 token | 结论质量 | 备注 |
+固定四场景与可复填表：`tests/token-roi.md`。质量抽检：`compose-phases.md`。
+
+| 会话 | Soft 类型/阶段 | 读过的 ref | 粗估 token/轮 | DoD 完成 | 判定 |
 |---|---|---|---|---|---|
-| | | | | | |
+| | | | | | PASS/FAIL/未做 |
 
-目标：同等完成质量下 token **不升**（相对无纪律双编排或灌全协议）。
+目标：同等完成质量下 token **不升**；质量掉档即 FAIL。

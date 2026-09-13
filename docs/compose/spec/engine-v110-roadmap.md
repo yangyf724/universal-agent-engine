@@ -1,9 +1,9 @@
 ---
 feature: engine-v110-roadmap
-status: delivered
+status: in-progress
 updated: 2026-09-13
 branch: plan/v110-iteration
-commits: 9870790..ece5c5b
+commits: 9870790..(impl)
 ---
 
 # Engine v1.10 Roadmap — v1.9 系统分析与迭代规划
@@ -195,10 +195,11 @@ compose-next 九阶段
 | P2 可证明 ROI | ≥4 个固定场景完成对照表；有 PASS/FAIL 与 token/轮次记录 |
 | P3 质量不回退 | 质量卡抽检全过；静态 ≥150（或更新基线且 0 fail）；body 预算满足 2.4.3 |
 
-### 2.5 本轮交付物（本 feature）
+### 2.5 交付物（本 feature）
 
-- 本规格文档（分析 + 证据 + 主轴推荐 + 实施契约）。  
-- **不**改 skill 行为；**不**发 v1.10 tag；实现轮另开 feature 或延续本分支任务。
+- 规格：分析 + 证据 + 主轴推荐 + 实施契约（首轮）。
+- 实现（用户拍板「继续实现」后并入本分支）：质量抽检、`tests/token-roi.md`、body 腾空、CHANGELOG/README 卫生、smoke 矩阵。
+- **不**改 compose-next；**不**重写 description；**不**发 v1.10 tag（待合并与双路径安装后再定）。
 
 ## [S3] Out of Scope
 
@@ -217,5 +218,5 @@ compose-next 九阶段
 - [x] T3: 联网证据包 ≥6 源且标注可操作结论 — acceptance: §2.2 含 SkillReducer/Token ROI/Context/MoRe/Anthropic/agentskills (covers: S2)
 - [x] T4: 三主轴比较 + 推荐 Soft Proof（捆绑卫生）— acceptance: §2.3 有否决理由与依赖顺序 (covers: S2)
 - [x] T5: v1.10 设计契约（质量卡/ROI 协议/body 腾空/卫生/三门）— acceptance: §2.4 任务可独立验收；Out-of-Scope 明确 (covers: S2)
-- [ ] T6: 实现轮落地质量卡与 ROI 四场景 — acceptance: smoke 矩阵文档 + manual ROI 表可复填；静态 0 fail (covers: S2; depends: 用户拍板本规格)
-- [ ] T7: body 腾空 + CHANGELOG/README 卫生 — acceptance: body≤2880 或记录例外；文档版本与 tag 一致 (covers: S2; depends: T6 可并行或先行卫生)
+- [x] T6: 实现轮落地质量卡与 ROI 四场景 — acceptance: smoke 矩阵文档 + token-roi 表可复填；静态 0 fail (covers: S2)
+- [x] T7: body 腾空 + CHANGELOG/README 卫生 — acceptance: body≤2880；CHANGELOG `[1.9.0]`；README Version 1.9.0 (covers: S2)
