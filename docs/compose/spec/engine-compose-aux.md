@@ -1,14 +1,25 @@
 ---
 feature: engine-compose-aux
-status: in-progress
+status: delivered
 updated: 2026-09-13
 branch: optimize/v1.6-compose-aux
-commits: 8aaf352..<head> # filled at delivery
+commits: 8aaf352..5636b53
 ---
 
 # Engine × Compose-next Auxiliary (能力同伴 + 交接物)
 
 ## Report
+
+**What was built** — v1.6.0 将 engine 定位从「P-domain 让位邻居」升级为 compose-next **最互补辅助**（能力同伴 + 交接物）：**R1** 前置调研/选项/验收草案 → 产出可粘贴的 compose-ready 包再建议 compose-next；**R2** 多模态/Office/媒体/非 git 交付正常路由；**R3** 用户拒绝后轻量 BUILD/FIX。新增 `references/compose-handoff.md`；D3 扩为三角色表；description 允许重写以露出互补信号（点名 compose-next / merge/spec/worktree 仍在负例）。不引入 worktree/Spec/Finish/独立 Review；compose-next 运行中禁双载。
+
+**Verification** — `python skill/tests/run_static_checks.py` → **123 pass / 0 fail**（仓库 + 双安装；SKILL SHA256=`1ec5624c67fe…` 三路径一致；body 2985 chars / 77 行）。独立评审 `8aaf352..ecbe729`：Spec 合规 / 正确性 / 一致性三类 PASS，无 critical。post-review polish `5636b53`：description 去掉正向 Spec 词、body 留 15 字余量、包模板对齐六节。`skill_search`：点名 compose-next → compose-next 1.0 独占加载；未点名「调研方案+规格」→ engine #1；「端到端做完/修bug/做方案」→ engine 0.9。
+
+**Journey log** —
+1. 「负空间互补」不够：必须给出可消费的交接物（compose-ready 包），否则 engine 只会退出不会补位。
+2. R1 需硬门：仅合并/修 bug 不默认前置调研；包≠feature Spec；compose-next 运行中禁止双载。
+3. description 重写后点名触发仍 1.0 归 compose-next——互补信号可进 description，点名词不可抢。
+4. SKILL body 曾顶到 3000 上限；post-review 压到 2985 留余量。
+5. 会话内 skill_search 的 skill_content 可能缓存旧协议正文；以磁盘 SHA 为准，新对话才吃全量协议。
 
 ## [S1] Problem
 
@@ -100,9 +111,9 @@ v1.3–v1.5 把互补做成了「负空间」：P-domain 让位、不引入 work
 
 ## Tasks
 
-- [ ] T1: 重写 description + locales brief — acceptance: 含互补信号与负例；不含 worktree/spec/merge/finish；≤1024 chars (covers: S2)
-- [ ] T2: 新建 compose-handoff.md + SKILL/Important/Examples 指针 — acceptance: 包模板六节齐全；SKILL 含 R1 指针与边界；body ≤110 行 / ≤3000 chars (covers: S2)
-- [ ] T3: intent-router D3 三角色 + quality-gates Token Discipline — acceptance: D3 表含 R1 前置输入路径；quality-gates 写明包≠Spec、运行中不双载 (covers: S2)
-- [ ] T4: scenarios S45–S48 + run_static_checks 新断言 — acceptance: 新场景合法；全量 ≥114 pass 且 0 fail (covers: S2; depends: T1–T3)
-- [ ] T5: checklist / manual-verify / README / CHANGELOG 1.6.0 — acceptance: 文档与 pass 数/定位一致 (covers: S2; depends: T4)
-- [ ] T6: 双安装同步 + 静态验证 + skill_search live 抽检 — acceptance: 三路径 SHA 一致；static 0 fail；点名 compose-next 不双载；R1 信号仍进 engine (covers: S2; depends: T1–T5)
+- [x] T1: 重写 description + locales brief — acceptance: 含互补信号与负例；不含 worktree/spec/merge/finish；≤1024 chars (covers: S2)
+- [x] T2: 新建 compose-handoff.md + SKILL/Important/Examples 指针 — acceptance: 包模板六节齐全；SKILL 含 R1 指针与边界；body ≤110 行 / ≤3000 chars (covers: S2)
+- [x] T3: intent-router D3 三角色 + quality-gates Token Discipline — acceptance: D3 表含 R1 前置输入路径；quality-gates 写明包≠Spec、运行中不双载 (covers: S2)
+- [x] T4: scenarios S45–S48 + run_static_checks 新断言 — acceptance: 新场景合法；全量 ≥114 pass 且 0 fail (covers: S2; depends: T1–T3)
+- [x] T5: checklist / manual-verify / README / CHANGELOG 1.6.0 — acceptance: 文档与 pass 数/定位一致 (covers: S2; depends: T4)
+- [x] T6: 双安装同步 + 静态验证 + skill_search live 抽检 — acceptance: 三路径 SHA 一致；static 0 fail；点名 compose-next 不双载；R1 信号仍进 engine (covers: S2; depends: T1–T5)
