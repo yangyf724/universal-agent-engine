@@ -3,7 +3,7 @@ feature: engine-v110-roadmap
 status: delivered
 updated: 2026-09-13
 branch: plan/v110-iteration
-commits: 9870790..HEAD
+commits: 9870790..1ef968f
 ---
 
 # Engine v1.10 Roadmap — v1.9 系统分析与迭代规划
