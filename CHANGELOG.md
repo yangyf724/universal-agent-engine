@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0] - 2026-09-13
+
+### 摘要
+
+compose 会话 Soft 扩展：**Soft-Research**（Grill 调研/论文/高星仓→证据包≤40行，不拍板）、**Soft-Test**（Implement 视/听/跨模态测，默认 fan-out=0、高风险≤1 盲测）、**compose-token** 供给合同（单卡 JIT、禁七 mode/Full Gates 灌会话）。不改 compose-next。设计验证见 matrix。
+
+### Changed
+
+- `skill/SKILL.md` — Soft 合并为一条（媒体/研究/测）；body ~2955
+- `skill/references/compose-token.md` — **新建**供给与 ROI 合同
+- `skill/references/compose-handoff.md` — Soft-Research/Test 角色
+- `skill/references/intent-router.md` — D3 三行 Soft
+- `skill/references/quality-gates.md` — Token Discipline 对齐
+- `skill/tests/scenarios.md` — S55–S60
+- `skill/tests/run_static_checks.py` — 新断言
+
+[1.8.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.7.0...v1.8.0
+
 ## [1.7.0] - 2026-09-13
 
 ### 摘要

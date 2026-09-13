@@ -96,7 +96,9 @@ engine 是 compose-next 的能力同伴，不是子流程。细则与包模板�
 | 信号 | 行为 |
 |---|---|
 | 点名 `/compose-next` 或「用 compose-next 流程」且无独立多模态请求 | 只走 compose-next；本 skill 不加载全协议 |
-| 会话已在 compose-next/P-domain + **多模态感知/媒体子任务** | **Soft Companion**：跳过 Step 2–6；只读 `references/multimodal.md` + 抽检；产物交回编排层；不建 Spec/worktree/Review |
+| 会话已在 compose-next/P-domain + 多模态感知/媒体子任务 | **Soft 媒体**：只 `multimodal.md` + 抽检 |
+| compose Grill/P 决策 + 调研/论文/高星仓/选型 | **Soft-Research**：研究卡 + 证据包（≤40 行）；不拍板 |
+| compose Implement/Verify + UI/音视频/图/交互待测 | **Soft-Test**：测试卡；高风险可 1 盲测（默认关）；不宣布总 Verify |
 | P-domain（git 多步 + 要合并/发版/规格）且**无**前置输入 | **不**进 Step 2–6；一句建议 `/compose-next …`；等确认 |
 | P-domain + 先要调研/选项/验收草案，或点名喂 Grill/Spec | **R1**：RESEARCH/DESIGN/WRITE → compose-ready 包 → 再建议 `/compose-next` |
 | E-domain（研究/方案本体/写作/Office/媒体/答疑/非 git） | **R2**：正常 D1 路由（多模态可叠加） |

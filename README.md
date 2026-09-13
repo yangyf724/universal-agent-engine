@@ -5,7 +5,7 @@
 目标：**高效率、高完成率、低错误率、低返工率**。分析用户语句自动路由主模式，并可叠加全模态 I/O；角色为决策透镜（非多智能体），主体按 actionable 核心压缩以降低 token。
 
 <!-- github-sync:begin -->
-**Version:** 1.7.0  
+**Version:** 1.8.0  
 **Last sync:** 2026-09-13
 <!-- github-sync:end -->
 
@@ -38,7 +38,7 @@ foreach ($dst in @(
 
 边界：显式 `/compose-next`、git 仓内多步实现要合并/发版/规格且无前置输入（P-domain，未点名时建议 compose-next）、或单文件 Office/PDF 成稿时，不要加载本编排层全协议。要 worktree/Spec/独立 Review/Finish → compose-next。门禁默认走 quality-gates **Lean Gates**（信号触发 Anti-SC）。
 
-互补辅助：**R1** 前置调研/选项/验收草案 → compose-ready 包再建议 compose-next；**R2** 多模态/Office/媒体/非 git 多步；**R3** 拒绝后轻量 BUILD/FIX。**Soft Companion（v1.7）**：compose-next/P-domain 运行中的多模态子任务 → 只读 multimodal.md + 抽检，跳过 Step 2–6，不建 Spec/worktree/Review。
+互补辅助：**R1** 前置包；**R2** 独立多模态/Office；**R3** 拒绝回退。**Soft（v1.7–1.8）**：compose 运行中—媒体子任务只 multimodal 卡；**Grill 调研**→研究卡+证据包≤40行；**Implement 模态测**→测试卡（默认无 fan-out）。供给合同见 `skill/references/compose-token.md`。
 
 ## 能力
 

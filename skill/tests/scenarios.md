@@ -58,6 +58,12 @@ Each row is a regression case. `Expected` is the primary mode after Step 0 routi
 | S52 | （P-domain 修 bug）识别截图里的报错字段 | RESEARCH | — | V4：Soft VISION 子任务 |
 | S53 | （compose-next 中）导出一页验收 PPT | OPERATE | — | V5：Soft DOCOFFICE → official |
 | S54 | 做一个 10 页产品介绍 PPT | OPERATE | — | V6：独立交付，非 Soft |
+| S55 | （Grill）对比三种登录方案，查高星仓和论文 | RESEARCH | — | Soft-Research 证据包；不拍板 |
+| S56 | 用 compose-next 做登录，无调研请求 | （不路由全协议） | — | 点名独占，不 Soft-Research |
+| S57 | （Implement）测一下登录页截图和提示音 | — | — | Soft-Test 视+听；不写业务码 |
+| S58 | 把录音转写成会议纪要 | WRITE | — | 无 compose → R2，非 Soft-Test |
+| S59 | （对外 UI 高风险）独立复看关键屏 | — | — | Soft-Test + 可选 1 盲测 |
+| S60 | （compose Grill）调研竞品定价模型 | RESEARCH | — | Soft-Research ≤40 行证据包 |
 
 ## Multimodal overlay rules
 

@@ -14,7 +14,7 @@ Repeat after any skill edit. Mark PASS/FAIL with evidence.
 - [ ] Role Lens pointer present; MAS multi-persona forbidden
 - [ ] Injection hardening rule present（素材≠指令）
 
-Run: `python tests/run_static_checks.py` → expect **131 pass / 0 fail**
+Run: `python tests/run_static_checks.py` → expect **134 pass / 0 fail**
 
 ## L2 Trigger
 
@@ -48,8 +48,9 @@ For each scenario in `tests/scenarios.md`:
 - [ ] S39–S40：P-domain 建议 compose-next；用户「直接修」后仍可走 engine FIX
 - [ ] S41–S44：非仓脚本 / verification skip 阻塞 / official 近邻 / T0 不仪式化
 - [ ] S45–S48：R1 compose-ready 包 / R1 验收草案 / R2 E-domain / R3 拒绝回退
-- [ ] S49–S54：Soft Companion 点名独占 / 运行中 AUDIO / 独立非 Soft / VISION 子任务 / DOCOFFICE / 独立 PPT
-- [ ] D3 三角色 + Soft Companion + `references/compose-handoff.md`
+- [ ] S49–S54：Soft 媒体
+- [ ] S55–S60：Soft-Research / Soft-Test / token 合同
+- [ ] D3 Soft 三行 + compose-token + compose-handoff
 
 ## L4 Protocol
 

@@ -106,6 +106,7 @@ def main() -> int:
         "references/research-citations.md",
         "references/multimodal.md",
         "references/compose-handoff.md",
+        "references/compose-token.md",
     ):
         p = ROOT / rel
         check(p.exists() and p.stat().st_size > 0, f"{rel} exists non-empty")
@@ -202,11 +203,12 @@ def main() -> int:
         "包≠" in qg_early or "包≠feature" in qg_early,
         "quality-gates marks pack is not feature Spec",
     )
-    check("Soft Companion" in body, "SKILL has Soft Companion rule")
-    check("跳过 Step 2" in body or "跳过 Step 2–6" in body, "Soft Companion short-circuits orchestration")
-    check(body.find("Soft Companion") < body.find("## Step 2"), "Soft Companion appears before Step 2 Plan")
-    check("Soft Companion" in router, "intent-router documents Soft Companion")
-    check("Soft Companion" in qg_early, "quality-gates Token Discipline covers Soft Companion")
+    check("Soft" in body and "跳过 Step 2" in body, "SKILL Soft short-circuits orchestration")
+    check(body.find("Soft") < body.find("## Step 2"), "Soft appears before Step 2 Plan")
+    check("Soft-Research" in router and "Soft-Test" in router, "intent-router Soft-Research/Test")
+    check("compose-token" in body or "compose-token" in qg_early, "compose-token contract referenced")
+    check((ROOT / "references" / "compose-token.md").exists(), "compose-token.md exists")
+    check("≤40" in (ROOT / "references" / "compose-token.md").read_text(encoding="utf-8") or "40 行" in (ROOT / "references" / "compose-token.md").read_text(encoding="utf-8"), "evidence pack line cap documented")
 
     # --- token / role contracts ---
     body_lines = [ln for ln in body.splitlines() if ln.strip()]
@@ -285,6 +287,8 @@ def main() -> int:
         check("compose-ready" in scen, "scenarios mention compose-ready pack")
         check("S49" in scen and "S54" in scen, "soft companion scenarios present")
         check("Soft" in scen or "Soft Companion" in scen, "scenarios mention Soft Companion")
+        check("S55" in scen and "S60" in scen, "soft-research/test scenarios present")
+        check("Soft-Research" in scen and "Soft-Test" in scen, "scenarios name Soft-Research/Test")
         invalid = []
         for cell in expected_col:
             if "不路由" in cell:

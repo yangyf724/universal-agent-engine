@@ -33,6 +33,8 @@
 | B5 | `以架构师和 QA 一起评审` | 单 Lens；禁止双角色会审 | ☐ |
 | B6 | `调研三家登录方案并列取舍，我要拿去开 compose-next` | R1：compose-ready 包后再建议 compose-next；不写 feature Spec | ☐ |
 | B7 | `不用 compose-next，直接修这个 CSV 脚本` | R3：轻量 FIX，不强制补 Spec | ☐ |
+| B8 | （compose Grill）`对比三种方案，查高星仓和论文` | Soft-Research 证据包≤40行；不拍板 | ☐ |
+| B9 | （compose Implement）`测一下截图和提示音` | Soft-Test 视+听抽检；不写业务码 | ☐ |
 
 ### 1c. Distractor 抽检（约 3 分钟）
 
