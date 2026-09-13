@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.12.1] - 2026-09-14
+
+### 摘要
+
+**文档基线对齐**：目录注释与 v1.12 静态基线对齐（`190 pass`），补齐 references（`compose-phases` / `process-gates`）与 tests（`process-audit`）清单；Version 字段与 CHANGELOG 同步到 1.12.1。无 skill 行为变更。
+
+### Changed
+
+- `README.md` — 目录注释 `153→190 pass`；references/tests 列表补全；Version `1.12.1`
+- `CHANGELOG.md` — 增加本条目
+
+[1.12.1]: https://github.com/yangyf724/universal-agent-engine/compare/v1.12.0...v1.12.1
+
 ## [1.12.0] - 2026-09-14
 
 ### 摘要
