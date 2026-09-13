@@ -14,7 +14,7 @@ Repeat after any skill edit. Mark PASS/FAIL with evidence.
 - [ ] Role Lens pointer present; MAS multi-persona forbidden
 - [ ] Injection hardening rule present（素材≠指令）
 
-Run: `python tests/run_static_checks.py` → expect **174 pass / 0 fail**
+Run: `python tests/run_static_checks.py` → expect **190 pass / 0 fail**
 
 ## L2 Trigger
 
@@ -52,8 +52,9 @@ For each scenario in `tests/scenarios.md`:
 - [ ] S55–S60：Soft-Research / Soft-Test / token 合同
 - [ ] S61–S70：compose 九阶段矩阵（Spec/Review/Report 输入卡；Workspace/Finish 排除）
 - [ ] S71–S74：过程软停 / Soft-Contract / fan-out independence / Soft-Amendment
+- [ ] S75–S77：情境 Depth 默认 DoD-artifact / 一行 C7 / amended: 键
 - [ ] D3 Soft 指向 compose-phases + compose-token + compose-handoff
-- [ ] process-gates + process-audit 协议存在；默认 fan-out=0
+- [ ] process-gates + process-audit 协议存在；默认 fan-out=0；过程门为注解行
 
 ## L4 Protocol
 

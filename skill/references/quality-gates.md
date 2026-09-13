@@ -9,7 +9,7 @@
 - **信号**（风险/该测/可能有问题/应该没问题/大概/看起来完成）→ Anti-SC：说出风险或该测必须**补证或标未验**；改完零验证称完成→**阻塞**；关键结论（对外数字/版本/钱数/安全与合并结论/用户点名）尽量双通路否则披露；Deliver 前 **1** 问：哪条尚无工具输出/抽检支持？
 - **Reflect 写入 checklist**：≥2 次同类 + 工具证据 + 责任侧（model/harness/env/user）。
 - **边界**：要 worktree / Spec / **独立 Review** / Finish → **compose-next**；本 skill 不提供。
-- **过程门（T2+ / 信号）**：Context-7 预检、SC 软停、canary、抽样过程分 → `references/process-gates.md`（协议 `tests/process-audit.md`）。确定性证据优先；禁止常开 LLM-judge。
+- **过程门（T2+ / 信号）**：Context-7 **一行**预检、SC 软停、canary **行内**、抽样过程分 → `references/process-gates.md`（协议 `tests/process-audit.md`）。注解行，不加 Soft 阶段。确定性证据优先；禁止常开 LLM-judge。
 
 以下为 **Full Gates**（T2+ 加深、评审/QA Lens、或 Lean 信号触发后需要细则时再读）。
 

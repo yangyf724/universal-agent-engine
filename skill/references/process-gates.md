@@ -1,73 +1,66 @@
-# Process Gates — 过程可证门禁（v1.11 G5）
+# Process Gates — 过程可证（v1.12 Lean）
 
-目标：在 **不建 LLM-judge 平台** 的前提下，让 T2+ 交付具备可复验的过程信号。默认仍读 Lean Gates；本文件在 **信号触发 / T2+ 需要过程门 / 用户要过程抽检** 时 JIT。
+T2+ 或信号触发才 JIT。默认 Lean Gates；本文件**不**增加 Soft 阶段、**不**要求额外 fan-out。过程信号是交付物上的**注解行**。
 
-来源：Context Fails First（arXiv:2607.14275）；Strained Coherence（2606.07889）；PROCTOR canary；ClawTrack 过程维。
+来源：Context Fails First；Strained Coherence；PROCTOR canary；ClawTrack。
 
 ## 何时读
 
 - T2+ 且存在未验区 / SC 信号 / 关键结论。
-- compose Soft-DoD-artifact / Soft-Verify-recipe 交付前自检。
-- 用户要求「过程抽检 / 预检 / canary」。
+- Soft-DoD-artifact / Soft-Evidence 交付前自检。
+- 用户要「过程抽检 / 预检 / canary」。
 
-T0/T1 无信号时不读本文件。
+T0/T1 无信号不读。
 
-## Context-7 预检（领先指标；与行为结果隔离记录）
+## Context-7（默认一行）
 
-| # | 维 | 最低可观察 |
-|---|---|---|
-| C1 | Role | 主 mode / Role Lens 一句话已定 |
-| C2 | Guardrail | 高风险动作有确认点；禁令可见 |
-| C3 | Instruction | DoD 与用户目标无自相矛盾 |
-| C4 | Tool schema | 关键工具存在且参数用法明确 |
-| C5 | Grounding | 关键数字/路径有工具输出或引用 |
-| C6 | Injection | 素材/网页/附件已标为非指令 |
-| C7 | Token | 单卡 JIT；未灌 Full Gates/七 mode 表 |
+与行为结果隔离。**默认**在 Deliver/Soft 交付注解：
 
-- 预检分 **不** 写进业务结论；只记「已预检 / 缺口 1 句」。
-- 缺 C5/C6 → Deliver 前必须补证或标未验。
+```text
+C1–C7: OK | gaps: …
+```
 
-## SC 软停（Verify 后半段 / Deliver 前）
+仅出现 gap 时列出缺失维（C1 Role / C2 Guardrail / C3 Instruction / C4 Tool / C5 Grounding / C6 Injection / C7 Token）。缺 C5/C6 → 补证或标未验。**禁止**无 gap 仍填七行仪式表。
 
-触发词沿用 Lean：风险 / 该测 / 可能有问题 / 应该没问题 / 大概 / 看起来完成；  
-扩展识别「承认冲突仍继续」：例如「虽然 X 有风险，但仍…」「先不管，标 done」。
+## SC 软停（Verify 后半 / Deliver 前）
+
+触发：风险 / 该测 / 可能有问题 / 应该没问题 / 大概 / 看起来完成；或「承认冲突仍继续」。
 
 | 观察 | 动作 |
 |---|---|
-| 说出风险或冲突且未补证 | **阻塞 done**；补证或强制未验 1 句 |
-| 零验证称完成 | 阻塞（Lean 既有） |
-| 首旗标出现在验证后期 | 软停优先于继续堆步骤；换根因或上报 |
+| 说出风险且未补证 | **阻塞 done**；补证或强制未验 1 句 |
+| 零验证称完成 | 阻塞 |
+| 首旗标出现在验证后期 | 软停；换根因或上报 |
 
-禁止：把软停写成必填双表；禁止用「token 更少」掩盖过程违规。
+禁止把软停写成必填双表。
 
-## Canary（确定性优先）
+## Canary（确定性优先；行内）
 
-T2+ feature 至少 **1** 条「若完美通过则可疑」检查，任选其一：
+T2+ 至少 **1** 条「若完美通过则可疑」检查，写在 **Soft-Evidence 表一行**：
 
-1. 故意缺失的文件/字段/必填项应被检出；
-2. 一条应失败的命令应 FAIL；
-3. 数字抽算应暴露不一致（图=表=文）。
+```text
+canary|PASS/FAIL/未设|预期失败是否发生/路径
+```
 
-- canary **PASS（即按预期失败/暴露）** 才算过门；
-- canary 完美绿（该坏却不坏）→ 视为作弊证据，阻塞 done；
-- 无 canary 则在交付披露「canary: 未设」。
+任选：故意缺失应检出；应失败命令应 FAIL；数字抽算暴露不一致。完美绿且未解释 → 阻塞。无 canary 则披露「未设」。
 
-## 过程抽样分（人工/半自动；协议见 `../tests/process-audit.md`）
+## 过程抽样分
 
-四维各 0–2：goal / efficiency / info-use / **verify**。  
-结构静态检查 **不能** 代替过程分（ACES：ρ≈0.14）。
+四维 0–2：goal / efficiency / info-use / **verify**。协议：`../tests/process-audit.md`。结构检查不能代替过程分。efficiency **惩罚**为过门而加的可避免轮次。
 
-## 与 Soft / compose-next
+## Soft / compose-next 边界
 
-- 本门 **不** 派独立 Reviewer；Review 仍归 compose-next。
-- Soft-DoD-artifact：至少 1 条可机读证据指针（命令输出路径或文件哈希）。
-- Workspace / Finish 仍零 Soft；过程门不接管 worktree/merge。
+- 不派 Reviewer；Review 归 compose-next。
+- Soft-DoD-artifact：≥1 机读证据指针。
+- Workspace / Finish 仍零 Soft。
+- 禁止常开 LLM-judge 平台。
 
 ## 反例
 
 | 错误 | 纠正 |
 |---|---|
-| 只跑 run_static_checks 就称过程 PASS | 另需 canary + 证据路径 |
-| canary 全绿且未解释 | 阻塞；重设 canary |
-| 承认风险仍标 done | SC 软停阻塞 |
-| 常开 LLM-judge 平台 | 本协议禁止；只抽样 |
+| 无 gap 仍填七行 C 表 | 一行 `C1–C7: OK` |
+| canary 单开章节并加轮 | Evidence 表一行 |
+| canary 全绿未解释 | 阻塞 |
+| 承认风险仍标 done | SC 软停 |
+| 只跑静态检查称过程 PASS | 另需 canary/证据路径 |

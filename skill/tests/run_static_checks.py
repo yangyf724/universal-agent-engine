@@ -13,7 +13,7 @@
 ----
     python skill/tests/run_static_checks.py
     # 期望：SUMMARY passes=N failures=0 且 ALL CHECKS PASSED
-    # N 以 checklist.md 记载的期望值为准（当前 135）
+    # N 以 checklist.md 记载的期望值为准（当前 190）
 
 设计约定
 --------
@@ -301,6 +301,26 @@ def main() -> int:
         check(card in phases, f"phases Soft depth card: {card}")
     check("process-gates" in qg_early, "Lean Gates points at process-gates")
     check("process-gates" in token_text or "process-gates" in phases, "Soft supply references process-gates")
+    # v1.12 Lean Process — efficiency / savings without losing process proof
+    check("amended:" in phases, "Soft-Amendment draft suggests amended: frontmatter key")
+    check("情境" in phases or "默认" in phases, "Depth cards situational default documented")
+    check("DoD-artifact" in phases and "默认" in phases, "DoD-artifact is default depth")
+    if pg_path.exists():
+        check("一行" in pg, "process-gates Context-7 defaults to one-line")
+        check("Evidence" in pg or "行内" in pg, "canary is inline evidence row")
+    check("为过门" in audit or "仪式" in audit or "可避免轮次" in audit, "process-audit efficiency penalizes ceremony")
+    check("Pack-size" in (ROOT / "tests" / "token-roi.md").read_text(encoding="utf-8") or "pack-size" in (ROOT / "tests" / "token-roi.md").read_text(encoding="utf-8").lower(), "token-roi pack-size protocol")
+    check("供给路径" in token_text or "单卡" in token_text, "compose-token Soft supply path discipline")
+    check("零 Soft" in token_text, "compose-token hard rule keeps literal 零 Soft")
+    check("零 Soft" in phases, "compose-phases keeps Workspace/Finish 零 Soft")
+    check("雁 Soft" not in token_text and "雁 Soft" not in phases, "no garbled 雁 Soft boundary")
+    # Soft related source size budgets (v1.12 efficiency targets)
+    def _chars(p: Path) -> int:
+        return len(p.read_text(encoding="utf-8"))
+    check(_chars(ROOT / "references" / "process-gates.md") <= 1400, f"process-gates chars {_chars(ROOT / 'references' / 'process-gates.md')} <= 1400")
+    check(_chars(ROOT / "references" / "compose-phases.md") <= 5200, f"compose-phases chars {_chars(ROOT / 'references' / 'compose-phases.md')} <= 5200")
+    check(_chars(ROOT / "references" / "compose-token.md") <= 2300, f"compose-token chars {_chars(ROOT / 'references' / 'compose-token.md')} <= 2300")
+    check(_chars(ROOT / "tests" / "process-audit.md") <= 1100, f"process-audit chars {_chars(ROOT / 'tests' / 'process-audit.md')} <= 1100")
 
     # ------------------------------------------------------------------
     # Token / 角色 / 注入加固
@@ -388,6 +408,7 @@ def main() -> int:
         check("Soft-Research" in scen and "Soft-Test" in scen, "scenarios name Soft-Research/Test")
         check("S61" in scen and "S70" in scen, "compose-phase matrix scenarios present")
         check("S71" in scen and "S74" in scen, "v1.11 process/effort/depth scenarios present")
+        check("S75" in scen and "S76" in scen and "S77" in scen, "v1.12 lean-process scenarios present")
         check("Soft-Contract" in scen or "Soft-Amendment" in scen, "scenarios name Soft depth cards")
         check("Independence" in scen or "fan-out" in scen, "scenarios cover fan-out discipline")
         check("Soft-Spec-input" in scen and "Soft-Review-pack" in scen, "scenarios name Spec/Review packs")

@@ -41,11 +41,31 @@
 
 子代理原始产出见本会话测量报告；数字以编排侧 `len()` 复核为准。
 
+## Pack-size / 节省率（v1.12）
+
+compose Soft **单次供给**（非全协议灌入）按路径计量 `tok_est = chars/1.5`：
+
+| 路径 | 应读 | 禁止 |
+|---|---|---|
+| coding 默认 | compose-token 硬规则+fan-out + **当前阶段卡** + DoD-artifact 行 | 灌 process-gates 全文 + 五张 Depth + 全质量表 |
+| 情境 Depth | 仅触发的那 1 张卡 | 默认 4 卡齐上 |
+| 过程信号 | Evidence 表内 `canary` / `C1–C7` **行** | 独立七行仪式表 |
+
+| 口径 | v1.10 Soft | v1.11 Soft | v1.12 目标 |
+|---|---:|---:|---:|
+| A/B pack Soft ch | 3056 | 4079 | **≤3056** |
+| 相对全协议省 R1 | 64.5% | 57.4% | **>64.5%**（逼近无 engine 85.6%） |
+| 相对全协议省 R2 | 38.3% | 31.2% | **>38.3%** |
+| coding 轮次 | 25 | 40 | **≤25**（合同；生产 e2e 仍 OPEN） |
+
+源文件体量（非 JIT 单卡）以 smoke `v1.12-lean-process-matrix.md` 为准。
+
 ## 通过判据
 
 1. Soft 臂四场景均有记录（未做须写未做，不得留空当 PASS）。
 2. 凡完成对比的场景：DoD 完成度不低于对照，且 token/轮次不高于对照。
 3. 任一质量抽检 FAIL → 该场景 FAIL；禁止用「token 更少」掩盖质量回退。
+4. Pack-size：coding 默认路径不得把全门+全 Depth 一次灌入。
 
 ## 纪律
 

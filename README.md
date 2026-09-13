@@ -5,7 +5,7 @@
 目标：**高效率、高完成率、低错误率、低返工率**。分析用户语句自动路由主模式，并可叠加全模态 I/O；角色为决策透镜（非多智能体），主体按 actionable 核心压缩以降低 token。
 
 <!-- github-sync:begin -->
-**Version:** 1.11.0  
+**Version:** 1.12.0  
 **Last sync:** 2026-09-14
 <!-- github-sync:end -->
 
@@ -38,7 +38,7 @@ foreach ($dst in @(
 
 边界：显式 `/compose-next`、git 仓内多步实现要合并/发版/规格且无前置输入（P-domain，未点名时建议 compose-next）、或单文件 Office/PDF 成稿时，不要加载本编排层全协议。要 worktree/Spec/独立 Review/Finish → compose-next。门禁默认走 quality-gates **Lean Gates**（信号触发 Anti-SC）。
 
-互补辅助：**R1** 前置包；**R2** 独立多模态/Office；**R3** 拒绝回退。**Soft（v1.7–1.9）**：九阶段矩阵见 `skill/references/compose-phases.md`（Workspace/Finish 永不）；质量抽检同文件；Token ROI 四场景见 `skill/tests/token-roi.md`。供给合同 `skill/references/compose-token.md`。
+互补辅助：**R1** 前置包；**R2** 独立多模态/Office；**R3** 拒绝回退。**Soft（v1.9–1.12）**：九阶段矩阵见 `skill/references/compose-phases.md`（Workspace/Finish 永不）；质量抽检同文件；**Lean Process（v1.12）**过程门注解行与情境 Depth；Token ROI/Pack-size 见 `skill/tests/token-roi.md`。供给合同 `skill/references/compose-token.md`。
 
 ## 能力
 

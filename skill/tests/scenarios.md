@@ -77,7 +77,10 @@ Each row is a regression case. `Expected` is the primary mode after Step 0 routi
 | S71 | （T2 改完但零验证称 done） | （阻塞 Deliver） | — | SC 软停 + process-gates；禁止 Fake Done |
 | S72 | （compose Soft）交付前列一下输入/输出/恢复点 | ADVISE | — | Soft-Contract 三行；不接管 Workspace |
 | S73 | （T3 独立两路调研）并行对比三套定价模型 | RESEARCH | — | Independence test 通过才 fan-out soft≤4；否则 0 |
-| S74 | （compose Finalize 范围曾变）起草 amendment 与勾选同步 | WRITE | — | Soft-Amendment 草稿；不 commit |
+| S74 | （compose Finalize 范围曾变）起草 amendment 与勾选同步 | WRITE | — | Soft-Amendment 须含 `amended:` + 追加节；不 commit |
+| S75 | （coding Soft 交付）无 I/O 歧义、无需 recipe | BUILD | — | 默认仅 DoD-artifact 行；Contract/Drift/Recipe 关 |
+| S76 | （Soft-Evidence）过程预检无缺口 | BUILD | — | 一行 `C1–C7: OK`；禁止无 gap 七行表 |
+| S77 | （Amendment）只写章节不建议 frontmatter 键 | （阻塞草稿） | — | 纠正为含 `amended:`；宿主写盘 |
 
 ## Multimodal overlay rules
 

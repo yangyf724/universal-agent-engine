@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.12.0] - 2026-09-14
+
+### 摘要
+
+**Lean Process（效率与节省率）**：基于 R1/R2 A/B 报告，把 v1.11 过程门从「独立仪式」改为「交付附证行」，Depth 卡情境触发（默认仅 DoD-artifact），压缩 Soft 指令面并修 Amendment `amended:` 缺陷。目标：**节省率/轮次合同超越 v1.10**，保留 canary/SC/Context-7/fan-out 能力。静态 **190 pass / 0 fail**；process-gates 1399 / compose-phases 3489 / compose-token 1786 ch。不改 compose-next；Workspace/Finish 仍零 Soft。规格：`docs/compose/spec/engine-v112-lean-process.md`；smoke：`v1.12-lean-process-matrix.md`。生产 e2e 轮次/错误率仍 OPEN。
+
+### Added
+
+- `docs/compose/spec/engine-v112-lean-process.md` — 规格
+- `docs/compose/smoke/v1.12-lean-process-matrix.md` — 体量与契约矩阵
+- Soft-Amendment 模板含 **`amended:`** frontmatter 建议
+- token-roi **Pack-size / 节省率** 口径
+- 场景 **S75–S77**（情境 Depth / 一行 C7 / amended: 键）
+
+### Changed
+
+- `skill/references/process-gates.md` — 压缩；C7 默认一行；canary 行内
+- `skill/references/compose-phases.md` — Depth 情境化；压缩
+- `skill/references/compose-token.md` — fan-out 压缩表；供给路径纪律
+- `skill/tests/process-audit.md` — efficiency 惩罚「为过门而加轮」
+- `skill/tests/token-roi.md` — Pack-size 与相对 v1.10/无 engine 目标
+- `skill/tests/run_static_checks.py` — v1.12 断言与体量门；边界字面量 `零 Soft`；基线 190
+- `skill/tests/checklist.md` / `README.md` — 版本卫生
+
+[1.12.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.11.0...v1.12.0
+
 ## [1.11.0] - 2026-09-14
 
 ### 摘要
