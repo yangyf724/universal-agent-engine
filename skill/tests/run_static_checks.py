@@ -138,7 +138,10 @@ def main() -> int:
     # ------------------------------------------------------------------
     for token in REQUIRED_GATES:
         check(token in body, f"SKILL body has exit token: {token}")
-    check("禁止**自执行" in body or "禁止**本 skill 自" in body or "不**再是一般" in body, "body forbids self full protocol")
+    check(
+        ("禁止**自执行" in body) or ("禁止本 skill 自" in body) or ("不再是一般编排" in body),
+        "body forbids self full protocol",
+    )
     check("映射表" in body or "intent-gate" in body, "body points to intent-gate")
 
     gate = (REFS / "intent-gate.md").read_text(encoding="utf-8") if (REFS / "intent-gate.md").exists() else ""
@@ -161,7 +164,7 @@ def main() -> int:
     check("Modality Scan" in multi, "multimodal has Modality Scan")
     check("Soft-Test" in multi, "multimodal has Soft-Test")
     check("Soft-Research" in multi, "multimodal has Soft-Research")
-    check("≤40" in multi or "40" in multi, "multimodal research pack size bound")
+    check(re.search(r"≤\s*40", multi) is not None, "multimodal research pack size bound")
     check("降级" in multi, "multimodal has degradation table")
     check("跨模态" in multi, "multimodal has cross-modal gate")
     check("禁止" in multi and "假装" in multi, "multimodal forbids fake media")

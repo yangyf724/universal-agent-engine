@@ -51,7 +51,7 @@ compose-next 运行中的 **Soft 能力卡**。主流程仍归 compose-next；�
 ## 3. Soft-Research（仅 Grill）
 
 - **触发**：compose Grill / P 决策需要外部证据。
-- **工具**：`websearch`/`webfetch`（URL+检索日）；`arxiv`（id）；仓路径一行。
+- **来源**：`websearch`/`webfetch`（URL+检索日）；arXiv 论文（id）；仓路径一行。
 - **产物**：证据包 **≤40 行**；区分事实/推断；冲突信息标明。
 - **不拍板**：推荐与最终决策归 compose-next 宿主。
 - 不并行扩 fan-out。

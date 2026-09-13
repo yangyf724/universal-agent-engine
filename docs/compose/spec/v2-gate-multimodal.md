@@ -1,14 +1,25 @@
 ---
 feature: v2-gate-multimodal
-status: in-progress
+status: delivered
 updated: 2026-09-14
 branch: feat/v2-gate-multimodal
-commits: 
+commits: b2a1663..d314040
 ---
 
 # v2.0.0 Gate + Multimodal Plugin
 
 ## Report
+
+**What was built** — universal-agent-engine v2.0.0 破坏性重构：删除七 mode 全协议、九阶段 Soft 矩阵与 7+4 份 references/tests，改为双角色。standalone 只做 Intent Gate 三出口（ADVISE / 建议 compose-next / 委托一个专项 skill，15 类映射）；compose-next 运行中只供给 Modality Scan、Soft-Test/Companion、Soft-Research（Grill 证据包 ≤40 行，不拍板），并强制跨模态一致与降级披露。SKILL body 1585 ch；references 仅 `intent-gate.md` + `multimodal.md`。
+
+**Verification** — `python skill/tests/run_static_checks.py` → ALL CHECKS PASSED（69/0）。独立 Reviewer 对照 Spec 七条 AC 全部 Met，无 critical。人工对照 checklist 三出口 + Soft 模态路径。
+
+**Journey log**
+1. Worktree 在本会话被隔离策略拦下，改为在主仓 feature 分支实现。
+2. Grill 先定三出口不自执行，再补 Soft-Research 与 15 类委托映射。
+3. 静态检查 description 解析与禁词 ban-context 断言曾失败，收紧后 69 全过。
+4. Review minor：委托类 14→15 对齐；arxiv 从「工具」改为「来源」；检查器 OR 收紧。
+5. 父仓 `AGENTS.md` 仍引用 v1 Role Lens/七 mode，安装侧需另开变更对齐（本分支未改）。
 
 ## [S1] Problem
 
@@ -75,7 +86,8 @@ v1.12 已膨胀为「七 mode 全协议 + 九阶段 Soft 矩阵 + 多份门禁/�
 | 3D 游戏 / 打磨可玩 demo | `threejs-game-skills` | 门控后加载 |
 | 生图 / 改图 / 海报封面 | `imagegen` | 门控后加载 |
 | 深度多源调研报告 | `deep-research` | 门控后加载 |
-| 学术论文读写 / arXiv | `research-paper-writing` 或 `arxiv` | 按「读文献」vs「写论文」二选一 |
+| 读论文 / 查 arXiv | `arxiv` | |
+| 写/改学术论文 | `research-paper-writing` | |
 | GitHub 建仓 / 同步 / CHANGELOG | `github-sync` | 门控后加载 |
 | Figma 设计转代码 / 变量 | `figma` | 门控后加载 |
 | 交互可视化解释（非文件交付） | `visualizer`（或对话内 sci-widget，不落盘） | 结构图优先；不要另写 html 除非用户要文件 |
@@ -183,4 +195,4 @@ README.md / CHANGELOG.md
 - [x] T4: 删除 7 份废弃 references 与 4 份废弃 tests — acceptance: `skill/references` 仅 2 文件；`skill/tests` 仅 static_checks + checklist (covers: S2)
 - [x] T5: 重写 `tests/run_static_checks.py` + `checklist.md` — acceptance: 断言 v2 禁词/体量/指针；期望全部 PASS (covers: S2)
 - [x] T6: 更新 locales / README / CHANGELOG 至 v2.0.0 — acceptance: 安装说明、边界描述与 CHANGELOG 摘要一致 (covers: S2)
-- [ ] T7: 跑静态检查与人工对照冒烟 — acceptance: `ALL CHECKS PASSED`；对照 v2 场景 3 出口 + Soft 模态路径自检通过 (covers: S1,S2)
+- [x] T7: 跑静态检查与人工对照冒烟 — acceptance: `ALL CHECKS PASSED`；对照 v2 场景 3 出口 + Soft 模态路径自检通过 (covers: S1,S2)

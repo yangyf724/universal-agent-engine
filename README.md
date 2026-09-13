@@ -40,7 +40,7 @@ Copy-Item -Path "$src\*" -Destination $dst -Recurse -Force
 | compose-next | git 多步 + 合并/规格 | 建议 `/compose-next …` |
 | 专项委托 | Office/PDF/3D/生图/深研… | 加载**一个**专项 skill |
 
-细则与 14 类委托映射：`skill/references/intent-gate.md`。
+细则与委托映射（15 类）：`skill/references/intent-gate.md`。
 
 ### 2. compose-next Multimodal Plugin（Soft）
 

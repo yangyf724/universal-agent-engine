@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 **破坏性重构：门控 + 全模态插件**。v1.x 的七 mode 全协议、九阶段 Soft 矩阵、process-gates/quality-gates/compose-token/handoff/phases/research-citations 与大量测试体量全部移除。v2 只保留双角色：
 
-1. **standalone Intent Gate** — 三出口：ADVISE / 建议 compose-next / 委托**一个**专项 skill（14 类映射表）。**禁止**自执行五步全协议。
+1. **standalone Intent Gate** — 三出口：ADVISE / 建议 compose-next / 委托**一个**专项 skill（15 类映射表）。**禁止**自执行五步全协议。
 2. **compose-next Multimodal Plugin（Soft）** — Modality Scan、Soft-Test/Companion、Soft-Research（Grill 证据包 ≤40 行，不拍板）、跨模态一致与降级。Workspace/Finish 零 Soft；默认 fan-out=0。
 
 静态基线 **69 pass**；SKILL body **1585 ch**；references 仅 2 文件。规格：`docs/compose/spec/v2-gate-multimodal.md`。
