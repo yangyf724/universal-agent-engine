@@ -1,9 +1,9 @@
 ---
 feature: engine-soft-companion-validation
-status: delivered
+status: in-progress
 updated: 2026-09-13
 branch: optimize/v1.7-soft-companion
-commits: e6f86d9..validation
+commits: e6f86d9..<head> # filled at delivery
 ---
 
 # Engine Soft Companion — Design Validation (v1.7)

@@ -52,6 +52,12 @@ Each row is a regression case. `Expected` is the primary mode after Step 0 routi
 | S46 | 帮我准备给 compose-next Grill 的验收草案 | DESIGN | WRITE | R1：包是输入，不写 feature Spec |
 | S47 | 把这段会议录音转写成纪要 | WRITE | — | R2：E-domain 主产物；不建议 compose-next |
 | S48 | 不用 compose-next，先把这段 CSV 脚本直接修好 | FIX | — | R3：拒绝后轻量 FIX |
+| S49 | 用 compose-next 修这个登录 bug | （不路由全协议） | — | V1：点名独占，不 Soft |
+| S50 | （compose-next 实现中）转写这段录音写进夹具说明 | WRITE | — | V2：Soft Companion AUDIO；跳过 Step 2–6 |
+| S51 | 把这段录音转写成会议纪要 | WRITE | — | V3：无 compose 上下文 → R2 全协议，非 Soft |
+| S52 | （P-domain 修 bug）识别截图里的报错字段 | RESEARCH | — | V4：Soft VISION 子任务 |
+| S53 | （compose-next 中）导出一页验收 PPT | OPERATE | — | V5：Soft DOCOFFICE → official |
+| S54 | 做一个 10 页产品介绍 PPT | OPERATE | — | V6：独立交付，非 Soft |
 
 ## Multimodal overlay rules
 

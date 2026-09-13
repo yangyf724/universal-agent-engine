@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] - 2026-09-13
+
+### 摘要
+
+**Soft Companion**：compose-next/P-domain 运行中出现多模态感知/媒体子任务时，engine 跳过 Step 2–6，只供给 `multimodal.md` 全模态卡并抽检，产物交回当前编排层。设计验证 **PASS+AMENDMENTS**（SC1–SC7），见 `docs/compose/spec/engine-soft-companion-validation.md`。点名 compose-next 且无独立多模态仍独占；独立多模态仍走 R2 全协议。
+
+### Changed
+
+- `skill/SKILL.md` — Important 增 Soft Companion 短路（SC1）；Examples 增运行中 Soft 例；body 压缩保持 ≤3000
+- `skill/references/intent-router.md` — D3 增 Soft 行与「无 compose 勿误 Soft」
+- `skill/references/quality-gates.md` — Token Discipline：Soft 只 JIT multimodal.md
+- `skill/references/compose-handoff.md` — 角色表增 Soft Companion
+- `skill/tests/scenarios.md` — S49–S54（V1–V6）
+- `skill/tests/run_static_checks.py` — Soft 短路/场景断言（基线 130 pass）
+
+[1.7.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.6.0...v1.7.0
+
 ## [1.6.0] - 2026-09-13
 
 ### 摘要

@@ -202,6 +202,10 @@ def main() -> int:
         "包≠" in qg_early or "包≠feature" in qg_early,
         "quality-gates marks pack is not feature Spec",
     )
+    check("Soft Companion" in body, "SKILL has Soft Companion rule")
+    check("跳过 Step 2" in body or "跳过 Step 2–6" in body, "Soft Companion short-circuits orchestration")
+    check("Soft Companion" in router, "intent-router documents Soft Companion")
+    check("Soft Companion" in qg_early, "quality-gates Token Discipline covers Soft Companion")
 
     # --- token / role contracts ---
     body_lines = [ln for ln in body.splitlines() if ln.strip()]
@@ -278,6 +282,8 @@ def main() -> int:
         check("S42" in scen and "S44" in scen, "Lean Gates scenarios present")
         check("S45" in scen and "S48" in scen, "compose-aux R1-R3 scenarios present")
         check("compose-ready" in scen, "scenarios mention compose-ready pack")
+        check("S49" in scen and "S54" in scen, "soft companion scenarios present")
+        check("Soft" in scen or "Soft Companion" in scen, "scenarios mention Soft Companion")
         invalid = []
         for cell in expected_col:
             if "不路由" in cell:
