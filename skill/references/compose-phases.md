@@ -1,174 +1,134 @@
-# Compose Phases — compose-next 全阶段 Soft 供给矩阵
+# Compose Phases — compose-next 全阶段 Soft 供给
 
-engine 是 compose-next 的**能力同伴**。同任务仍只加载一个编排层；compose 运行中 engine 只提供 **Soft 能力卡**，**跳过 Step 2–6**。
+engine 是 compose-next 的**能力同伴**。同任务只一个编排层；compose 运行中只给 **Soft 卡**，**跳过 Step 2–6**。
 
-细则与包模板：前置 R1/R2/R3 见 `compose-handoff.md`；token 合同见 `compose-token.md`。
+前置包见 `compose-handoff.md`；token 合同见 `compose-token.md`；过程门见 `process-gates.md`。
 
 ## 九阶段矩阵
 
-| 阶段 | engine 角色 | 你交付什么 | 你不做什么 |
+| 阶段 | engine 角色 | 交付 | 禁止 |
 |---|---|---|---|
-| **Orient** | Soft-Orient | 已知约束/工具可用性/假设掩码（≤15 行） | 不重跑全仓 Orient；不灌七 mode 表 |
-| **Grill** | Soft-Research | 研究卡 + 证据包 ≤40 行 | **不替 Grill 拍板** |
-| **Workspace** | — **排除** | 无 | **永不**建 worktree / 管分支 |
-| **Spec** | Soft-Spec-input | 可粘贴的 Problem / DoD / Out-of-Scope / Tasks **草稿片段** | **不**写/改 `docs/compose/spec/*.md`；**不**填 status/commits/branch |
-| **Implement** | Soft-Test / Soft-Companion | 测试卡；媒体子任务只 `multimodal.md` | 不写业务实现 |
-| **Verify** | Soft-Evidence | 本 Soft 工作的证据表：`命令\|结果\|路径` | **不**宣布 feature 总 Verify 通过 |
-| **Review** | Soft-Review-pack | 验收摘要 + diff 范围 + 验证一行表（供 compose 交给其 Reviewer） | **不**派 Reviewer；**不**出 Spec 合规/正确性结论 |
-| **Finalize** | Soft-Report | What was built / Verification / Journey log **草稿片段** | **不**改 status；**不** commit feature 文档 |
-| **Finish** | — **排除** | 无 | **永不** merge / PR / push / worktree remove |
+| Orient | Soft-Orient | 约束/工具/假设掩码（≤15 行） | 重跑全仓；灌七 mode |
+| Grill | Soft-Research | 证据包 ≤40 行 | 拍板 |
+| Workspace | **排除** | 无 | 永不 worktree/分支 |
+| Spec | Soft-Spec-input | 可粘贴草稿片段 | 写盘 feature；填 status/commits |
+| Implement | Soft-Test / Companion | 测试卡；媒体→multimodal | 写业务实现 |
+| Verify | Soft-Evidence | `命令\|结果\|路径` | 宣布 feature 总 Verify |
+| Review | Soft-Review-pack | Range+验收+验证表 | 派 Reviewer；三类结论 |
+| Finalize | Soft-Report | What/Verification/Journey | 改 status；commit |
+| Finish | **排除** | 无 | 永不 merge/PR/push |
 
 ## 激活与短路
 
-1. 会话已在 compose-next / P-domain 流程。
-2. 用户在对应阶段提出**独立 Soft 请求**（调研、测模态、写验收草案、汇总证据、整理 Review 输入、起草 Report）。
-3. **点名 `/compose-next` 且无上述独立请求** → 只走 compose-next，engine 不加载。
-4. 每次 Soft **只 JIT 一个** pointer（见 `compose-token.md`）；细则读本文件对应卡或 `multimodal.md`。
-5. Soft 一律**跳过 Step 2–6**；Workspace / Finish 无 Soft 卡。
+1. 会话已在 compose-next / P-domain。
+2. 对应阶段有**独立 Soft 请求**才供给。
+3. 点名 `/compose-next` 且无 Soft 请求 → 不加载 engine 全协议。
+4. **单卡 JIT**（见 compose-token）。
+5. 跳过 Step 2–6；Workspace/Finish 无 Soft。
 
-## Soft 卡模板
+## Soft 阶段卡
 
-### Soft-Orient（Orient）
+### Soft-Orient
+≤15 行：已知约束一句；工具一句；假设 1–3；未验掩码一句。
 
-≤15 行：会话/仓内**已知**约束一句；工具可用性一句；假设 1–3 条；未验区掩码一句。不展开七 mode、不重做路由表。
+### Soft-Research
+见 compose-token Grill 卡。证据包 ≤40 行。不拍板。
 
-### Soft-Research（Grill）
-
-见 `compose-token.md` Grill 研究卡。产物：证据包 ≤40 行。**不拍板**。
-
-### Soft-Spec-input（Spec）
-
-可整段粘进 feature 文档当**输入**（不是 feature 文档本身，无 frontmatter/status/commits）：
+### Soft-Spec-input
+可粘贴草稿（无 frontmatter/status）：
 
 ```markdown
 ### Spec-input Draft
 #### [S1] Problem
-一句话用户可见问题。
 #### Acceptance draft
 - [ ] … | 验证: … | 证据: 路径/命令
 #### Out of Scope
-- 明确不做什么
 #### Tasks draft
 - T1 … — acceptance: … (covers: S1)
-- T2 … — acceptance: … (depends: T1)
 ```
 
-- ≤30 行；锚点用 `[S1]` 风格占位，最终编号归 compose-next Spec。
-- **禁止**落盘 `docs/compose/spec/*.md` 或改已有 feature 文档。
+≤30 行；禁止落盘 `docs/compose/spec/*.md`。
 
-### Soft-Test / Soft-Companion（Implement）
+### Soft-Test / Soft-Companion
+媒体 → 只 `multimodal.md`+抽检。模态测 → compose-token 测试卡。不写业务实现。
 
-- 媒体子任务 → 只 `multimodal.md` + 抽检。
-- 模态测 → 见 `compose-token.md` 测试卡；高风险可 ≤1 盲测（默认关）。
-- 不写业务实现；不宣布 feature 总 Verify。
-
-### Soft-Evidence（Verify）
-
-只汇总**本 Soft 工作**的证据，供 compose 写入其 Verify 记录：
+### Soft-Evidence
+本 Soft 工作证据；过程注解**同行**：
 
 ```markdown
-| 命令/抽检 | 结果 | 路径/输出摘要 |
+| 命令/抽检 | 结果 | 路径/摘要 |
 |---|---|---|
-| … | PASS/FAIL/PRE-EXISTING | … |
+| canary | PASS/FAIL/未设 | … |
+| C1–C7 | OK \| gaps: … | 一行即可 |
 ```
 
-- 默认 1 行 1 证据；失败必须标 FAIL/未验，禁止 Fake Done。
-- **不**替代 compose 的仓库级 tests/typecheck/build。
+失败标 FAIL。不替代仓库级 tests/build。
 
-### Soft-Review-pack（Review）
+### Soft-Review-pack（≤25 行）
+Range + 验收摘要 + 验证表 + 未验区。不派 Reviewer、不出三类结论。
 
-供 compose-next 派**独立 Reviewer** 的输入包（≤25 行）：
+### Soft-Report
+`What was built` / `Verification` / `Journey log`（≤5）。不改 status、不 commit。
+
+## Soft Depth（v1.12 情境触发；仍单卡 JIT）
+
+**默认**：任一 Soft 交付只需 **Soft-DoD-artifact** 行内证据。其余 Depth 卡按下表触发；未触发 ≠ FAIL。
+
+| 卡 | 触发 | 最低验收 | 禁止 |
+|---|---|---|---|
+| Soft-DoD-artifact | 默认 | ≥1 机读证据指针 | 无证据称 done |
+| Soft-Contract | I/O 歧义或多输入 | 输入/输出/恢复点三行 | 接管 Workspace/Finish |
+| Soft-Drift | 已有 Spec 且 diff 非平凡 | 漂移 1 句披露 | 擅自改 status |
+| Soft-Verify-recipe | 命令≥2 或需复用 | ≤5 行可复跑命令 | 宣布总 Verify |
+| Soft-Amendment | 范围曾变 | 见下节 | commit/写盘 feature |
+
+### Soft-Amendment（含 amended: 键）
+
+Finalize 前若范围曾变，草稿必须含：
 
 ```markdown
-## Review-input Pack
-### Acceptance
-来自 Spec/会话的可观察验收摘要。
-### Range
-base-sha..head-sha；workspace 路径。
-### Verification summary
-| cmd | result |
-|---|---|
-| … | PASS / FAIL / PRE-EXISTING |
-### Open risks / 未验区
-1 句掩码。
+# frontmatter 建议
+amended: YYYY-MM-DD
+
+## Amendment A1  (或 [S#b] 追加节)
+…变更说明…
 ```
 
-- engine **不**派子代理 Reviewer，**不**输出三类 Review 结论。
-- compose 仍按其合同自备 diff 与验收；本包只降重复粘贴成本。
+并建议任务勾选同步。宿主写盘；Soft **不** commit。
 
-### Soft-Report（Finalize）
-
-可粘进 feature 文档 `## Report` 的草稿片段：
-
-```markdown
-**What was built** — 1–3 段最终行为。
-**Verification** — 命令与观察结果。
-**Journey log** — ≤5 条可迁移教训。
-```
-
-- **不**改 `status: delivered`、**不**填 `commits:`、**不** commit。
-- 最终写入与 Finalize commit 仍归 compose-next。
-
-## 与 R1/R2/R3 的关系
-
-| 路径 | 何时 | 细则 |
-|---|---|---|
-| **前置 / 拒绝** | 未进 compose，或用户「直接修」 | `compose-handoff.md`（R1/R2/R3） |
-| **compose 运行中** | 已在 compose-next 阶段 | **本文件** Soft 卡 |
-| **Token 合同** | 任何 Soft | `compose-token.md` |
-
-## Soft 质量抽检（DoD，不进 SKILL body）
-
-交付 Soft 卡前按最低可观察项自检；失败标 FAIL/未验，禁止 Fake Done。完整对照协议见 `../tests/token-roi.md`。过程门/Canary 见 `process-gates.md`。
+## Soft 质量抽检（DoD）
 
 | 卡 | 最低验收 | 禁止 |
 |---|---|---|
-| Soft-Orient | ≤15 行；含假设或未验区掩码 | 重跑全仓 Orient；灌七 mode |
-| Soft-Research | 来源标识；≤40 行；开放问；事实/推断可分 | 无来源「结论」 |
-| Soft-Companion | 只 `multimodal.md`；产物路径可指 | 写业务实现 |
-| Soft-Spec-input | 可粘贴；无 frontmatter/status；任务有 acceptance | 写盘 feature 文档 |
-| Soft-Test | 每模态 ≥1 次工具证据路径 | 只报「已生成」 |
-| Soft-Evidence | 每行命令/抽检 + PASS/FAIL | 宣布 feature 总 Verify |
-| Soft-Review-pack | Range + 验收摘要 + 未验区掩码 | 三类 Review 结论；派 Reviewer |
-| Soft-Report | 三段齐全；Journey ≤5 | 改 status/commit |
-| Soft-Contract | 输入/输出/恢复点三行 | 接管 Workspace/Finish |
-| Soft-Drift | Spec 锚点 vs diff 漂移 1 句 | 擅自改 Spec status |
-| Soft-Verify-recipe | 验证命令 ≤5 行可复跑 | 宣布 feature 总 Verify |
-| Soft-Amendment | 草稿片段+勾选同步建议 | commit/写盘 feature |
-| Soft-DoD-artifact | ≥1 可机读证据指针 | 无工具证据称 done |
+| Soft-Orient | ≤15；假设/未验 | 重跑全仓 |
+| Soft-Research | 来源；≤40；开放问 | 无来源结论 |
+| Soft-Companion | 只 multimodal；产物可指 | 写业务实现 |
+| Soft-Spec-input | 可粘贴；无 frontmatter | 写盘 feature |
+| Soft-Test | ≥1 工具证据 | 只报已生成 |
+| Soft-Evidence | 命令+PASS/FAIL；过程注解行 | 宣布总 Verify |
+| Soft-Review-pack | Range+验收+未验 | 三类结论 |
+| Soft-Report | 三段；Journey≤5 | 改 status/commit |
+| Soft-DoD-artifact | ≥1 机读证据 | 无证据称 done |
+| Soft-Amendment | 草稿含 `amended:` + 追加节 | commit/写盘 |
 
-## Soft Depth 卡（v1.11；仍单卡 JIT）
+完整对照：`../tests/token-roi.md`。
 
-在既有阶段卡之外，按请求选用下列 **一张**；过程门细则 JIT `process-gates.md`。
+## 与 R1/R2/R3
 
-### Soft-Contract
-
-任一 Soft 交付前：`输入` / `输出` / `恢复点` 各一行；与当前 compose 阶段对齐。不建 worktree、不 Finish。
-
-### Soft-Drift
-
-Spec↔Implement 边界：对照 Spec 锚点与 diff 范围；有漂移则 **1 句披露**。不改 `status`/不写盘 feature 文档。
-
-### Soft-Verify-recipe
-
-本仓/本 feature 可复跑验证命令 **≤5 行**（或指针到已有脚本）。只供 compose 执行；**不** 宣布 feature 总 Verify 通过。
-
-### Soft-Amendment
-
-Finalize 前若范围曾变：可粘贴 amendment 草稿片段 + 任务勾选同步建议。**不** commit、**不** 写 `docs/compose/spec/*.md`。
-
-### Soft-DoD-artifact
-
-Implement/Verify：至少 **1** 条可机读证据（命令输出路径 / 文件哈希 / 测试计数）。无证据称 done → 标 FAIL/未验。
+| 路径 | 何时 | 细则 |
+|---|---|---|
+| 前置/拒绝 | 未进 compose 或「直接修」 | `compose-handoff.md` |
+| compose 运行中 | 已在九阶段 | 本文件 Soft 卡 |
+| Token 合同 | 任何 Soft | `compose-token.md` |
 
 ## 反例
 
 | 错误 | 纠正 |
 |---|---|
-| Soft-Spec-input 直接创建 `docs/compose/spec/x.md` | 只给可粘贴片段；文件归 compose-next |
-| Soft-Review-pack 自己下「PASS / 符合 Spec」 | 只整理输入；结论归 compose 的 Reviewer |
-| Soft-Report 把 status 改成 delivered 或 commit | 只草稿三段正文 |
-| 用 Soft 回避 Workspace/Finish | 这两阶段 engine **永不**提供 |
-| compose 会话灌七 mode 表 / Full Gates | 只 JIT 单卡 |
-| 点名 compose-next 仍加载 engine 全协议 | 只 compose-next，除非另有独立 Soft 请求 |
-| 质量抽检失败仍称 Soft 已完成 | 标 FAIL/未验；补证后再交 |
+| Soft-Spec-input 建 feature 文件 | 只给粘贴片段 |
+| Soft-Review-pack 下 PASS | 只整理输入 |
+| Soft-Report 改 delivered/commit | 只草稿正文 |
+| 默认强制 4 张 Depth 卡 | 只 DoD-artifact；其余情境触发 |
+| Amendment 只写章节不建议 `amended:` | 必须含 frontmatter 键 |
+| compose 灌七 mode/Full Gates | 单卡 JIT |
+| 用 Soft 回避 Workspace/Finish | 永不提供 |
