@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2] - 2026-09-14
+
+### 摘要
+
+**全方位质量审查（契约可判定性 + 发布卫生）**。compose-next 审查扫出并清掉检查器假绿与文档假声明：Soft 路由早退进入 `intent-gate` Priority；协议称谓统一为 `Intake→Plan→Execute→Deliver 全协议` / `七 mode`（弃用「五步/六步」）；skill 文本资产统一 CRLF 并加 `.gitattributes`；静态门 85→**108**（EOL/版本对齐/Last-sync SHA/称谓/Soft Priority/解码失败转 FAIL）。纠正 `[2.0.1]` 中「Last sync 带 short SHA」未兑现的描述。规格：`docs/compose/spec/quality-review-v3.md`。
+
+### Added
+
+- 根目录 `.gitattributes` — skill md/json 统一 CRLF；`.py` 保持 LF
+- 静态门：EOL 一致、README/CHANGELOG/checklist 版本对齐、Last sync 含 short SHA、「五步/六步」非 ban 禁令、Soft 早退 Priority 断言、UTF-8 解码失败转 FAIL、tests 目录全量锁
+
+### Changed
+
+- `skill/references/intent-gate.md` — Priority 1 Soft 早退；反例「五步执行」→「全协议执行」；+compose Soft 误走委托反例
+- `skill/SKILL.md` / `multimodal.md` — 协议称谓与权威名对齐（body 1621 ch）
+- `skill/tests/run_static_checks.py` — BOM 改为 `\ufeff` 转义；safe_read；版本/EOL/称谓断言
+- `skill/tests/checklist.md` — 标题 2.0.2；期望 pass 108；硬规则改为静态门覆盖并勾选
+- `README.md` — Version 2.0.2；Last sync 带 short SHA（兑现 2.0.1 未落地项）
+- `docs/compose/smoke/v2.0.0-full-matrix-report.md` — D5 表补 HEAD 85/0
+- `docs/compose/spec/quality-review-v2.md` — commits 改为具体范围
+
+### Fixed
+
+- CHANGELOG `[2.0.1]` 「Last sync 带 short SHA」— 该描述与当时 README 不符，见上条 2.0.2 兑现
+
+[2.0.2]: https://github.com/yangyf724/universal-agent-engine/compare/v2.0.1...v2.0.2
+
 ## [2.0.1] - 2026-09-14
 
 ### 摘要
@@ -20,7 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `skill/tests/run_static_checks.py` — ban-context 改逐行 `all`；Step 2–6 / BUILD-FIX 词边界；同行上下文断言
 - `skill/references/multimodal.md` — 补 Soft-Orient 禁令；写明 Soft 内 Office 委托为能力 JIT、不重入门控
-- `README.md` — 相对安装路径；目录树含 historical docs；Last sync 带 short SHA
+- `README.md` — 相对安装路径；目录树含 historical docs
 - v2 Spec / Smoke 报告 — 指标回填 body 1597 / Soft JIT 5732 / 20172 B；注明 A01 为 post-tag
 - 10× v1 spec + 7× v1 smoke — `status: superseded` + Historical 横幅
 - CHANGELOG 2.0.0 — 注明 tag 基线与 post-tag A01 补丁

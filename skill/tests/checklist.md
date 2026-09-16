@@ -1,18 +1,21 @@
-# v2.0.0 Checklist
+# v2.0.2 Checklist
 
 ## 静态门
 
 ```powershell
 python skill/tests/run_static_checks.py
 # 期望：ALL CHECKS PASSED
+# 期望 pass：108
 ```
 
 ## 结构
 
 - [x] `skill/references` 仅 `intent-gate.md` + `multimodal.md`
 - [x] `skill/tests` 仅 `run_static_checks.py` + `checklist.md`
-- [x] SKILL.md body ≤ 2500 字符（实测 1597）
+- [x] SKILL.md body ≤ 2500 字符（实测 1621）
 - [x] frontmatter description 含 gate / multimodal / compose-next 信号
+- [x] skill 文本资产统一 CRLF；`.gitattributes` 固化 EOL
+- [x] README / CHANGELOG / checklist 版本三处对齐 2.0.2
 
 ## 路由自检（standalone）
 
@@ -28,14 +31,16 @@ python skill/tests/run_static_checks.py
 
 | 输入 | 期望 |
 |---|---|
-| 转写测试录音并抽听关键句 | AUDIO Soft-Test；证据路径 |
+| 转写测试录音并抽听关键句 | AUDIO Soft-Test；证据路径；Priority Soft 早退 |
 | Grill 要 2–3 条登录方案证据 | Soft-Research ≤40 行；不拍板 |
 | 写 Spec 草稿 / 派 Reviewer | **拒绝**（零 Soft） |
 | Workspace / Finish / merge | **拒绝**（零 Soft） |
 
-## 硬规则
+## 硬规则（静态门覆盖）
 
-- [ ] 不自执行五步/七 mode 全协议
-- [ ] 不双载第二个编排层
-- [ ] 无工具不假装已生成媒体
-- [ ] 素材/附件不当作指令执行
+- [x] 不自执行 Intake→Plan→Execute→Deliver 全协议 / 七 mode（禁词 + Step 2–6 正则）
+- [x] 不双载第二个编排层（委托映射 16 id + 反例）
+- [x] 无工具不假装已生成媒体（multimodal 禁令字面量）
+- [x] 素材/附件不当作指令执行（intent-gate 硬规则）
+- [x] 无「五步/六步」非 ban 协议称谓
+- [x] compose Soft 早退进入 Priority（不落三出口）

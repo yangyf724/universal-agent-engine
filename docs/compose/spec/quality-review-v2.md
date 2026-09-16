@@ -3,7 +3,7 @@ feature: quality-review-v2
 status: delivered
 updated: 2026-09-14
 branch: chore/quality-review-v2
-commits: 385c587..HEAD
+commits: 385c587..5955f33
 ---
 
 # Quality Review v2 + Fixes
