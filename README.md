@@ -1,12 +1,12 @@
 # universal-agent-engine
 
-**v2.0.1-dev** — 门控路由 + compose-next 全模态插件（质量加固未发版）。
+**v2.0.1** — 门控路由 + compose-next 全模态插件（质量加固）。
 
 目标：standalone 时分析需求并路由到正确出口；compose-next 运行中补齐全模态感知、测试与 Grill 研究证据。**不再**是一般编排执行引擎。
 
 <!-- github-sync:begin -->
-**Version:** 2.0.1-dev  
-**Last sync:** 2026-09-14 @ 385c587
+**Version:** 2.0.1  
+**Last sync:** 2026-09-14
 <!-- github-sync:end -->
 
 ## 安装

@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 摘要
 
-**质量审查加固（无行为变更）**。全仓 compose-next 审查：静态门从 69→85 断言；标记 10 份 v1 spec / 7 份 v1 smoke 为 Historical；修 README 安装路径；回填 post-A01 实测指标。**注意**：tag `v2.0.0` 仍指向 `a186373`，**不含** A01 多角色会审禁令（`385c587` 起才在 main）；安装请用 main，勿从 tag 检出。
+**质量审查加固（无行为变更）**。全仓 compose-next 审查：静态门从 69→85 断言；标记 10 份 v1 spec / 7 份 v1 smoke 为 Historical；修 README 安装路径；回填 post-A01 实测指标。**注意**：tag `v2.0.0` 仍指向 `a186373`，**不含** A01 多角色会审禁令；安装请用 **v2.0.1**（或之后 main），勿从 v2.0.0 tag 检出。
 
 ### Added
 
@@ -25,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 10× v1 spec + 7× v1 smoke — `status: superseded` + Historical 横幅
 - CHANGELOG 2.0.0 — 注明 tag 基线与 post-tag A01 补丁
 
-[2.0.1]: https://github.com/yangyf724/universal-agent-engine/compare/v2.0.0...HEAD
+[2.0.1]: https://github.com/yangyf724/universal-agent-engine/compare/v2.0.0...v2.0.1
 
 ## [2.0.0] - 2026-09-14
 
