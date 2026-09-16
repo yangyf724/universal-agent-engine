@@ -1,0 +1,5 @@
+* text=auto
+skill/**/*.md text eol=crlf
+skill/**/*.json text eol=crlf
+skill/tests/*.py text eol=lf
+*.md text eol=crlf

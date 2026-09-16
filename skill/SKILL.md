@@ -37,7 +37,7 @@ description: Intent-gate + multimodal plugin. Standalone: analyze the request an
 
 硬规则：
 
-- 跳过任何五步/七 mode 全协议。
+- 跳过 Intake→Plan→Execute→Deliver 全协议与七 mode。
 - **禁止** Soft-Spec-input / Soft-Review-pack / Soft-Report / 九阶段矩阵 / Soft Depth。
 - Workspace / Finish **零 Soft**（永不 worktree/merge/PR）。
 - 默认 fan-out=0。

@@ -1,12 +1,12 @@
 # universal-agent-engine
 
-**v2.0.1** — 门控路由 + compose-next 全模态插件（质量加固）。
+**v2.0.2** — 门控路由 + compose-next 全模态插件（质量加固 v3）。
 
 目标：standalone 时分析需求并路由到正确出口；compose-next 运行中补齐全模态感知、测试与 Grill 研究证据。**不再**是一般编排执行引擎。
 
 <!-- github-sync:begin -->
-**Version:** 2.0.1  
-**Last sync:** 2026-09-14
+**Version:** 2.0.2  
+**Last sync:** 2026-09-14 · `2c0c269`
 <!-- github-sync:end -->
 
 ## 安装
@@ -67,8 +67,9 @@ skill/
     run_static_checks.py   # v2 契约静态门
     checklist.md
 docs/compose/spec/
-  v2-gate-multimodal.md    # 当前规格（v2）
-  quality-review-v2.md     # 质量审查与加固
+  v2-gate-multimodal.md    # 当前行为规格（v2）
+  quality-review-v2.md     # 2.0.1 质量审查
+  quality-review-v3.md     # 2.0.2 全方位审查（当前）
   engine-*.md              # v1 历史规格（status: superseded）
 docs/compose/smoke/
   v2.0.0-full-matrix-*.md  # v2 冒烟协议/报告

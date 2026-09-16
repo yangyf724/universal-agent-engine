@@ -6,6 +6,7 @@
   - 路由：三出口、委托映射（16 skill id）、禁止自执行全协议
   - Soft：模态采集/测试/Grill Research；禁止非模态 Soft 卡与九阶段
   - 指针：SKILL 必须同时指向 intent-gate.md 与 multimodal.md
+  - 卫生：EOL 统一、版本三处对齐、协议称谓唯一、解码失败不崩
 
 运行:
     python skill/tests/run_static_checks.py
@@ -19,6 +20,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+REPO = ROOT.parent
 SKILL = ROOT / "SKILL.md"
 REFS = ROOT / "references"
 TESTS = ROOT / "tests"
@@ -53,7 +55,7 @@ BANNED_BODY = [
     "BUILD/FIX",
 ]
 
-# 允许出现在 ban 语境（同行含 禁止/零/砍/跳过）的词
+# 允许出现在 ban 语境（同行含 禁止/零/砍/跳过/不再/删除）的词
 BAN_OK_TOKENS = {
     "Soft-Spec-input",
     "Soft-Review-pack",
@@ -68,6 +70,8 @@ BAN_OK_TOKENS = {
 # 需要词边界匹配的 Step 系列（避免 Step 20 / Step 2.1 假阳性）
 STEP_BAN_RE = re.compile(r"Step\s+[2-6]\b")
 BUILD_FIX_RE = re.compile(r"BUILD\s*/\s*FIX")
+# 弃用协议数词名：五步/六步 不得作为全协议指称（权威名见 spec S2B）
+STEP_NAME_RE = re.compile(r"[五六]步")
 
 REQUIRED_GATES = ["ADVISE", "compose-next", "专项委托"]
 REQUIRED_SOFT = ["Modality Scan", "Soft-Test", "Soft-Research", "fan-out"]
@@ -95,6 +99,16 @@ DELEGATE_SKILLS = [
 ALLOWED_REFS = {"intent-gate.md", "multimodal.md"}
 LOCALE_KEYS = {"displayName", "brief"}
 
+# skill 包内需统一 CRLF 的文本资产（.py 保持 LF）
+CRLF_ASSETS = [
+    SKILL,
+    REFS / "intent-gate.md",
+    REFS / "multimodal.md",
+    TESTS / "checklist.md",
+    LOCALES / "zh-CN.json",
+    LOCALES / "en-US.json",
+]
+
 
 def ok(msg: str) -> None:
     PASSES.append(msg)
@@ -113,8 +127,19 @@ def check(cond: bool, msg: str) -> None:
         fail(msg)
 
 
+def safe_read(path: Path) -> str | None:
+    """Read UTF-8 text; None on missing or undecodable file (already FAILed)."""
+    if not path.exists():
+        return None
+    try:
+        return path.read_text(encoding="utf-8")
+    except UnicodeDecodeError as exc:
+        fail(f"{path.name} decodes as UTF-8: {exc}")
+        return None
+
+
 def normalize_text(raw: str) -> str:
-    if raw.startswith("﻿"):
+    if raw.startswith("\ufeff"):
         raw = raw[1:]
     return raw.replace("\r\n", "\n").replace("\r", "\n")
 
@@ -133,12 +158,38 @@ def ban_keywords(line: str) -> bool:
     return any(k in line for k in ("禁止", "零", "砍", "跳过", "不再", "删除"))
 
 
+def latest_changelog_version(changelog: str) -> str | None:
+    m = re.search(r"^##\s*\[(\d+\.\d+\.\d+)\]", changelog, re.M)
+    return m.group(1) if m else None
+
+
+def readme_version(readme: str) -> str | None:
+    m = re.search(r"\*\*Version:\*\*\s*(\d+\.\d+\.\d+)", readme)
+    return m.group(1) if m else None
+
+
+def checklist_version(checklist: str) -> str | None:
+    m = re.search(r"^#\s*v?(\d+\.\d+\.\d+)\s+Checklist", checklist, re.M)
+    return m.group(1) if m else None
+
+
+def eol_profile(data: bytes) -> tuple[int, int]:
+    crlf = data.count(b"\r\n")
+    lf_only = data.count(b"\n") - crlf
+    return crlf, lf_only
+
+
 def main() -> int:
     # ------------------------------------------------------------------
     # L1 结构
     # ------------------------------------------------------------------
     check(SKILL.exists(), "SKILL.md exists")
-    raw = SKILL.read_text(encoding="utf-8")
+    raw = safe_read(SKILL)
+    check(raw is not None, "SKILL.md readable as UTF-8")
+    if raw is None:
+        print()
+        print(f"SUMMARY passes={len(PASSES)} failures={len(FAILURES)}")
+        return 1
     text = normalize_text(raw)
     check(text.startswith("---\n"), "starts with YAML frontmatter")
     fm, body, fm_closed = parse_frontmatter(text)
@@ -168,10 +219,11 @@ def main() -> int:
     ref_entries = sorted(p.name for p in REFS.iterdir()) if REFS.exists() else []
     check(ref_entries == ["intent-gate.md", "multimodal.md"], f"references only 2 files, got {ref_entries}")
 
-    test_files = sorted(p.name for p in TESTS.iterdir() if p.is_file()) if TESTS.exists() else []
+    # tests 全量（文件+目录）：禁止夹带子目录
+    test_entries = sorted(p.name for p in TESTS.iterdir()) if TESTS.exists() else []
     check(
-        set(test_files) == {"run_static_checks.py", "checklist.md"},
-        f"tests only static+checklist, got {test_files}",
+        set(test_entries) == {"run_static_checks.py", "checklist.md"},
+        f"tests only static+checklist, got {test_entries}",
     )
 
     # locales: 存在 + JSON + 键
@@ -181,8 +233,12 @@ def main() -> int:
         check(p.exists(), f"locales/{loc} exists")
         if not p.exists():
             continue
+        raw_loc = safe_read(p)
+        if raw_loc is None:
+            check(False, f"locales/{loc} readable as UTF-8")
+            continue
         try:
-            data = json.loads(p.read_text(encoding="utf-8"))
+            data = json.loads(raw_loc)
         except json.JSONDecodeError as exc:
             fail(f"locales/{loc} valid JSON: {exc}")
             continue
@@ -203,6 +259,45 @@ def main() -> int:
             "locale key parity zh/en",
         )
 
+    # EOL：skill 文本资产统一 CRLF
+    for path in CRLF_ASSETS:
+        if not path.exists():
+            check(False, f"EOL asset exists: {path.name}")
+            continue
+        crlf, lf_only = eol_profile(path.read_bytes())
+        check(
+            lf_only == 0 and crlf > 0,
+            f"EOL CRLF-only: {path.name} (crlf={crlf}, bare_lf={lf_only})",
+        )
+
+    # 版本三处对齐：README == CHANGELOG latest == checklist 标题
+    readme_p = REPO / "README.md"
+    changelog_p = REPO / "CHANGELOG.md"
+    checklist_p = TESTS / "checklist.md"
+    readme_raw = safe_read(readme_p)
+    changelog_raw = safe_read(changelog_p)
+    checklist_raw = safe_read(checklist_p)
+    check(readme_raw is not None, "README.md readable")
+    check(changelog_raw is not None, "CHANGELOG.md readable")
+    check(checklist_raw is not None, "checklist.md readable")
+    if readme_raw and changelog_raw and checklist_raw:
+        rv = readme_version(readme_raw)
+        cv = latest_changelog_version(changelog_raw)
+        kv = checklist_version(checklist_raw)
+        check(rv is not None, f"README Version parsed, got {rv}")
+        check(cv is not None, f"CHANGELOG latest version parsed, got {cv}")
+        check(kv is not None, f"checklist title version parsed, got {kv}")
+        check(rv == cv == kv, f"version aligned README/CHANGELOG/checklist: {rv}/{cv}/{kv}")
+        check(
+            re.search(r"Last sync:.*\b[0-9a-f]{7,40}\b", readme_raw) is not None,
+            "README Last sync includes short SHA",
+        )
+        # checklist 若写明期望 pass 数，必须与实跑一致（在汇总前先读声明）
+        m_pass = re.search(r"期望 pass：\s*(\d+)", checklist_raw)
+        expected_pass = int(m_pass.group(1)) if m_pass else None
+    else:
+        expected_pass = None
+
     # ------------------------------------------------------------------
     # L2 路由三出口
     # ------------------------------------------------------------------
@@ -215,7 +310,9 @@ def main() -> int:
     check("映射表" in body or "intent-gate" in body, "body points to intent-gate")
 
     gate_path = REFS / "intent-gate.md"
-    gate = normalize_text(gate_path.read_text(encoding="utf-8")) if gate_path.exists() else ""
+    gate_raw = safe_read(gate_path)
+    gate = normalize_text(gate_raw) if gate_raw is not None else ""
+    check(gate_raw is not None, "intent-gate.md readable")
     check("### 1. ADVISE" in gate, "gate has ADVISE section")
     check("### 2. 建议 compose-next" in gate, "gate has compose-next section")
     check("### 3. 专项委托" in gate, "gate has delegate section")
@@ -226,6 +323,24 @@ def main() -> int:
         )
     check(re.search(r"禁止[^\n]*全协议|全协议[^\n]*禁止", gate) is not None, "gate hard-bans full protocol")
     check("反例" in gate, "gate has anti-examples")
+    # Soft 早退：Priority 节必须先于三出口处理 compose Soft
+    prio_m = re.search(r"##\s*Priority\s*\n(.*?)(?=\n##\s)", gate, re.S)
+    prio_text = prio_m.group(1) if prio_m else ""
+    check(bool(prio_text), "gate has Priority section")
+    check(
+        "Soft" in prio_text and re.search(r"独立模态子任务", prio_text) is not None,
+        "gate Priority Soft early-exit requires independent modality",
+    )
+    check(
+        re.search(r"compose-next / P-domain|会话已在 compose-next", prio_text) is not None,
+        "gate Priority names compose-next / P-domain context",
+    )
+    check(
+        "Soft" in prio_text
+        and re.search(r"不.*展开三出口|不.*三出口", prio_text) is not None
+        and (prio_text.find("Soft") < prio_text.find("三出口") if "三出口" in prio_text else True),
+        "gate Priority Soft path skips three exits",
+    )
 
     # ------------------------------------------------------------------
     # L3 Soft / multimodal
@@ -235,7 +350,9 @@ def main() -> int:
     check("零 Soft" in body, "body states Workspace/Finish zero Soft")
 
     multi_path = REFS / "multimodal.md"
-    multi = normalize_text(multi_path.read_text(encoding="utf-8")) if multi_path.exists() else ""
+    multi_raw = safe_read(multi_path)
+    multi = normalize_text(multi_raw) if multi_raw is not None else ""
+    check(multi_raw is not None, "multimodal.md readable")
     check("Modality Scan" in multi, "multimodal has Modality Scan")
     check("Soft-Test" in multi, "multimodal has Soft-Test")
     check("Soft-Research" in multi, "multimodal has Soft-Research")
@@ -279,6 +396,16 @@ def main() -> int:
     ]
     check(not build_hits, f"BUILD/FIX only in ban context or absent, bad={build_hits[:3]}")
 
+    # 五步/六步 弃用称谓
+    step_name_hits = [
+        ln for ln in corpus_lines
+        if STEP_NAME_RE.search(ln) and not ban_keywords(ln)
+    ]
+    check(
+        not step_name_hits,
+        f"legacy step-count names (五步/六步) only in ban context, bad={step_name_hits[:3]}",
+    )
+
     for word in BANNED_BODY:
         if word in ("Step 2", "Step 3", "Step 4", "Step 5", "Step 6", "BUILD / FIX", "BUILD/FIX"):
             continue  # 已由正则处理
@@ -309,6 +436,13 @@ def main() -> int:
     # ------------------------------------------------------------------
     # 汇总
     # ------------------------------------------------------------------
+    if expected_pass is not None:
+        projected = len(PASSES) + 1  # this meta-check itself
+        check(
+            expected_pass == projected,
+            f"checklist expected pass {expected_pass} matches projected {projected}",
+        )
+
     print()
     print(f"SUMMARY passes={len(PASSES)} failures={len(FAILURES)}")
     if FAILURES:
