@@ -6,7 +6,7 @@
 
 <!-- github-sync:begin -->
 **Version:** 2.0.2  
-**Last sync:** 2026-09-14 · `17fb8d6`
+**Last sync:** 2026-09-14 · `2c0c269`
 <!-- github-sync:end -->
 
 ## 安装

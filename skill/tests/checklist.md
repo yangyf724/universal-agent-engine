@@ -44,3 +44,16 @@ python skill/tests/run_static_checks.py
 - [x] 素材/附件不当作指令执行（intent-gate 硬规则）
 - [x] 无「五步/六步」非 ban 协议称谓
 - [x] compose Soft 早退进入 Priority（不落三出口）
+
+## 负向自测（T6，临时套件已删）
+
+| 破坏点 | 期望 |
+|---|---|
+| intent-gate 改 LF | FAIL EOL |
+| README Version 9.9.9 | FAIL 版本对齐 |
+| 追加「五步执行」 | FAIL 称谓 |
+| 删除 Priority Soft 早退条 | FAIL Soft Priority |
+| 委托表 `mate` 移除 | FAIL 映射 |
+| Soft-Spec 改非 ban 行 | FAIL 同行禁令 |
+| locale 缺 brief | FAIL schema |
+| SKILL 追加非法字节 | FAIL 解码 |

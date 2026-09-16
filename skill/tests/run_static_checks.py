@@ -128,7 +128,7 @@ def check(cond: bool, msg: str) -> None:
 
 
 def safe_read(path: Path) -> str | None:
-    """Read UTF-8 text; None on missing or undecodable file."""
+    """Read UTF-8 text; None on missing or undecodable file (already FAILed)."""
     if not path.exists():
         return None
     try:
@@ -336,8 +336,9 @@ def main() -> int:
         "gate Priority names compose-next / P-domain context",
     )
     check(
-        prio_text.find("Soft") < prio_text.find("三出口") if ("Soft" in prio_text and "三出口" in prio_text) else False
-        or re.search(r"Soft", prio_text) is not None and re.search(r"不.*展开三出口|不.*三出口", prio_text) is not None,
+        "Soft" in prio_text
+        and re.search(r"不.*展开三出口|不.*三出口", prio_text) is not None
+        and (prio_text.find("Soft") < prio_text.find("三出口") if "三出口" in prio_text else True),
         "gate Priority Soft path skips three exits",
     )
 

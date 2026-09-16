@@ -1,14 +1,25 @@
 ---
 feature: quality-review-v3
-status: designed
+status: delivered
 updated: 2026-09-14
 branch: chore/quality-review-v3
-commits: 17fb8d6..HEAD
+commits: 17fb8d6..2c0c269  # implementation; finalize docs-only after
 ---
 
 # Quality Review v3 — Kill All Bugs
 
 ## Report
+
+**What was built** — 全仓质量审查并清掉 4 类真缺陷：(1) `intent-gate` Priority 补 **Soft 早退**（compose-next/P-domain 或点名且有独立模态 → `multimodal.md`，不再落入三出口）；(2) 协议称谓统一为 `Intake→Plan→Execute→Deliver 全协议` / `七 mode`，弃用「五步/六步」；(3) skill 文本资产统一 CRLF + 根 `.gitattributes`；(4) 静态门 85→**108**：BOM `\ufeff` 转义、`safe_read` 解码失败转 FAIL、tests 全量锁、EOL/版本三处对齐/Last-sync SHA/称谓/Soft Priority 断言、checklist 期望 pass 对齐。同时纠正 v2.0.1 中「Last sync 带 short SHA」假声明，README 兑现为 `2c0c269`；smoke D5 表补 108/0；`quality-review-v2.md` commits 具体化为 `385c587..5955f33`。
+
+**Verification** — `python skill/tests/run_static_checks.py` → **108/0 ALL CHECKS PASSED**。8 项负向自测（EOL/版本/称谓/Soft Priority/mate 映射/Soft-Spec ban/locale schema/非法字节）全部正确 FAIL。独立 Reviewer：S2A–S2C Met，S2D Met（Last sync SHA 于 delivery 补为 `2c0c269`），**0 critical**。
+
+**Journey log**
+1. `git worktree add` 再次被会话隔离策略拦下，改用主仓分支 `chore/quality-review-v3`（同 v2/v2.0.1）。
+2. 负向自测初版把 `run_checks(tmp)` 指到错误路径，8 例假 OK（rc=2 文件不存在）；修正路径后抓出「版本替换打中标题而非 Version 行」「Soft Priority 断言过松」两处测试假阴性。
+3. checklist 期望 pass 与新增断言联动，反复校准到 108；断言数一变必须同步 checklist/CHANGELOG/smoke。
+4. `.gitattributes` 使 `.py` 在 Windows 检出为 CRLF 时与 `eol=lf` 冲突；交付前将 checker 源文件压回 LF。
+5. Last sync SHA 与实现 commit 互为鸡生蛋：实现 commit 先落 `2c0c269`，delivery 文档-only 提交前把 README SHA 指到该实现头。
 
 ## [S1] Problem
 
@@ -79,11 +90,11 @@ Priority 改为显式三分支，先于三出口：
 
 ## Tasks
 
-- [ ] T1: 写入本规格 — acceptance: status=designed；S1/S2/S3 与任务可验收 (covers: S1)
-- [ ] T2: 加固 `run_static_checks.py`（BOM/解码/tests 全量/EOL/版本/checklist pass/称谓） — acceptance: 新断言可 FAIL 负向；默认仍 ALL PASS (covers: S2C)
-- [ ] T3: 修 `intent-gate.md` Soft Priority + 全仓协议称谓唯一化 — acceptance: Priority 1 为 Soft 早退；无「五步/六步」非 ban 指称 (covers: S2A,S2B)
-- [ ] T4: 统一 skill EOL + `.gitattributes` — acceptance: skill 标记文件全 CRLF；检查器 EOL 断言 PASS (covers: S2C,S2D)
-- [ ] T5: README/CHANGELOG/checklist/smoke/v2 spec 卫生 — acceptance: Version 2.0.2；Last sync 有 SHA；CHANGELOG 2.0.1 假声明纠正；D5 表含 85；v2 review commits 具体化 (covers: S2D)
-- [ ] T6: 静态门 + 负向自测（抽 EOL/版本/称谓/Soft Priority 字面） — acceptance: 默认 ALL PASS；临时破坏可 FAIL (covers: S1,S2)
-- [ ] T7: 独立 Reviewer 对照本 spec — acceptance: Spec/Correctness/Consistency 三类结论；critical 清零 (covers: S1,S2)
-- [ ] T8: Finalize 本文档并提交 — acceptance: status=delivered；Report 填齐；commits 具体 (covers: S2)
+- [x] T1: 写入本规格 — acceptance: status=designed；S1/S2/S3 与任务可验收 (covers: S1)
+- [x] T2: 加固 `run_static_checks.py`（BOM/解码/tests 全量/EOL/版本/checklist pass/称谓） — acceptance: 新断言可 FAIL 负向；默认仍 ALL PASS (covers: S2C)
+- [x] T3: 修 `intent-gate.md` Soft Priority + 全仓协议称谓唯一化 — acceptance: Priority 1 为 Soft 早退；无「五步/六步」非 ban 指称 (covers: S2A,S2B)
+- [x] T4: 统一 skill EOL + `.gitattributes` — acceptance: skill 标记文件全 CRLF；检查器 EOL 断言 PASS (covers: S2C,S2D)
+- [x] T5: README/CHANGELOG/checklist/smoke/v2 spec 卫生 — acceptance: Version 2.0.2；Last sync 有 SHA；CHANGELOG 2.0.1 假声明纠正；D5 表含 108；v2 review commits 具体化 (covers: S2D)
+- [x] T6: 静态门 + 负向自测（抽 EOL/版本/称谓/Soft Priority 字面） — acceptance: 默认 ALL PASS；临时破坏可 FAIL (covers: S1,S2)
+- [x] T7: 独立 Reviewer 对照本 spec — acceptance: Spec/Correctness/Consistency 三类结论；critical 清零 (covers: S1,S2)
+- [x] T8: Finalize 本文档并提交 — acceptance: status=delivered；Report 填齐；commits 具体 (covers: S2)
