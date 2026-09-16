@@ -1,12 +1,12 @@
 # universal-agent-engine
 
-**v2.0.0** — 门控路由 + compose-next 全模态插件。
+**v2.0.1-dev** — 门控路由 + compose-next 全模态插件（质量加固未发版）。
 
 目标：standalone 时分析需求并路由到正确出口；compose-next 运行中补齐全模态感知、测试与 Grill 研究证据。**不再**是一般编排执行引擎。
 
 <!-- github-sync:begin -->
-**Version:** 2.0.0  
-**Last sync:** 2026-09-14
+**Version:** 2.0.1-dev  
+**Last sync:** 2026-09-14 @ 385c587
 <!-- github-sync:end -->
 
 ## 安装
@@ -17,10 +17,10 @@
 ~/.config/mimocode/skills/universal-agent-engine/
 ```
 
-一步同步（Windows PowerShell）：
+一步同步（在仓库根目录执行，Windows PowerShell）：
 
 ```powershell
-$src = "D:\project\提示词工程\repos\universal-agent-engine\skill"
+$src = Join-Path (Get-Location) 'skill'
 $dst = "$env:USERPROFILE\.config\mimocode\skills\universal-agent-engine"
 New-Item -ItemType Directory -Force -Path $dst | Out-Null
 Copy-Item -Path "$src\*" -Destination $dst -Recurse -Force
@@ -50,7 +50,7 @@ Copy-Item -Path "$src\*" -Destination $dst -Recurse -Force
 | Soft-Test / Companion | 视/听/交互/Office/跨模态抽检 |
 | Soft-Research | Grill 证据包 ≤40 行（不拍板） |
 
-**禁止**：Spec-input / Review-pack / Report / 九阶段 / Soft Depth；Workspace/Finish 零 Soft；默认 fan-out=0。
+**禁止**：Spec-input / Review-pack / Report / Soft-Orient / 九阶段 / Soft Depth；Workspace/Finish 零 Soft；默认 fan-out=0。
 
 细则：`skill/references/multimodal.md`。
 
@@ -66,11 +66,19 @@ skill/
   tests/
     run_static_checks.py   # v2 契约静态门
     checklist.md
-docs/compose/spec/v2-gate-multimodal.md
+docs/compose/spec/
+  v2-gate-multimodal.md    # 当前规格（v2）
+  quality-review-v2.md     # 质量审查与加固
+  engine-*.md              # v1 历史规格（status: superseded）
+docs/compose/smoke/
+  v2.0.0-full-matrix-*.md  # v2 冒烟协议/报告
+  v1.*-matrix.md           # v1 历史矩阵（Historical）
 README.md
 CHANGELOG.md
 LICENSE
 ```
+
+历史 docs 仅作考古；当前契约以 `skill/` + `v2-gate-multimodal.md` 为准。
 
 ## 回归
 

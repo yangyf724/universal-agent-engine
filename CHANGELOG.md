@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2026-09-14
+
+### 摘要
+
+**质量审查加固（无行为变更）**。全仓 compose-next 审查：静态门从 69→85 断言；标记 10 份 v1 spec / 7 份 v1 smoke 为 Historical；修 README 安装路径；回填 post-A01 实测指标。**注意**：tag `v2.0.0` 仍指向 `a186373`，**不含** A01 多角色会审禁令（`385c587` 起才在 main）；安装请用 main，勿从 tag 检出。
+
+### Added
+
+- `docs/compose/spec/quality-review-v2.md` — 审查规格与修复范围
+- 静态门：locales JSON/键对齐、委托映射 16 id 全锁、Soft-Orient 字面禁令、指针双 ref 必达、FM BOM/CRLF 归一
+
+### Changed
+
+- `skill/tests/run_static_checks.py` — ban-context 改逐行 `all`；Step 2–6 / BUILD-FIX 词边界；同行上下文断言
+- `skill/references/multimodal.md` — 补 Soft-Orient 禁令；写明 Soft 内 Office 委托为能力 JIT、不重入门控
+- `README.md` — 相对安装路径；目录树含 historical docs；Last sync 带 short SHA
+- v2 Spec / Smoke 报告 — 指标回填 body 1597 / Soft JIT 5732 / 20172 B；注明 A01 为 post-tag
+- 10× v1 spec + 7× v1 smoke — `status: superseded` + Historical 横幅
+- CHANGELOG 2.0.0 — 注明 tag 基线与 post-tag A01 补丁
+
+[2.0.1]: https://github.com/yangyf724/universal-agent-engine/compare/v2.0.0...HEAD
+
 ## [2.0.0] - 2026-09-14
 
 ### 摘要
@@ -14,7 +36,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 1. **standalone Intent Gate** — 三出口：ADVISE / 建议 compose-next / 委托**一个**专项 skill（15 类映射表）。**禁止**自执行五步全协议。
 2. **compose-next Multimodal Plugin（Soft）** — Modality Scan、Soft-Test/Companion、Soft-Research（Grill 证据包 ≤40 行，不拍板）、跨模态一致与降级。Workspace/Finish 零 Soft；默认 fan-out=0。
 
-静态基线 **69 pass**；SKILL body **1585 ch**；references 仅 2 文件。规格：`docs/compose/spec/v2-gate-multimodal.md`。
+静态基线 **69 pass**（当时）；SKILL body **1585 ch @ tag a186373**；references 仅 2 文件。规格：`docs/compose/spec/v2-gate-multimodal.md`。  
+**Tag 注记**：A01 多角色会审补丁在 tag 之后的 `385c587`（body→1597）；tag 树不含该禁令。
 
 ### Added
 
@@ -76,6 +99,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `skill/tests/checklist.md` / `README.md` — 版本卫生
 
 [1.12.0]: https://github.com/yangyf724/universal-agent-engine/compare/v1.11.0...v1.12.0
+
+## [1.4.2] - (undocumented interim)
+
+### 摘要
+
+**考古注**：v1.5 验证文档将 v1.4.2 作为 Lean Gates 稳定基线引用，但本仓无 tag、无 CHANGELOG 条目、无独立规格。历史不可恢复；后续文档请勿再假定可检出的 v1.4.x 树。
 
 ## [1.11.0] - 2026-09-14
 

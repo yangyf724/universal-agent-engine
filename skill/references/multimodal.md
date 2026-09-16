@@ -80,6 +80,7 @@ compose-next 运行中的 **Soft 能力卡**。主流程仍归 compose-next；�
 ## 硬规则
 
 - 跳过五步/七 mode 全协议。
-- 禁止 Soft-Spec-input / Soft-Review-pack / Soft-Report / 九阶段 / Soft Depth。
+- 禁止 Soft-Spec-input / Soft-Review-pack / Soft-Report / Soft-Orient / 九阶段 / Soft Depth。
 - Workspace / Finish **零 Soft**。
+- Soft 内 Office/媒体委托是**能力 JIT**：可加载**一个**对应 official skill，但**不**重入门控三出口、不叠加第二编排层。
 - 单卡 JIT：本次只需 Research 就只做 Research；需模态测就只做测试卡。

@@ -9,10 +9,10 @@ python skill/tests/run_static_checks.py
 
 ## 结构
 
-- [ ] `skill/references` 仅 `intent-gate.md` + `multimodal.md`
-- [ ] `skill/tests` 仅 `run_static_checks.py` + `checklist.md`
-- [ ] SKILL.md body ≤ 2500 字符
-- [ ] frontmatter description 含 gate / multimodal / compose-next 信号
+- [x] `skill/references` 仅 `intent-gate.md` + `multimodal.md`
+- [x] `skill/tests` 仅 `run_static_checks.py` + `checklist.md`
+- [x] SKILL.md body ≤ 2500 字符（实测 1597）
+- [x] frontmatter description 含 gate / multimodal / compose-next 信号
 
 ## 路由自检（standalone）
 

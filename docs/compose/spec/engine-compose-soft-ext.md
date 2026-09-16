@@ -1,12 +1,14 @@
 ---
 feature: engine-compose-soft-ext
-status: delivered
+status: superseded
 updated: 2026-09-13
 branch: optimize/v1.8-compose-soft-ext
 commits: f421c98..1656d71
 ---
 
 # Engine × Compose Soft Extensions (v1.8)
+
+> **Historical.** Superseded by v2.0.0 (`v2-gate-multimodal.md`); referenced skill files removed. Retained for archaeology only.
 
 ## Report
 

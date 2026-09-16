@@ -1,12 +1,14 @@
 ---
 feature: engine-v15-plan-validation
-status: delivered
+status: superseded
 updated: 2026-09-13
 branch: optimize/v1.5-plan-validation
 commits: 7ee8c48..bd492f6
 ---
 
 # Engine v1.5.0 Plan Validation
+
+> **Historical.** Superseded by v2.0.0 (`v2-gate-multimodal.md`); referenced skill files removed. Retained for archaeology only.
 
 ## Report
 

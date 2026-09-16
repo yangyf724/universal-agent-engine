@@ -1,12 +1,14 @@
 ---
 feature: engine-compose-next-complement
-status: delivered
+status: superseded
 updated: 2026-09-13
 branch: optimize/v1.3-compose-complement
 commits: f1df40c..f39d56e
 ---
 
 # Engine × Compose-next Complement
+
+> **Historical.** Superseded by v2.0.0 (`v2-gate-multimodal.md`); referenced skill files removed. Retained for archaeology only.
 
 ## Report
 

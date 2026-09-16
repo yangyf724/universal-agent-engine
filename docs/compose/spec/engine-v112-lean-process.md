@@ -1,12 +1,14 @@
 ---
 feature: engine-v112-lean-process
-status: delivered
+status: superseded
 updated: 2026-09-14
 branch: feat/v112-lean-process
 commits: f05c771..d3ed1b9 # reviewed range; finalize docs commit outside by construction
 ---
 
 # Engine v1.12 — Lean Process（效率与节省率）
+
+> **Historical.** Superseded by v2.0.0 (`v2-gate-multimodal.md`); referenced skill files removed. Retained for archaeology only.
 
 ## Report
 
@@ -29,7 +31,7 @@ v1.12 **Lean Process**：把 v1.11 过程门从「独立仪式」改为交付附
 
 ## [S1] Problem
 
-R1/R2 A/B 报告（`docs/compose-next-ab-test/report.md`、`…-hard/report.md`）证明 v1.11 过程门可落地，但代价过高：
+R1/R2 A/B 报告（`docs/compose-next-ab-test/report.md`、`…-hard/report.md` — **external / not vendored in this repo**）证明 v1.11 过程门可落地，但代价过高：
 
 | 指标 | 无 engine | v1.10 | v1.11 | 缺口 |
 |---|---:|---:|---:|---|

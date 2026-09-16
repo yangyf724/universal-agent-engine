@@ -1,12 +1,14 @@
 ---
 feature: engine-soft-companion-validation
-status: delivered
+status: superseded
 updated: 2026-09-13
 branch: optimize/v1.7-soft-companion
 commits: e6f86d9..6eb2db8
 ---
 
 # Engine Soft Companion — Design Validation + Implementation (v1.7)
+
+> **Historical.** Superseded by v2.0.0 (`v2-gate-multimodal.md`); referenced skill files removed. Retained for archaeology only.
 
 ## Report
 

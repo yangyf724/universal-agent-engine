@@ -1,12 +1,14 @@
 ---
 feature: engine-lean-gates
-status: delivered
+status: superseded
 updated: 2026-09-13
 branch: optimize/v1.5-lean-gates
 commits: 49a3f06..bc08e32
 ---
 
 # Engine Lean Gates (v1.5.0 / AMEND G1–G7)
+
+> **Historical.** Superseded by v2.0.0 (`v2-gate-multimodal.md`); referenced skill files removed. Retained for archaeology only.
 
 ## Report
 

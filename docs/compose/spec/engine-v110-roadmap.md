@@ -1,12 +1,14 @@
 ---
 feature: engine-v110-roadmap
-status: delivered
+status: superseded
 updated: 2026-09-13
 branch: plan/v110-iteration
 commits: 9870790..1ef968f
 ---
 
 # Engine v1.10 Roadmap — v1.9 系统分析与迭代规划
+
+> **Historical.** Superseded by v2.0.0 (`v2-gate-multimodal.md`); referenced skill files removed. Retained for archaeology only.
 
 ## Report
 

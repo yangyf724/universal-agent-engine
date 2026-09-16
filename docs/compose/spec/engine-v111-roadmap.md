@@ -1,12 +1,14 @@
 ---
 feature: engine-v111-roadmap
-status: delivered
+status: superseded
 updated: 2026-09-14
 branch: plan/v111-roadmap
 commits: 8377f61..2c39e59 # reviewed implementation range; finalize commits outside by construction
 ---
 
 # Engine v1.11 Roadmap — v1.10 短板总账与一次补齐规划
+
+> **Historical.** Superseded by v2.0.0 (`v2-gate-multimodal.md`); referenced skill files removed. Retained for archaeology only.
 
 ## Report
 

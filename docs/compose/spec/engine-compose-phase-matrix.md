@@ -1,12 +1,14 @@
 ---
 feature: engine-compose-phase-matrix
-status: delivered
+status: superseded
 updated: 2026-09-13
 branch: optimize/v1.9-compose-phases
 commits: 32565b6..47abe82
 ---
 
 # Engine × compose-next 全阶段能力矩阵 (v1.9)
+
+> **Historical.** Superseded by v2.0.0 (`v2-gate-multimodal.md`); referenced skill files removed. Retained for archaeology only.
 
 ## Report
 

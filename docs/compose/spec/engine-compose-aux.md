@@ -1,12 +1,14 @@
 ---
 feature: engine-compose-aux
-status: delivered
+status: superseded
 updated: 2026-09-13
 branch: optimize/v1.6-compose-aux
 commits: 8aaf352..5636b53
 ---
 
 # Engine × Compose-next Auxiliary (能力同伴 + 交接物)
+
+> **Historical.** Superseded by v2.0.0 (`v2-gate-multimodal.md`); referenced skill files removed. Retained for archaeology only.
 
 ## Report
 
