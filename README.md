@@ -1,6 +1,6 @@
 # universal-agent-engine
 
-**v2.0.4** — 门控路由 + compose-next 全模态插件（bug-hunt v4 / Priority 补全 + 静态门加固）。
+**v2.0.4** — 门控路由 + compose-next 全模态插件（bug-hunt v5 / Soft-JIT+委托清单+静态门加固）。
 
 目标：standalone 时分析需求并路由到正确出口；compose-next 运行中补齐全模态感知、测试与 Grill 研究证据。**不再**是一般编排执行引擎。
 
