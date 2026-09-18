@@ -3,7 +3,7 @@ feature: bug-hunt-v4
 status: delivered
 updated: 2026-09-18
 branch: fix/bug-hunt-v4
-commits: 30b7d54..PENDING  # filled after finalize commit
+commits: 30b7d54..c67285a  # implementation; this docs-only finalize follows
 ---
 
 # Bug Hunt v4 — iterative-bug-hunter (code-only)
