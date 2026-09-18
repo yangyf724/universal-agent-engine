@@ -1,12 +1,12 @@
 # universal-agent-engine
 
-**v2.0.4** — 门控路由 + compose-next 全模态插件（bug-hunt v5 / Soft-JIT+委托清单+静态门加固）。
+**v2.0.4-Clean** — 门控路由 + compose-next 全模态插件；工作区清理：仅保留当前契约 docs。
 
 目标：standalone 时分析需求并路由到正确出口；compose-next 运行中补齐全模态感知、测试与 Grill 研究证据。**不再**是一般编排执行引擎。
 
 <!-- github-sync:begin -->
-**Version:** 2.0.4  
-**Last sync:** 2026-09-18 · `fc4038c`
+**Version:** 2.0.4-Clean  
+**Last sync:** 2026-09-18 · `cfddfd2`
 <!-- github-sync:end -->
 
 ## 安装
@@ -67,20 +67,17 @@ skill/
     run_static_checks.py   # v2 契约静态门
     checklist.md
 docs/compose/spec/
-  v2-gate-multimodal.md    # 当前行为规格（v2，经 2.0.2/2.0.3 修订）
-  quality-review-v3.md     # 2.0.2 质量审查
-  bug-hunt-v4.md           # 2.0.3 bug-hunt 规格（当前）
-  quality-review-v2.md     # 2.0.1 历史审查
-  engine-*.md              # v1 历史规格（status: superseded）
+  v2-gate-multimodal.md    # 当前行为规格（v2，经 2.0.2–2.0.4 修订）
+  bug-hunt-v4.md           # bug-hunt 修复规格（当前）
 docs/compose/smoke/
-  v2.0.0-full-matrix-*.md  # v2 冒烟协议/报告
-  v1.*-matrix.md           # v1 历史矩阵（Historical）
+  v2.0.0-full-matrix-protocol.md  # v2 冒烟协议
+  v2.0.0-full-matrix-report.md    # v2 冒烟权威报告
 README.md
 CHANGELOG.md
 LICENSE
 ```
 
-历史 docs 仅作考古；当前契约以 `skill/` + `v2-gate-multimodal.md`（Priority/称谓以 skill 与 2.0.3 修订为准）+ `bug-hunt-v4.md` 修复记录为准。
+当前契约以 `skill/` + `v2-gate-multimodal.md` + `bug-hunt-v4.md` 为准；v1 历史规格/矩阵已移除，可查 git 历史。
 
 ## 回归
 

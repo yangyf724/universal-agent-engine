@@ -17,7 +17,7 @@ python skill/tests/run_static_checks.py --negative-self-test
 - [x] SKILL.md body ≤ 2500 字符
 - [x] frontmatter description 含 gate / multimodal / compose-next 信号
 - [x] skill 文本资产统一 CRLF；`.py` 保持 LF；`.gitattributes` 固化 EOL
-- [x] README / CHANGELOG / checklist 版本三处对齐 2.0.3
+- [x] README / CHANGELOG / checklist 版本三处对齐 2.0.4
 
 ## 路由自检（standalone）
 

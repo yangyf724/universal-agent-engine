@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.4-Clean] - 2026-09-18
+
+### 摘要
+
+工作区清理发版：移除 v1 历史规格与过期冒烟/审查文档，仓库只保留当前契约；skill 契约与静态门（155/0 + 负向 15/15）不变。
+
+### Removed
+
+- `docs/compose/spec/engine-*.md` — v1 历史规格（status: superseded）→ 考古材料迁 git 历史，目录不再堆 superseded 文档
+- `docs/compose/spec/quality-review-v2.md` / `quality-review-v3.md` — 历史质量审查 → 结论已在 CHANGELOG，避免与当前契约并列造成误读
+- `docs/compose/smoke/v1.*-matrix.md` — v1 历史冒烟矩阵 → 已由 `v2.0.0-full-matrix-*` 取代
+
+### Changed
+
+- `README.md` — 目录树仅列当前契约 docs，删去历史文档清单 → 安装与阅读时一眼看到有效规格
+- `skill/tests/checklist.md` — 结构项版本称谓对齐 2.0.4 → 与 README/CHANGELOG 版本三处一致
+- `CHANGELOG.md` — 本次清理记入 `[2.0.4-Clean]` → 发版标签与 tag 对齐
+
+[2.0.4-Clean]: https://github.com/yangyf724/universal-agent-engine/compare/v2.0.4...v2.0.4-Clean
+
 ## [2.0.4] - 2026-09-18
 
 ### 摘要
