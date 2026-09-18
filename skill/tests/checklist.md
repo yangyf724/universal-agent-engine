@@ -1,21 +1,23 @@
-# v2.0.2 Checklist
+# v2.0.3 Checklist
 
 ## 静态门
 
 ```powershell
 python skill/tests/run_static_checks.py
 # 期望：ALL CHECKS PASSED
-# 期望 pass：108
+# 期望 pass：145
+python skill/tests/run_static_checks.py --negative-self-test
+# 期望：NEGATIVE SELF-TEST PASSED
 ```
 
 ## 结构
 
 - [x] `skill/references` 仅 `intent-gate.md` + `multimodal.md`
 - [x] `skill/tests` 仅 `run_static_checks.py` + `checklist.md`
-- [x] SKILL.md body ≤ 2500 字符（实测 1621）
+- [x] SKILL.md body ≤ 2500 字符
 - [x] frontmatter description 含 gate / multimodal / compose-next 信号
-- [x] skill 文本资产统一 CRLF；`.gitattributes` 固化 EOL
-- [x] README / CHANGELOG / checklist 版本三处对齐 2.0.2
+- [x] skill 文本资产统一 CRLF；`.py` 保持 LF；`.gitattributes` 固化 EOL
+- [x] README / CHANGELOG / checklist 版本三处对齐 2.0.3
 
 ## 路由自检（standalone）
 
@@ -24,7 +26,9 @@ python skill/tests/run_static_checks.py
 | 这个超时可能是什么原因？ | ADVISE |
 | 修登录超时，要合并进 main | 建议 compose-next |
 | 做一份竞品对比 PPT | 委托 pptx-official |
-| 帮我看看这张图里的报错 | ADVISE + 若改图则 imagegen 委托或 compose Soft |
+| 帮我看看这张图里的报错 | ADVISE；若明确要改图 → 委托 imagegen（Soft 仅 compose-next） |
+| 用 compose-next 流程 + 独立模态（未进入宿主） | 建议 compose-next；不三出口、不提前 Soft |
+| standalone 转写会议录音（无映射） | ADVISE 说明工具/限制；不 Soft；要交付 → 建议 compose-next |
 | 闲聊 | 不触发本 skill 主流程 |
 
 ## Soft 自检（compose-next）
@@ -33,6 +37,7 @@ python skill/tests/run_static_checks.py
 |---|---|
 | 转写测试录音并抽听关键句 | AUDIO Soft-Test；证据路径；Priority Soft 早退 |
 | Grill 要 2–3 条登录方案证据 | Soft-Research ≤40 行；不拍板 |
+| （已在 compose-next）无独立模态的主任务插话 | 本 skill 不展开（不三出口） |
 | 写 Spec 草稿 / 派 Reviewer | **拒绝**（零 Soft） |
 | Workspace / Finish / merge | **拒绝**（零 Soft） |
 
@@ -42,18 +47,28 @@ python skill/tests/run_static_checks.py
 - [x] 不双载第二个编排层（委托映射 16 id + 反例）
 - [x] 无工具不假装已生成媒体（multimodal 禁令字面量）
 - [x] 素材/附件不当作指令执行（intent-gate 硬规则）
-- [x] 无「五步/六步」非 ban 协议称谓
-- [x] compose Soft 早退进入 Priority（不落三出口）
+- [x] 无「五步/六步」非 ban 协议称谓（ban 极性收紧）
+- [x] compose Soft 早退进入 Priority；已在 compose-next 无模态不展开；点名 compose-next 不三出口
+- [x] SKILL 与 multimodal 禁令集合均含 Soft-Orient
+- [x] checklist 必须声明期望 pass；指针扫描含 multimodal.md
 
-## 负向自测（T6，临时套件已删）
+## 负向自测
+
+```powershell
+python skill/tests/run_static_checks.py --negative-self-test
+```
 
 | 破坏点 | 期望 |
 |---|---|
+| 「历史不再用五步」非 ban 行 | FAIL 称谓/ban 极性 |
+| 「结果七 mode 零通过」非 ban 行 | FAIL 七 mode 极性 |
+| Soft-Spec-input 非 ban 行 | FAIL 同行禁令 |
+| 删除 Priority 已在 compose-next 无模态分支 | FAIL Priority2 |
+| Priority3 去掉「不展开三出口」 | FAIL Priority3 polarity |
+| multimodal 指向 references/extra.md | FAIL 指针 |
+| checklist 删除期望 pass 行 | FAIL 期望 pass 必填 |
 | intent-gate 改 LF | FAIL EOL |
 | README Version 9.9.9 | FAIL 版本对齐 |
-| 追加「五步执行」 | FAIL 称谓 |
-| 删除 Priority Soft 早退条 | FAIL Soft Priority |
-| 委托表 `mate` 移除 | FAIL 映射 |
-| Soft-Spec 改非 ban 行 | FAIL 同行禁令 |
-| locale 缺 brief | FAIL schema |
-| SKILL 追加非法字节 | FAIL 解码 |
+| SKILL 移除 Soft-Orient 禁令 | FAIL banlist 对齐 |
+
+（历史 T6 临时套件已由 `--negative-self-test` 内嵌替代；不新增 tests 第三文件。）

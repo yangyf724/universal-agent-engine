@@ -8,3 +8,7 @@ __pycache__/
 *.pyc
 .worktrees/*
 !.worktrees/.gitignore
+.mimocode/
+.bug-hunter/
+*.baiduyun.uploading.cfg
+.baiduyun*
