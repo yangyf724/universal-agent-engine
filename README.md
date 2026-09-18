@@ -6,7 +6,7 @@
 
 <!-- github-sync:begin -->
 **Version:** 2.0.4-Clean  
-**Last sync:** 2026-09-18 · `cfddfd2`
+**Last sync:** 2026-09-18 · `50869c3`
 <!-- github-sync:end -->
 
 ## 安装
