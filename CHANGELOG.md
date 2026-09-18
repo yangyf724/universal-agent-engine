@@ -5,6 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.3] - 2026-09-18
+
+### 摘要
+
+**iterative-bug-hunter（code-only + 检查器加压）**。compose-next × bug-hunt v4：修 Priority 缺口（已在 compose-next 无独立模态不得展开三出口；点名 compose-next 不得提前 Soft/三出口）；SKILL/multimodal 禁令对齐 Soft-Orient；standalone 无映射模态交付明确 ADVISE；检查器 ban 极性收紧、Priority/指针/期望 pass/Last-sync SHA/当前规格卫生断言、`--negative-self-test` 内嵌负向矩阵。文档：v2-gate 称谓与 Priority 修订、smoke §0 回填、`.gitignore` 增 `.mimocode/` 与 `.bug-hunter/`。规格：`docs/compose/spec/bug-hunt-v4.md`。
+
+### Added
+
+- `skill/tests/run_static_checks.py --negative-self-test` — 临时副本注入矩阵（不新增 tests 第三文件）
+- Priority/Soft-Orient 对齐、指针含 multimodal、期望 pass 必填、Last-sync SHA 可解析、当前规格含 Soft Priority 等断言
+- `.gitignore` — `.mimocode/`、`.bug-hunter/`
+
+### Changed
+
+- `skill/references/intent-gate.md` — Priority 1–5：Soft 仅「已在 compose-next + 独立模态」；已在无模态/点名 compose-next 不展开三出口；standalone 无映射模态交付规则
+- `skill/SKILL.md` — Important/Examples/Troubleshooting 对齐 Priority；禁令列表补 Soft-Orient
+- `skill/tests/checklist.md` — 2.0.3；期望 pass；standalone 不得写 compose Soft 出口
+- `skill/tests/run_static_checks.py` — ban 极性（去掉裸 零/不再 通行证）；结构/路由/Soft/指针/文档卫生加固
+- `docs/compose/spec/v2-gate-multimodal.md` — 称谓权威名 + Priority 注记（当前契约与 skill 对齐）
+- `docs/compose/smoke/v2.0.0-full-matrix-report.md` — §0 权威结论回填 108 与 body/Soft 历史序列
+- `README.md` — Version 2.0.3；回归含 negative-self-test；当前契约指向 skill + v2-gate（修订）+ bug-hunt-v4
+
+### Fixed
+
+- CHANGELOG `[2.0.2]` smoke 描述与 §0 陈旧「HEAD 85/0」不一致 — 以 2.0.3 文档回填为准
+- Priority 与硬规则矛盾、检查器假绿面（ban-context/指针/期望 pass）
+- Review critical：Priority3「点名 compose-next → 不展开三出口」极性断言 + 负向用例 N5b
+
+[2.0.3]: https://github.com/yangyf724/universal-agent-engine/compare/v2.0.2...v2.0.3
+
 ## [2.0.2] - 2026-09-14
 
 ### 摘要
@@ -23,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `skill/tests/run_static_checks.py` — BOM 改为 `\ufeff` 转义；safe_read；版本/EOL/称谓断言
 - `skill/tests/checklist.md` — 标题 2.0.2；期望 pass 108；硬规则改为静态门覆盖并勾选
 - `README.md` — Version 2.0.2；Last sync 带 short SHA（兑现 2.0.1 未落地项）
-- `docs/compose/smoke/v2.0.0-full-matrix-report.md` — D5 表补 HEAD 85/0
+- `docs/compose/smoke/v2.0.0-full-matrix-report.md` — D5 表补 69/85/**108/0** @v2.0.2（§0 曾写 HEAD 85/0，已在 2.0.3 回填为含 143/0 的序列）
 - `docs/compose/spec/quality-review-v2.md` — commits 改为具体范围
 
 ### Fixed

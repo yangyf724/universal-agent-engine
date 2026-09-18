@@ -1,9 +1,9 @@
 ---
 feature: v2-gate-multimodal
 status: delivered
-updated: 2026-09-14
+updated: 2026-09-18
 branch: feat/v2-gate-multimodal
-commits: b2a1663..f7129ef  # feature range; post-tag: a186373 (merge), 385c587 (A01 multi-persona ban)
+commits: b2a1663..f7129ef  # base feature; amended by quality-review-v3 (2.0.2) + bug-hunt-v4 (2.0.3)
 ---
 
 # v2.0.0 Gate + Multimodal Plugin
@@ -26,7 +26,7 @@ commits: b2a1663..f7129ef  # feature range; post-tag: a186373 (merge), 385c587 (
 v1.12 已膨胀为「七 mode 全协议 + 九阶段 Soft 矩阵 + 多份门禁/过程 reference」，与宿主 compose-next 职责重叠、token 税偏高。用户要的是更窄的双角色：
 
 1. **compose-next 运行中**：做全模态感知与全模态测试能力插件，并保留 Grill 阶段 Soft-Research；不再供给 Spec/Review/Report 等编排输入 Soft 卡。
-2. **standalone**：只分析需求并门控，出口仅三种——ADVISE / 建议 compose-next / 委托专项 skill；**不**自执行五步编排。
+2. **standalone**：只分析需求并门控，出口仅三种——ADVISE / 建议 compose-next / 委托专项 skill；**不**自执行 Intake→Plan→Execute→Deliver 全协议。
 3. **大幅度精简**：砍掉与上述双角色无关的 references、Role Lens、七 mode 表、process-gates 仪式与 Soft Depth。
 
 ## [S2] Design
@@ -109,7 +109,7 @@ v1.12 已膨胀为「七 mode 全协议 + 九阶段 Soft 矩阵 + 多份门禁/�
 
 ### B. compose-next Multimodal Plugin
 
-激活条件：会话已在 compose-next / P-domain，且存在**独立**模态子任务（读图/音视频/Office 产物/3D/交互测）。
+激活条件：会话已在 compose-next / P-domain，且存在**独立**模态子任务（读图/音视频/Office 产物/3D/交互测）；与 `intent-gate.md` Priority 1 对齐（无模态或仅点名 compose-next 时不 Soft、不三出口）。
 
 供给面（仅此三类 Soft，单卡 JIT）：
 
@@ -141,7 +141,7 @@ v1.12 已膨胀为「七 mode 全协议 + 九阶段 Soft 矩阵 + 多份门禁/�
 
 硬规则：
 
-- **跳过**任何五步/七 mode 全协议。
+- **跳过** Intake→Plan→Execute→Deliver 全协议与七 mode。
 - **禁止** Soft-Spec-input / Soft-Review-pack / Soft-Report / 九阶段矩阵 / Soft Depth / process-gates 仪式 / Soft-Orient 独立卡。
 - Workspace / Finish **零 Soft**（永不 worktree/merge/PR）。
 - 默认 fan-out=0；Soft-Research 不并行扩 fan-out。
@@ -176,8 +176,9 @@ README.md / CHANGELOG.md
 ### Description（frontmatter）要点
 
 - 触发：standalone 门控路由；compose-next 中的全模态感知/测试 Soft。
-- 退出：纯聊天；已点名 compose-next 且无模态子任务；需要完整编排执行时→compose-next 或专项 skill。
+- 退出：纯聊天；点名 compose-next（只 compose-next）；会话已在 compose-next 且无独立模态（不展开）；需要完整编排执行时→compose-next 或专项 skill。
 - 不再宣称 BUILD/FIX/RESEARCH 七 mode 编排。
+- **Priority（2.0.2/2.0.3）**：Soft 仅当「会话已在 compose-next/P-domain + 独立模态」；点名 compose-next → 只 compose-next；已在 compose-next 无模态 → 本 skill 不展开。
 
 ## [S3] Out of Scope
 
@@ -189,7 +190,7 @@ README.md / CHANGELOG.md
 
 ## Tasks
 
-- [x] T1: 重写 `SKILL.md` 为 v2 双角色主体 — acceptance: 无七 mode 全表/五步全协议/Soft 九阶段；body ≤2500 ch；指针只指向 2 份 references (covers: S2)
+- [x] T1: 重写 `SKILL.md` 为 v2 双角色主体 — acceptance: 无七 mode 全表；弃用「五步」全协议称谓；无 Soft 九阶段；body ≤2500 ch；指针只指向 2 份 references (covers: S2)
 - [x] T2: 新建 `references/intent-gate.md` 三出口门控 — acceptance: ADVISE/compose-next/专项委托判定表完整；含硬规则与反例 (covers: S2A)
 - [x] T3: 重写 `references/multimodal.md` 采集+测试+Grill 研究 — acceptance: 含 Scan Order、Soft-Test 矩阵、Soft-Research ≤40 行卡、跨模态一致门、降级表 (covers: S2B)
 - [x] T4: 删除 7 份废弃 references 与 4 份废弃 tests — acceptance: `skill/references` 仅 2 文件；`skill/tests` 仅 static_checks + checklist (covers: S2)

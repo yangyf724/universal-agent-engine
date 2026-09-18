@@ -1,12 +1,12 @@
 # universal-agent-engine
 
-**v2.0.2** — 门控路由 + compose-next 全模态插件（质量加固 v3）。
+**v2.0.3** — 门控路由 + compose-next 全模态插件（bug-hunt v4 / Priority 补全 + 静态门加固）。
 
 目标：standalone 时分析需求并路由到正确出口；compose-next 运行中补齐全模态感知、测试与 Grill 研究证据。**不再**是一般编排执行引擎。
 
 <!-- github-sync:begin -->
-**Version:** 2.0.2  
-**Last sync:** 2026-09-14 · `2c0c269`
+**Version:** 2.0.3  
+**Last sync:** 2026-09-18 · `2c0c269`
 <!-- github-sync:end -->
 
 ## 安装
@@ -37,7 +37,7 @@ Copy-Item -Path "$src\*" -Destination $dst -Recurse -Force
 | 出口 | 信号 | 行为 |
 |------|------|------|
 | ADVISE | 解释/咨询，无文件交付 | 直接结论 + 下一步 |
-| compose-next | git 多步 + 合并/规格 | 建议 `/compose-next …` |
+| compose-next | git 多步 + 合并/规格；或点名 compose-next | 建议 `/compose-next …`（不展开三出口） |
 | 专项委托 | Office/PDF/3D/生图/深研… | 加载**一个**专项 skill |
 
 细则与委托映射（15 类）：`skill/references/intent-gate.md`。
@@ -67,9 +67,10 @@ skill/
     run_static_checks.py   # v2 契约静态门
     checklist.md
 docs/compose/spec/
-  v2-gate-multimodal.md    # 当前行为规格（v2）
-  quality-review-v2.md     # 2.0.1 质量审查
-  quality-review-v3.md     # 2.0.2 全方位审查（当前）
+  v2-gate-multimodal.md    # 当前行为规格（v2，经 2.0.2/2.0.3 修订）
+  quality-review-v3.md     # 2.0.2 质量审查
+  bug-hunt-v4.md           # 2.0.3 bug-hunt 规格（当前）
+  quality-review-v2.md     # 2.0.1 历史审查
   engine-*.md              # v1 历史规格（status: superseded）
 docs/compose/smoke/
   v2.0.0-full-matrix-*.md  # v2 冒烟协议/报告
@@ -79,13 +80,15 @@ CHANGELOG.md
 LICENSE
 ```
 
-历史 docs 仅作考古；当前契约以 `skill/` + `v2-gate-multimodal.md` 为准。
+历史 docs 仅作考古；当前契约以 `skill/` + `v2-gate-multimodal.md`（Priority/称谓以 skill 与 2.0.3 修订为准）+ `bug-hunt-v4.md` 修复记录为准。
 
 ## 回归
 
 ```powershell
 python skill/tests/run_static_checks.py
 # 期望：ALL CHECKS PASSED
+python skill/tests/run_static_checks.py --negative-self-test
+# 期望：NEGATIVE SELF-TEST PASSED
 ```
 
 ## License
