@@ -80,7 +80,7 @@ POSITIVE_LEAK_RE = re.compile(r"(可开放|恢复启用|允许加载|作草稿�
 REQUIRED_GATES = ["ADVISE", "compose-next", "专项委托"]
 REQUIRED_SOFT = ["Modality Scan", "Soft-Test", "Soft-Research", "fan-out"]
 
-# intent-gate.md 映射表中出现的全部 skill id（15 行 / 16 id）
+# intent-gate.md 映射表中出现的全部 skill id（canonical seed 18 行 / 19 id）
 DELEGATE_SKILLS = [
     "pptx-official",
     "docx-official",
@@ -98,6 +98,9 @@ DELEGATE_SKILLS = [
     "product-design",
     "frontend-design",
     "mate",
+    "data-analytics",
+    "learn-everything",
+    "skill-creator",
 ]
 
 ALLOWED_REFS = {"intent-gate.md", "multimodal.md"}
@@ -394,6 +397,42 @@ def main() -> int:
                 "v2-gate-multimodal.md" in readme_raw,
                 "README tree lists v2-gate-multimodal.md",
             )
+        check(
+            re.search(r"当前核对", spec_n) is not None
+            and re.search(r"checklist|期望 pass", spec_n) is not None,
+            "current spec has live-gate 当前核对 pointer",
+        )
+        check(
+            re.search(r"69/0", spec_n) is not None,
+            "current spec still records journey metric 69/0",
+        )
+
+    # smoke current-contract metric hygiene (v2.0.3 series must not claim 143/0)
+    smoke_p = REPO / "docs" / "compose" / "smoke" / "v2.0.0-full-matrix-report.md"
+    if smoke_p.exists() and expected_pass is not None:
+        smoke_raw = safe_read(smoke_p)
+        if smoke_raw is None:
+            check(False, "smoke report readable")
+        else:
+            smoke_n = normalize_text(smoke_raw)
+            stale_143 = re.search(r"v2\.0\.3[^\n]{0,48}143\s*/\s*0", smoke_n) or re.search(
+                r"143\s*/\s*0[^\n]{0,48}v2\.0\.3", smoke_n
+            )
+            check(stale_143 is None, "smoke has no stale v2.0.3 143/0 claim")
+            if cv:
+                cur_hits = re.findall(
+                    rf"v{re.escape(cv)}[^\n]{{0,48}}?(\d+)\s*/\s*0", smoke_n
+                )
+                if cur_hits:
+                    check(
+                        any(int(h) == expected_pass for h in cur_hits),
+                        f"smoke current v{cv} gate {cur_hits} matches expected {expected_pass}",
+                    )
+                else:
+                    check(
+                        f"{expected_pass}/0" in smoke_n,
+                        f"smoke mentions current gate {expected_pass}/0",
+                    )
 
     # ------------------------------------------------------------------
     # L2 路由 / Priority
@@ -474,6 +513,16 @@ def main() -> int:
         re.search(r"有独立模态|否则不展开", gate) is not None,
         "gate hard-rule parenthetical qualifies Soft vs no-expand",
     )
+    check(
+        re.search(r"canonical seed", gate, re.I) is not None
+        and re.search(r"已装专项 skill|已装.*skill", gate) is not None,
+        "gate inventory expansion discipline present",
+    )
+    check(
+        re.search(r"只加载\*\*一个\*\*", gate) is not None
+        and re.search(r"禁止双载|不双载", gate) is not None,
+        "gate inventory JIT still single-skill",
+    )
 
     # ------------------------------------------------------------------
     # L3 Soft / multimodal
@@ -515,6 +564,12 @@ def main() -> int:
     check(
         re.search(r"会话已在 compose-next", multi) is not None,
         "multimodal activation requires already-in compose-next",
+    )
+    check(
+        "能力 JIT" in multi
+        and re.search(r"专项 skill", multi) is not None
+        and re.search(r"official skill", multi) is None,
+        "multimodal Soft-JIT names specialized skill not only official",
     )
 
     # Soft ban parity: SKILL body + multimodal must both name the set
@@ -680,6 +735,11 @@ def negative_self_test() -> int:
                 src = docs_src / name
                 if src.exists():
                     shutil.copy2(src, dest / name)
+        smoke_src = src_repo / "docs" / "compose" / "smoke" / "v2.0.0-full-matrix-report.md"
+        if smoke_src.exists():
+            smoke_dest = tmp / "docs" / "compose" / "smoke"
+            smoke_dest.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(smoke_src, smoke_dest / smoke_src.name)
         return tmp
 
     def expect_fail(label: str, mutate, needle: str | None = None) -> None:
@@ -778,11 +838,65 @@ def negative_self_test() -> int:
     def m14(tmp: Path) -> None:
         p = tmp / "README.md"
         t = p.read_text(encoding="utf-8")
-        t2 = t.replace("**Version:** 2.0.3", "**Version:** 9.9.9")
+        t2 = re.sub(r"\*\*Version:\*\*\s*\d+\.\d+\.\d+", "**Version:** 9.9.9", t)
         data = t2.replace("\r\n", "\n").replace("\n", "\r\n").encode("utf-8")
         _write_bytes(p, data)
 
     expect_fail("N14-README版本", m14, "version")
+
+    # N15 Soft-JIT term narrowed to official skill
+    def m15(tmp: Path) -> None:
+        p = tmp / "skill/references/multimodal.md"
+        t = p.read_text(encoding="utf-8")
+        t2 = t.replace("对应专项 skill", "对应 official skill")
+        data = t2.replace("\r\n", "\n").replace("\n", "\r\n").encode("utf-8")
+        _write_bytes(p, data)
+
+    expect_fail("N15-Soft-JIT-official-only", m15, "Soft-JIT")
+
+    # N16 inventory discipline removed
+    def m16(tmp: Path) -> None:
+        p = tmp / "skill/references/intent-gate.md"
+        t = p.read_text(encoding="utf-8")
+        t2 = re.sub(r"- 映射表为 \*\*canonical seed\*\*。.*\n", "", t)
+        t2 = re.sub(r"- 表内无更贴切行、也无对应已装专项 skill 的多步实现/修复.*\n", "", t2)
+        data = t2.replace("\r\n", "\n").replace("\n", "\r\n").encode("utf-8")
+        _write_bytes(p, data)
+
+    expect_fail("N16-inventory纪律缺失", m16, "inventory")
+
+    # N17 drop data-analytics mapping
+    def m17(tmp: Path) -> None:
+        p = tmp / "skill/references/intent-gate.md"
+        t = p.read_text(encoding="utf-8")
+        t2 = re.sub(r"\|[^\n]*data-analytics[^\n]*\n", "", t)
+        data = t2.replace("\r\n", "\n").replace("\n", "\r\n").encode("utf-8")
+        _write_bytes(p, data)
+
+    expect_fail("N17-委托id缺失data-analytics", m17, "data-analytics")
+
+    # N18 smoke reintroduces stale 143 for v2.0.3
+    def m18(tmp: Path) -> None:
+        p = tmp / "docs/compose/smoke/v2.0.0-full-matrix-report.md"
+        if not p.exists():
+            # checker only reads smoke when present; create minimal stale file
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_text("v2.0.3 bug-hunt **143/0**\n", encoding="utf-8")
+        else:
+            t = p.read_text(encoding="utf-8")
+            t2 = t.replace("145/0", "143/0").replace("145 / 0", "143 / 0")
+            p.write_text(t2, encoding="utf-8", newline="\n")
+
+    expect_fail("N18-smoke-v2.0.3-143", m18, "smoke")
+
+    # N19 current spec loses live-gate pointer
+    def m19(tmp: Path) -> None:
+        p = tmp / "docs/compose/spec/v2-gate-multimodal.md"
+        t = p.read_text(encoding="utf-8")
+        t2 = re.sub(r"\n\*\*当前核对\*\*[^\n]*", "", t)
+        p.write_text(t2, encoding="utf-8", newline="\n")
+
+    expect_fail("N19-当前规格缺现行门指针", m19, "当前核对")
 
     print()
     print(f"NEGATIVE cases_passed={len(cases_passed)} cases_failed={len(cases_failed)}")

@@ -12,7 +12,8 @@ commits: b2a1663..f7129ef  # base feature; amended by quality-review-v3 (2.0.2) 
 
 **What was built** — universal-agent-engine v2.0.0 破坏性重构：删除七 mode 全协议、九阶段 Soft 矩阵与 7+4 份 references/tests，改为双角色。standalone 只做 Intent Gate 三出口（ADVISE / 建议 compose-next / 委托一个专项 skill，15 类映射）；compose-next 运行中只供给 Modality Scan、Soft-Test/Companion、Soft-Research（Grill 证据包 ≤40 行，不拍板），并强制跨模态一致与降级披露。交付时 SKILL body 1585 ch（tag `a186373`）；post-tag A01 多角色补丁后 body **1597**（`385c587`）。references 仅 `intent-gate.md` + `multimodal.md`。
 
-**Verification** — `python skill/tests/run_static_checks.py` → ALL CHECKS PASSED（69/0）。独立 Reviewer 对照 Spec 七条 AC 全部 Met，无 critical。人工对照 checklist 三出口 + Soft 模态路径。
+**Verification** — v2.0.0 交付时 `python skill/tests/run_static_checks.py` → ALL CHECKS PASSED（69/0，journey 历史值）。独立 Reviewer 对照 Spec 七条 AC 全部 Met，无 critical。人工对照 checklist 三出口 + Soft 模态路径。
+**当前核对** — 现行验收数以 `skill/tests/checklist.md`「期望 pass」为准（2.0.4 bug-hunt 后含委托清单/Soft-JIT/inventory 断言）；勿把上文 69/0 当作当前门。
 
 **Journey log**
 1. Worktree 在本会话被隔离策略拦下，改为在主仓 feature 分支实现。

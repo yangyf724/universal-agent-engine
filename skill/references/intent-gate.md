@@ -51,11 +51,15 @@
 | 交互可视化解释（非独立文件） | `visualizer` 或对话内 sci-widget | 用户要落盘 html 才落盘 |
 | 桌面产品 UX 审计 / 克隆界面 | `product-design` / `frontend-design` | 流程 vs 视觉实现 |
 | 桌宠 / Mate | `mate` | |
+| 定量产品/业务分析、KPI、仪表盘 | `data-analytics` | 分析交付 |
+| 带我学 PDF/论文/分章课程 | `learn-everything` | 教学流程 |
+| 创建/评审 agent skill 包 | `skill-creator` | |
 
 ## 委托纪律
 
 - 只加载**一个**专项 skill；不双载第二个编排层。
-- 映射外的多步实现/修复 → 出口改为**建议 compose-next**。
+- 映射表为 **canonical seed**。请求清晰对应**已装**专项 skill（如 `sales` / `design-blueprint` / `playwright` 等）且产物单一、表内无更贴切行 → 加载该 skill **一个**；仍禁止双载。
+- 表内无更贴切行、也无对应已装专项 skill 的多步实现/修复 → 出口改为**建议 compose-next**。
 - standalone **无映射**的模态交付（转写/配音等）→ ADVISE 说明工具/限制；**不**进入 Soft、**不**假装专项委托。用户要完整交付 → 建议 `/compose-next …`。
 - 委托后不接管该 skill 的验收细则。
 

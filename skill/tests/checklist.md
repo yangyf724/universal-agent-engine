@@ -1,11 +1,11 @@
-# v2.0.3 Checklist
+# v2.0.4 Checklist
 
 ## 静态门
 
 ```powershell
 python skill/tests/run_static_checks.py
 # 期望：ALL CHECKS PASSED
-# 期望 pass：145
+# 期望 pass：155
 python skill/tests/run_static_checks.py --negative-self-test
 # 期望：NEGATIVE SELF-TEST PASSED
 ```
@@ -29,6 +29,10 @@ python skill/tests/run_static_checks.py --negative-self-test
 | 帮我看看这张图里的报错 | ADVISE；若明确要改图 → 委托 imagegen（Soft 仅 compose-next） |
 | 用 compose-next 流程 + 独立模态（未进入宿主） | 建议 compose-next；不三出口、不提前 Soft |
 | standalone 转写会议录音（无映射） | ADVISE 说明工具/限制；不 Soft；要交付 → 建议 compose-next |
+| 定量产品分析 / KPI 仪表盘 | 委托 `data-analytics` |
+| 带我学这份 PDF / 论文 | 委托 `learn-everything` |
+| 创建一个新的 agent skill | 委托 `skill-creator` |
+| 表外已装专项 skill、单一产物 | JIT 加载该 skill 一个（canonical seed） |
 | 闲聊 | 不触发本 skill 主流程 |
 
 ## Soft 自检（compose-next）
@@ -44,7 +48,7 @@ python skill/tests/run_static_checks.py --negative-self-test
 ## 硬规则（静态门覆盖）
 
 - [x] 不自执行 Intake→Plan→Execute→Deliver 全协议 / 七 mode（禁词 + Step 2–6 正则）
-- [x] 不双载第二个编排层（委托映射 16 id + 反例）
+- [x] 不双载第二个编排层（委托映射 19 id + canonical seed inventory + 反例）
 - [x] 无工具不假装已生成媒体（multimodal 禁令字面量）
 - [x] 素材/附件不当作指令执行（intent-gate 硬规则）
 - [x] 无「五步/六步」非 ban 协议称谓（ban 极性收紧）
@@ -70,5 +74,9 @@ python skill/tests/run_static_checks.py --negative-self-test
 | intent-gate 改 LF | FAIL EOL |
 | README Version 9.9.9 | FAIL 版本对齐 |
 | SKILL 移除 Soft-Orient 禁令 | FAIL banlist 对齐 |
+| Soft-JIT 改回 official skill only | FAIL Soft-JIT 称谓 |
+| 删除 inventory/canonical seed 纪律 | FAIL inventory |
+| 删除 data-analytics 映射行 | FAIL 委托 id |
+| smoke 再写 v2.0.3=143/0 | FAIL smoke 指标 |
 
 （历史 T6 临时套件已由 `--negative-self-test` 内嵌替代；不新增 tests 第三文件。）

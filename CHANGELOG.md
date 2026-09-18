@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.4] - 2026-09-18
+
+### 摘要
+
+**iterative-bug-hunter v5（code-only）**。修复 Soft-JIT「official skill」称谓收窄；委托映射补齐 `data-analytics` / `learn-everything` / `skill-creator`，并增加表外**已装**专项 skill 的 canonical seed JIT 纪律；smoke v2.0.3 静态门指标 143→**145** 与 checklist/实测对齐；当前规格 v2-gate 增加「当前核对」指向 checklist 期望 pass；静态门覆盖上述契约点并补负向用例。
+
+### Fixed
+
+- `skill/references/multimodal.md` — Soft-JIT 与门控同称「专项 skill」
+- `skill/references/intent-gate.md` — 映射 +3 已装高价值 skill；canonical seed / 已装 JIT 纪律
+- `docs/compose/smoke/v2.0.0-full-matrix-report.md` — v2.0.3 D5 指标 143/0 → 145/0
+- `docs/compose/spec/v2-gate-multimodal.md` — Verification 区分 journey 历史值与当前 checklist 期望 pass
+- `skill/tests/run_static_checks.py` — 委托 id、Soft-JIT 称谓、inventory 纪律、smoke/当前规格卫生断言 + 负向用例
+
+### Changed
+
+- `README.md` — Version 2.0.4；委托映射称谓 canonical seed 18 类
+- `skill/tests/checklist.md` — 2.0.4；期望 pass；19 id；路由自检补分析/带学样本
+
+[2.0.4]: https://github.com/yangyf724/universal-agent-engine/compare/v2.0.3...v2.0.4
+
 ## [2.0.3] - 2026-09-18
 
 ### 摘要
